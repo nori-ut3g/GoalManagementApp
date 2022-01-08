@@ -14,9 +14,15 @@
 </head>
 <body>
 <div id="app">
-    <example-component></example-component>
+    <task-card-component></task-card-component>
 </div>
 <!-- Scripts -->
 <script src="{{ mix('/js/app.js') }}" defer></script>
 </body>
 </html>
+<script>
+    import TaskCardComponent from "../js/components/TaskCardComponent";
+    export default {
+        components: {TaskCardComponent}
+    }
+</script>
