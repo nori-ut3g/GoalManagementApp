@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuetify from "./vuetify";
 
-import TaskSectionComponent from "./components/TaskSectionComponent";
+import ObjectiveBodyComponent from "./components/ObjectiveBodyComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -36,6 +36,7 @@ const app = new Vue({
     el: '#app',
     vuetify: Vuetify,
     components:{
-        'task-section-component': TaskSectionComponent,
+        'objective-body-component': ObjectiveBodyComponent,
+
     }
 });

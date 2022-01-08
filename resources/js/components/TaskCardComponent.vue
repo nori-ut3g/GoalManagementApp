@@ -1,6 +1,6 @@
 <template>
-    <div class="py-2">
-        <v-card mt-2 pt-2
+    <v-col cols="12">
+        <v-card
             elevation="3"
             tile
             color="#385F73"
@@ -25,7 +25,7 @@
                 </div>
             </v-container>
         </v-card>
-    </div>
+    </v-col>
 </template>
 
 <script>
