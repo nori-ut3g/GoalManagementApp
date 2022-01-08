@@ -1,9 +1,8 @@
 <template>
-    <v-app>
-        <v-card
+    <div class="py-2">
+        <v-card mt-2 pt-2
             elevation="3"
             tile
-            width="200"
             color="#385F73"
         >
             <v-container>
@@ -11,9 +10,7 @@
                     <v-card
                         solo
                         tile
-                        width="180"
                         min-height="30"
-                        class="my-2"
                     >
                         <strong>TaskName</strong>
                     </v-card>
@@ -28,8 +25,7 @@
                 </div>
             </v-container>
         </v-card>
-
-    </v-app>
+    </div>
 </template>
 
 <script>

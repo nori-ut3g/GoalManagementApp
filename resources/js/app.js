@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Vuetify from "./vuetify";
 
-import TaskCardComponent from "./components/TaskCardComponent";
+import TaskSectionComponent from "./components/TaskSectionComponent";
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -35,6 +36,6 @@ const app = new Vue({
     el: '#app',
     vuetify: Vuetify,
     components:{
-        'task-card-component': TaskCardComponent,
+        'task-section-component': TaskSectionComponent,
     }
 });

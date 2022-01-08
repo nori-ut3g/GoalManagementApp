@@ -14,15 +14,15 @@
 </head>
 <body>
 <div id="app">
-    <task-card-component></task-card-component>
+    <v-container>
+        <task-section-component></task-section-component>
+    </v-container>
+
 </div>
 <!-- Scripts -->
 <script src="{{ mix('/js/app.js') }}" defer></script>
 </body>
 </html>
 <script>
-    import TaskCardComponent from "../js/components/TaskCardComponent";
-    export default {
-        components: {TaskCardComponent}
-    }
+
 </script>
