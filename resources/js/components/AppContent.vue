@@ -71,7 +71,9 @@
 <!--                Objectiveコンテンツ内容-->
 <!--                <objective-content-component></objective-content-component>-->
 <!--                Objective一覧-->
-                <objective-table-component></objective-table-component>
+<!--                <objective-table-component></objective-table-component>-->
+<!--                SignUp-->
+                <sign-up-component></sign-up-component>
             </v-main>
 
 
@@ -86,10 +88,13 @@ import TaskSectionComponent from "./TaskSectionComponent";
 import ProgressBarComponent from "./ProgressBarComponent";
 import ObjectiveContentComponent from "./ObjectiveContentComponent";
 import ObjectiveTableComponent from "./ObjectiveTableComponent";
+import SignUpComponent from "./SignUpComponent";
 
 export default {
     name: "ObjectiveBodyComponent",
-    components: {ObjectiveTableComponent, ObjectiveContentComponent, ProgressBarComponent, TaskSectionComponent},
+    components: {
+        SignUpComponent,
+        ObjectiveTableComponent, ObjectiveContentComponent, ProgressBarComponent, TaskSectionComponent},
     data() {
         return {
             sideBar: true,

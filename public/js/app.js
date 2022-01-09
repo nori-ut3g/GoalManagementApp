@@ -5265,6 +5265,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TaskSectionComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TaskSectionComponent */ "./resources/js/components/TaskSectionComponent.vue");
 /* harmony import */ var _ProgressBarComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProgressBarComponent */ "./resources/js/components/ProgressBarComponent.vue");
 /* harmony import */ var _ObjectiveContentComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ObjectiveContentComponent */ "./resources/js/components/ObjectiveContentComponent.vue");
+/* harmony import */ var _ObjectiveTableComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ObjectiveTableComponent */ "./resources/js/components/ObjectiveTableComponent.vue");
+/* harmony import */ var _SignUpComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SignUpComponent */ "./resources/js/components/SignUpComponent.vue");
 //
 //
 //
@@ -5345,12 +5347,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ObjectiveBodyComponent",
   components: {
+    SignUpComponent: _SignUpComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
+    ObjectiveTableComponent: _ObjectiveTableComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
     ObjectiveContentComponent: _ObjectiveContentComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
     ProgressBarComponent: _ProgressBarComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
     TaskSectionComponent: _TaskSectionComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -5455,6 +5466,132 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ObjectiveTableComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ObjectiveTableComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "ObjectiveTableComponent",
+  data: function data() {
+    return {
+      headers: [{
+        text: 'Dessert (100g serving)',
+        align: 'start',
+        sortable: false,
+        value: 'name'
+      }, {
+        text: 'Calories',
+        value: 'calories'
+      }, {
+        text: 'Fat (g)',
+        value: 'fat'
+      }, {
+        text: 'Carbs (g)',
+        value: 'carbs'
+      }, {
+        text: 'Protein (g)',
+        value: 'protein'
+      }, {
+        text: 'Iron (%)',
+        value: 'iron'
+      }],
+      desserts: [{
+        name: 'Frozen Yogurt',
+        calories: 159,
+        fat: 6.0,
+        carbs: 24,
+        protein: 4.0,
+        iron: '1%'
+      }, {
+        name: 'Ice cream sandwich',
+        calories: 237,
+        fat: 9.0,
+        carbs: 37,
+        protein: 4.3,
+        iron: '1%'
+      }, {
+        name: 'Eclair',
+        calories: 262,
+        fat: 16.0,
+        carbs: 23,
+        protein: 6.0,
+        iron: '7%'
+      }, {
+        name: 'Cupcake',
+        calories: 305,
+        fat: 3.7,
+        carbs: 67,
+        protein: 4.3,
+        iron: '8%'
+      }, {
+        name: 'Gingerbread',
+        calories: 356,
+        fat: 16.0,
+        carbs: 49,
+        protein: 3.9,
+        iron: '16%'
+      }, {
+        name: 'Jelly bean',
+        calories: 375,
+        fat: 0.0,
+        carbs: 94,
+        protein: 0.0,
+        iron: '0%'
+      }, {
+        name: 'Lollipop',
+        calories: 392,
+        fat: 0.2,
+        carbs: 98,
+        protein: 0,
+        iron: '2%'
+      }, {
+        name: 'Honeycomb',
+        calories: 408,
+        fat: 3.2,
+        carbs: 87,
+        protein: 6.5,
+        iron: '45%'
+      }, {
+        name: 'Donut',
+        calories: 452,
+        fat: 25.0,
+        carbs: 51,
+        protein: 4.9,
+        iron: '22%'
+      }, {
+        name: 'KitKat',
+        calories: 518,
+        fat: 26.0,
+        carbs: 65,
+        protein: 7,
+        iron: '6%'
+      }]
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProgressBarComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProgressBarComponent.vue?vue&type=script&lang=js& ***!
@@ -5485,6 +5622,53 @@ __webpack_require__.r(__webpack_exports__);
       progress: 44
     };
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SignUpComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SignUpComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "SignUpComponent"
 });
 
 /***/ }),
@@ -28985,6 +29169,45 @@ component.options.__file = "resources/js/components/ObjectiveContentComponent.vu
 
 /***/ }),
 
+/***/ "./resources/js/components/ObjectiveTableComponent.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/ObjectiveTableComponent.vue ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ObjectiveTableComponent_vue_vue_type_template_id_559b51cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ObjectiveTableComponent.vue?vue&type=template&id=559b51cd&scoped=true& */ "./resources/js/components/ObjectiveTableComponent.vue?vue&type=template&id=559b51cd&scoped=true&");
+/* harmony import */ var _ObjectiveTableComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ObjectiveTableComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ObjectiveTableComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ObjectiveTableComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ObjectiveTableComponent_vue_vue_type_template_id_559b51cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ObjectiveTableComponent_vue_vue_type_template_id_559b51cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "559b51cd",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ObjectiveTableComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ProgressBarComponent.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/ProgressBarComponent.vue ***!
@@ -29020,6 +29243,45 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/ProgressBarComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/SignUpComponent.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/SignUpComponent.vue ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _SignUpComponent_vue_vue_type_template_id_5011608a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SignUpComponent.vue?vue&type=template&id=5011608a&scoped=true& */ "./resources/js/components/SignUpComponent.vue?vue&type=template&id=5011608a&scoped=true&");
+/* harmony import */ var _SignUpComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SignUpComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/SignUpComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SignUpComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SignUpComponent_vue_vue_type_template_id_5011608a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _SignUpComponent_vue_vue_type_template_id_5011608a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "5011608a",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SignUpComponent.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -29150,6 +29412,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/ObjectiveTableComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/ObjectiveTableComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ObjectiveTableComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ObjectiveTableComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ObjectiveTableComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ObjectiveTableComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/ProgressBarComponent.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/ProgressBarComponent.vue?vue&type=script&lang=js& ***!
@@ -29163,6 +29441,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProgressBarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProgressBarComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProgressBarComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProgressBarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SignUpComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/SignUpComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SignUpComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SignUpComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SignUpComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SignUpComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -29249,6 +29543,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/ObjectiveTableComponent.vue?vue&type=template&id=559b51cd&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/ObjectiveTableComponent.vue?vue&type=template&id=559b51cd&scoped=true& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ObjectiveTableComponent_vue_vue_type_template_id_559b51cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ObjectiveTableComponent_vue_vue_type_template_id_559b51cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ObjectiveTableComponent_vue_vue_type_template_id_559b51cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ObjectiveTableComponent.vue?vue&type=template&id=559b51cd&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ObjectiveTableComponent.vue?vue&type=template&id=559b51cd&scoped=true&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ProgressBarComponent.vue?vue&type=template&id=5aeefe62&scoped=true&":
 /*!*****************************************************************************************************!*\
   !*** ./resources/js/components/ProgressBarComponent.vue?vue&type=template&id=5aeefe62&scoped=true& ***!
@@ -29262,6 +29573,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProgressBarComponent_vue_vue_type_template_id_5aeefe62_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProgressBarComponent_vue_vue_type_template_id_5aeefe62_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProgressBarComponent.vue?vue&type=template&id=5aeefe62&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProgressBarComponent.vue?vue&type=template&id=5aeefe62&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/SignUpComponent.vue?vue&type=template&id=5011608a&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/SignUpComponent.vue?vue&type=template&id=5011608a&scoped=true& ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SignUpComponent_vue_vue_type_template_id_5011608a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SignUpComponent_vue_vue_type_template_id_5011608a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SignUpComponent_vue_vue_type_template_id_5011608a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SignUpComponent.vue?vue&type=template&id=5011608a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SignUpComponent.vue?vue&type=template&id=5011608a&scoped=true&");
 
 
 /***/ }),
@@ -29345,11 +29673,17 @@ var render = function () {
               _vm._v(" "),
               _c("v-spacer"),
               _vm._v(" "),
-              _c("div", [_vm._v("\n                SignUp\n            ")]),
+              _c("div", [
+                _vm._v("\n                    SignUp\n                "),
+              ]),
               _vm._v(" "),
-              _c("div", [_vm._v("\n                Login\n            ")]),
+              _c("div", [
+                _vm._v("\n                    Login\n                "),
+              ]),
               _vm._v(" "),
-              _c("div", [_vm._v("\n                Logout\n            ")]),
+              _c("div", [
+                _vm._v("\n                    Logout\n                "),
+              ]),
             ],
             1
           ),
@@ -29403,7 +29737,7 @@ var render = function () {
                                 { staticClass: "text-h6" },
                                 [
                                   _vm._v(
-                                    "\n                                John Leider\n                            "
+                                    "\n                                    John Leider\n                                "
                                   ),
                                 ]
                               ),
@@ -29477,7 +29811,7 @@ var render = function () {
                 1
               ),
               _vm._v(" "),
-              _c("objective-content-component"),
+              _c("sign-up-component"),
             ],
             1
           ),
@@ -29579,6 +29913,52 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ObjectiveTableComponent.vue?vue&type=template&id=559b51cd&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ObjectiveTableComponent.vue?vue&type=template&id=559b51cd&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "app" } },
+    [
+      _c(
+        "v-app",
+        { attrs: { id: "inspire" } },
+        [
+          _c("v-data-table", {
+            staticClass: "elevation-1",
+            attrs: {
+              headers: _vm.headers,
+              items: _vm.desserts,
+              "items-per-page": 5,
+            },
+          }),
+        ],
+        1
+      ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProgressBarComponent.vue?vue&type=template&id=5aeefe62&scoped=true&":
 /*!********************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProgressBarComponent.vue?vue&type=template&id=5aeefe62&scoped=true& ***!
@@ -29611,6 +29991,75 @@ var render = function () {
           },
         },
         [_c("strong", [_vm._v(_vm._s(Math.ceil(_vm.progress)) + "%")])]
+      ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SignUpComponent.vue?vue&type=template&id=5011608a&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SignUpComponent.vue?vue&type=template&id=5011608a&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-card",
+    [
+      _c(
+        "v-col",
+        { attrs: { cols: "12" } },
+        [
+          _c("v-text-field", {
+            attrs: { label: "Email Address", value: "example@example.com" },
+          }),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-col",
+        { attrs: { cols: "12" } },
+        [_c("v-text-field", { attrs: { label: "UserName", value: "nori" } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-col",
+        { attrs: { cols: "12" } },
+        [
+          _c("v-text-field", {
+            attrs: { label: "Password(re-enter)", value: "password" },
+          }),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-col",
+        { attrs: { cols: "12" } },
+        [
+          _c("v-text-field", {
+            attrs: { label: "Password", value: "password" },
+          }),
+        ],
+        1
       ),
     ],
     1
