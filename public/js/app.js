@@ -5313,6 +5313,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5320,6 +5337,11 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     ProgressBarComponent: _ProgressBarComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
     TaskSectionComponent: _TaskSectionComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      sideBar: true
+    };
   }
 });
 
@@ -29169,20 +29191,61 @@ var render = function () {
         "v-container",
         [
           _c(
-            "v-row",
+            "v-app-bar",
+            {
+              attrs: {
+                app: "",
+                clippedLeft: "",
+                flat: "",
+                dark: "",
+                color: "indigo darken-3",
+              },
+            },
             [
-              _c("progress-bar-component"),
-              _vm._v(" "),
-              _vm._l(3, function (n) {
-                return _c(
-                  "v-col",
-                  { key: n, attrs: { cols: "4" } },
-                  [_c("TaskSectionComponent")],
-                  1
-                )
+              _c("v-app-bar-nav-icon", {
+                on: {
+                  click: function ($event) {
+                    $event.stopPropagation()
+                    _vm.sideBar = !_vm.sideBar
+                  },
+                },
               }),
             ],
-            2
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-main",
+            [
+              _c("v-navigation-drawer", {
+                attrs: { app: "", clipped: "", dark: "", color: "" },
+                model: {
+                  value: _vm.sideBar,
+                  callback: function ($$v) {
+                    _vm.sideBar = $$v
+                  },
+                  expression: "sideBar",
+                },
+              }),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c("progress-bar-component"),
+                  _vm._v(" "),
+                  _vm._l(3, function (n) {
+                    return _c(
+                      "v-col",
+                      { key: n, attrs: { cols: "4" } },
+                      [_c("TaskSectionComponent")],
+                      1
+                    )
+                  }),
+                ],
+                2
+              ),
+            ],
+            1
           ),
         ],
         1
