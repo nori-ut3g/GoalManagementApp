@@ -15,7 +15,7 @@
 <body>
 <div id="app">
     <v-container>
-        <objective-body-component></objective-body-component>
+        <app-component></app-component>
     </v-container>
 
 </div>

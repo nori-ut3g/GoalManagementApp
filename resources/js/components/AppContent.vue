@@ -49,7 +49,6 @@
                         dense
                     >
                         <v-list-item-group
-                            v-model="selectedItem"
                             color="primary"
                         >
                             <v-list-item
@@ -68,12 +67,8 @@
                     </v-list>
                 </v-navigation-drawer>
 
-                <v-row>
-                    <progress-bar-component></progress-bar-component>
-                    <v-col cols=4 v-for="n in 3" :key="n">
-                        <TaskSectionComponent></TaskSectionComponent>
-                    </v-col>
-                </v-row>
+                <!--Main Content-->
+                <objective-content-component></objective-content-component>
             </v-main>
 
 
@@ -86,9 +81,11 @@
 <script>
 import TaskSectionComponent from "./TaskSectionComponent";
 import ProgressBarComponent from "./ProgressBarComponent";
+import ObjectiveContentComponent from "./ObjectiveContentComponent";
+
 export default {
     name: "ObjectiveBodyComponent",
-    components: {ProgressBarComponent, TaskSectionComponent},
+    components: {ObjectiveContentComponent, ProgressBarComponent, TaskSectionComponent},
     data() {
         return {
             sideBar: true,

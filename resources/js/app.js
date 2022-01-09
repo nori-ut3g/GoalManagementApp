@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuetify from "./vuetify";
 
-import ObjectiveBodyComponent from "./components/ObjectiveBodyComponent";
+import AppComponent from "./components/AppContent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -36,7 +36,7 @@ const app = new Vue({
     el: '#app',
     vuetify: Vuetify,
     components:{
-        'objective-body-component': ObjectiveBodyComponent,
+        'app-component': AppComponent,
 
     }
 });
