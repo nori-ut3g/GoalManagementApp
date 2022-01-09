@@ -68,7 +68,10 @@
                 </v-navigation-drawer>
 
                 <!--Main Content-->
-                <objective-content-component></objective-content-component>
+<!--                Objectiveコンテンツ内容-->
+<!--                <objective-content-component></objective-content-component>-->
+<!--                Objective一覧-->
+                <objective-table-component></objective-table-component>
             </v-main>
 
 
@@ -82,10 +85,11 @@
 import TaskSectionComponent from "./TaskSectionComponent";
 import ProgressBarComponent from "./ProgressBarComponent";
 import ObjectiveContentComponent from "./ObjectiveContentComponent";
+import ObjectiveTableComponent from "./ObjectiveTableComponent";
 
 export default {
     name: "ObjectiveBodyComponent",
-    components: {ObjectiveContentComponent, ProgressBarComponent, TaskSectionComponent},
+    components: {ObjectiveTableComponent, ObjectiveContentComponent, ProgressBarComponent, TaskSectionComponent},
     data() {
         return {
             sideBar: true,
