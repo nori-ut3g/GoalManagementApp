@@ -2,6 +2,7 @@
     <div>
         <v-container>
             <v-row>
+                <progress-bar-component></progress-bar-component>
                 <v-col cols=4 v-for="n in 3" :key="n">
                     <TaskSectionComponent></TaskSectionComponent>
                 </v-col>
@@ -13,9 +14,10 @@
 
 <script>
 import TaskSectionComponent from "./TaskSectionComponent";
+import ProgressBarComponent from "./ProgressBarComponent";
 export default {
     name: "ObjectiveBodyComponent",
-    components: {TaskSectionComponent}
+    components: {ProgressBarComponent, TaskSectionComponent}
 }
 </script>
 
