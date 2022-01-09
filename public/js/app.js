@@ -5330,6 +5330,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5340,7 +5383,29 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      sideBar: true
+      sideBar: true,
+      items: [{
+        text: 'My Files',
+        icon: 'mdi-folder'
+      }, {
+        text: 'Shared with me',
+        icon: 'mdi-account-multiple'
+      }, {
+        text: 'Starred',
+        icon: 'mdi-star'
+      }, {
+        text: 'Recent',
+        icon: 'mdi-history'
+      }, {
+        text: 'Offline',
+        icon: 'mdi-check-circle'
+      }, {
+        text: 'Uploads',
+        icon: 'mdi-upload'
+      }, {
+        text: 'Backups',
+        icon: 'mdi-cloud-upload'
+      }]
     };
   }
 });
@@ -29217,16 +29282,134 @@ var render = function () {
           _c(
             "v-main",
             [
-              _c("v-navigation-drawer", {
-                attrs: { app: "", clipped: "", dark: "", color: "" },
-                model: {
-                  value: _vm.sideBar,
-                  callback: function ($$v) {
-                    _vm.sideBar = $$v
+              _c(
+                "v-navigation-drawer",
+                {
+                  attrs: { app: "", clipped: "", dark: "", color: "" },
+                  model: {
+                    value: _vm.sideBar,
+                    callback: function ($$v) {
+                      _vm.sideBar = $$v
+                    },
+                    expression: "sideBar",
                   },
-                  expression: "sideBar",
                 },
-              }),
+                [
+                  _c(
+                    "v-list",
+                    [
+                      _c(
+                        "v-list-item",
+                        [
+                          _c(
+                            "v-list-item-avatar",
+                            [
+                              _c("v-img", {
+                                attrs: {
+                                  src: "https://cdn.vuetifyjs.com/images/john.png",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item",
+                        { attrs: { link: "" } },
+                        [
+                          _c(
+                            "v-list-item-content",
+                            [
+                              _c(
+                                "v-list-item-title",
+                                { staticClass: "text-h6" },
+                                [
+                                  _vm._v(
+                                    "\n                                John Leider\n                            "
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("v-list-item-subtitle", [
+                                _vm._v("john@vuetifyjs.com"),
+                              ]),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-item-action",
+                            [_c("v-icon", [_vm._v("mdi-menu-down")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider"),
+                  _vm._v(" "),
+                  _c(
+                    "v-list",
+                    { attrs: { nav: "", dense: "" } },
+                    [
+                      _c(
+                        "v-list-item-group",
+                        {
+                          attrs: { color: "primary" },
+                          model: {
+                            value: _vm.selectedItem,
+                            callback: function ($$v) {
+                              _vm.selectedItem = $$v
+                            },
+                            expression: "selectedItem",
+                          },
+                        },
+                        _vm._l(_vm.items, function (item, i) {
+                          return _c(
+                            "v-list-item",
+                            { key: i },
+                            [
+                              _c(
+                                "v-list-item-icon",
+                                [
+                                  _c("v-icon", {
+                                    domProps: {
+                                      textContent: _vm._s(item.icon),
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-list-item-content",
+                                [
+                                  _c("v-list-item-title", {
+                                    domProps: {
+                                      textContent: _vm._s(item.text),
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          )
+                        }),
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "v-row",
