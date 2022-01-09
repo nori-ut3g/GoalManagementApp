@@ -4,6 +4,17 @@
             <!-- Header -->
             <v-app-bar app clippedLeft flat dark color="indigo darken-3">
                 <v-app-bar-nav-icon @click.stop="sideBar=!sideBar"></v-app-bar-nav-icon>
+                <v-spacer></v-spacer>
+
+                <div>
+                    SignUp
+                </div>
+                <div>
+                    Login
+                </div>
+                <div>
+                    Logout
+                </div>
             </v-app-bar>
 
 

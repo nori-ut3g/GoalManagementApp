@@ -5373,6 +5373,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -29275,6 +29286,14 @@ var render = function () {
                   },
                 },
               }),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("div", [_vm._v("\n                SignUp\n            ")]),
+              _vm._v(" "),
+              _c("div", [_vm._v("\n                Login\n            ")]),
+              _vm._v(" "),
+              _c("div", [_vm._v("\n                Logout\n            ")]),
             ],
             1
           ),
