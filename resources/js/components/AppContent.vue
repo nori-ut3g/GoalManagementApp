@@ -73,7 +73,9 @@
 <!--                Objective一覧-->
 <!--                <objective-table-component></objective-table-component>-->
 <!--                SignUp-->
-                <sign-up-component></sign-up-component>
+<!--                <sign-up-component></sign-up-component>-->
+<!--                LogIn-->
+                <log-in-component></log-in-component>
             </v-main>
 
 
@@ -89,10 +91,12 @@ import ProgressBarComponent from "./ProgressBarComponent";
 import ObjectiveContentComponent from "./ObjectiveContentComponent";
 import ObjectiveTableComponent from "./ObjectiveTableComponent";
 import SignUpComponent from "./SignUpComponent";
+import LogInComponent from "./LogInComponent";
 
 export default {
     name: "ObjectiveBodyComponent",
     components: {
+        LogInComponent,
         SignUpComponent,
         ObjectiveTableComponent, ObjectiveContentComponent, ProgressBarComponent, TaskSectionComponent},
     data() {
