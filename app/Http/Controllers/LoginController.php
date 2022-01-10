@@ -6,24 +6,41 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Exception;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Http\JsonResponse;
 
 class LoginController extends Controller
 {
-    //
-    public function login(Request $request){
-        $result = false;
-        $status = 401;
-        $message = 'ユーザが見つかりません。';
-        $user = null;
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            // Success
-            $result = true;
-            $status = 200;
-            $message = 'OK';
-        }
-        return response()->json(['result' => $result, 'status' => $status, 'message' => $message]);
 
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => 'required',
+        ]);
+
+        if ($this->getGuard()->attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return new JsonResponse(['message' => 'ログインしました']);
         }
+
+        throw new Exception('ログインに失敗しました。再度お試しください');
     }
+
+    //
+    public function logout(Request $request)
+    {
+        $this->getGuard()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return view('app');
+    }
+
+    private function getGuard(){
+        return Auth::guard(config('auth.defaults.guard'));
+    }
+}
 

@@ -4,14 +4,16 @@
             <!-- Header -->
             <v-app-bar app clippedLeft flat dark color="indigo darken-3">
                 <v-app-bar-nav-icon @click.stop="sideBar=!sideBar"></v-app-bar-nav-icon>
+                <v-btn to="/">Home</v-btn>
+
                 <v-spacer></v-spacer>
 
 
-                    <v-btn to="/signup">SignUp</v-btn>
-                    <v-btn to="/login">Login</v-btn>
+                <v-btn to="/signup">SignUp</v-btn>
+                <v-btn to="/login">Login</v-btn>
+                <v-btn v-if="isLoggedIn" @click="logout">Logout</v-btn>
 
 
-                    <button class="btn btn-success">Login</button>
 
 
 <!--                <router-link v-bind:to="{name: 'user.register'}">-->
@@ -19,12 +21,13 @@
 <!--                </router-link>-->
 
             </v-app-bar>
-
+            <
 
             <!-- Body -->
             <v-main>
                 <!-- SideBar -->
-                <v-navigation-drawer app clipped v-model="sideBar" dark color="">
+
+                <v-navigation-drawer v-if="isLoggedIn" app clipped v-model="sideBar" dark color="">
                     <v-list>
                         <v-list-item>
                             <v-list-item-avatar>
@@ -37,7 +40,7 @@
                                 <v-list-item-title class="text-h6">
 
                                 </v-list-item-title>
-                                <v-list-item-subtitle>john@vuetifyjs.com</v-list-item-subtitle>
+                                <v-list-item-subtitle>{{userInfo.email}}</v-list-item-subtitle>
                             </v-list-item-content>
 
                             <v-list-item-action>
@@ -108,8 +111,9 @@ export default {
         ObjectiveTableComponent, ObjectiveContentComponent, ProgressBarComponent, TaskSectionComponent},
     data() {
         return {
-            sideBar: true,
+            sideBar: false,
             userInfo:[],
+            isLoggedIn:false,
             items: [
                 { text: 'My Files', icon: 'mdi-folder' , link:'/list'},
                 { text: 'Main', icon: 'mdi-folder' , link:'/main'},
@@ -122,11 +126,28 @@ export default {
         }
     },
     created:function(){
-        axios.get('api/user')
-        .then((res) => {
-            this.userInfo = res.data;
-            console.log(this.userInfo)
-        })
+        this.autoLogin();
+    },
+    methods:{
+        logout() {
+            this.isLoggedIn = false;
+            console.log("logout")
+            axios.get('/api/logout')
+
+        },
+        autoLogin(){
+            axios.get('/api/user')
+                .then((res) => {
+                    this.isLoggedIn = true;
+                    this.userInfo = res.data;
+                })
+                .catch((err) => {
+                    this.isLoggedIn = false;
+                    this.$router.push('/login')
+                    console.log(err);
+                })
+
+        }
     }
 }
 </script>
