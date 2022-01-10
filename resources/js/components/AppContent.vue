@@ -6,17 +6,19 @@
                 <v-app-bar-nav-icon @click.stop="sideBar=!sideBar"></v-app-bar-nav-icon>
                 <v-spacer></v-spacer>
 
-                <div>
-                    SignUp
-                </div>
-                <div>
-                    Login
-                </div>
-                <div>
-                    Logout
-                </div>
-            </v-app-bar>
 
+                    <v-btn to="/signup">SignUp</v-btn>
+                    <v-btn to="/login">Login</v-btn>
+
+
+                    <button class="btn btn-success">Login</button>
+
+
+<!--                <router-link v-bind:to="{name: 'user.register'}">-->
+<!--                    <button class="btn btn-success">Logout</button>-->
+<!--                </router-link>-->
+
+            </v-app-bar>
 
 
             <!-- Body -->
@@ -67,15 +69,18 @@
                     </v-list>
                 </v-navigation-drawer>
 
-                <!--Main Content-->
-<!--                Objectiveコンテンツ内容-->
-<!--                <objective-content-component></objective-content-component>-->
-<!--                Objective一覧-->
-<!--                <objective-table-component></objective-table-component>-->
-<!--                SignUp-->
-<!--                <sign-up-component></sign-up-component>-->
-<!--                LogIn-->
-                <log-in-component></log-in-component>
+<!--                <router-view to="/user/login"></router-view>-->
+                    <!--Main Content-->
+                    <!--                Objectiveコンテンツ内容-->
+                    <!--                <objective-content-component></objective-content-component>-->
+                    <!--                Objective一覧-->
+                    <!--                <objective-table-component></objective-table-component>-->
+                    <!--                SignUp-->
+                    <!--                <sign-up-component></sign-up-component>-->
+                    <!--                LogIn-->
+<!--                    <log-in-component></log-in-component>-->
+
+
             </v-main>
 
 

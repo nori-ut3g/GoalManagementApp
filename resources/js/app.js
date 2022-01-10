@@ -1,7 +1,11 @@
 import Vue from "vue";
 import Vuetify from "./vuetify";
+import VueRouter from "vue-router";
 
 import AppComponent from "./components/AppContent";
+import LogInComponent from "./components/LogInComponent";
+import SignUpComponent from "./components/SignUpComponent";
+
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -12,6 +16,25 @@ import AppComponent from "./components/AppContent";
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/signup',
+            component: SignUpComponent
+        },
+        {
+            path: '/login',
+            component: LogInComponent
+        }
+    ]
+    }
+)
+
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -35,6 +58,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
     vuetify: Vuetify,
+    router,
     components:{
         'app-component': AppComponent,
 
