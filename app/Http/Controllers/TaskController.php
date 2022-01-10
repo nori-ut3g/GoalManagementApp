@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Objective;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     public function index(){
-        $objectives = Objective::all();
-
-        return $objectives;
+        return Task::all();
+//        $objectives = Objective::all();
+//
+//        $current_Objective = Objective::find($id);
+//
+//        $tasks = Task::where('folder_id', $current_Objective->id)->get();
+//        return $tasks;
     }
 }

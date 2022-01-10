@@ -23,3 +23,4 @@ Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'regi
 Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
 
 Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'index']);
+Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);

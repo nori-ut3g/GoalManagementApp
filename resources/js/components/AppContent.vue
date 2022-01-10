@@ -68,12 +68,12 @@
                         </v-list-item-group>
                     </v-list>
                 </v-navigation-drawer>
-                <objective-table-component></objective-table-component>
+<!--                <objective-table-component></objective-table-component>-->
 <!--                <router-view></router-view>-->
 <!--                <router-view to="/user/login"></router-view>-->
                     <!--Main Content-->
                     <!--                Objectiveコンテンツ内容-->
-                    <!--                <objective-content-component></objective-content-component>-->
+                                    <objective-content-component></objective-content-component>
                     <!--                Objective一覧-->
                     <!--                <objective-table-component></objective-table-component>-->
                     <!--                SignUp-->

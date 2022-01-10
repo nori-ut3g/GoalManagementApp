@@ -12,7 +12,7 @@
                         tile
                         min-height="30"
                     >
-                        <strong>TaskName</strong>
+                        <strong>{{task.title}}</strong>
                     </v-card>
                 </div>
 
@@ -30,7 +30,13 @@
 
 <script>
 export default {
-    name: "TaskCardComponent"
+    name: "TaskCardComponent",
+    props:['task'],
+    data(){
+        return{
+            task:[]
+        }
+    }
 }
 
 </script>

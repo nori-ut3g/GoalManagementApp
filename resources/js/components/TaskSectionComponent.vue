@@ -5,9 +5,9 @@
         >
             <v-container >
                 <v-row>
-                    <task-card-component></task-card-component>
-                    <task-card-component></task-card-component>
-                    <task-card-component></task-card-component>
+                    <div v-for="(task, index) in tasks" :key="index" >
+                        <task-card-component  :task="task" class="my-2" ></task-card-component>
+                    </div>
                 </v-row>
             </v-container>
         </v-card>
@@ -19,7 +19,13 @@
 import TaskCardComponent from "./TaskCardComponent";
 export default {
     name: "TaskSectionComponent",
-    components: {TaskCardComponent}
+    components: {TaskCardComponent},
+    props: ['tasks'],
+    data(){
+        return{
+            tasks:[]
+        }
+    }
 }
 </script>
 
