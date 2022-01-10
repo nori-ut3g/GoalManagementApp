@@ -34,6 +34,7 @@ export default {
                     axios.post('/api/login', this.user)
                         .then((res) => {
                             console.log(res.data)
+                            this.$router.push('/')
                         })
                         .catch((err) => {
                             console.log(err);

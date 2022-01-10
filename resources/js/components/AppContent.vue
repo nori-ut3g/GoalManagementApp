@@ -9,8 +9,8 @@
                 <v-spacer></v-spacer>
 
 
-                <v-btn to="/signup">SignUp</v-btn>
-                <v-btn to="/login">Login</v-btn>
+                <v-btn v-if="!isLoggedIn" to="/signup">SignUp</v-btn>
+                <v-btn v-if="!isLoggedIn" to="/login">Login</v-btn>
                 <v-btn v-if="isLoggedIn" @click="logout">Logout</v-btn>
 
 
@@ -27,6 +27,14 @@
             <v-main>
                 <!-- SideBar -->
 
+                <v-alert
+                    border="bottom"
+                    color="pink darken-1"
+                    dark
+                    v-if="isShowAlert"
+                >
+                    {{userInfo.name}}でログインしました。
+                </v-alert>
                 <v-navigation-drawer v-if="isLoggedIn" app clipped v-model="sideBar" dark color="">
                     <v-list>
                         <v-list-item>
@@ -114,6 +122,7 @@ export default {
             sideBar: false,
             userInfo:[],
             isLoggedIn:false,
+            isShowAlert:false,
             items: [
                 { text: 'My Files', icon: 'mdi-folder' , link:'/list'},
                 { text: 'Main', icon: 'mdi-folder' , link:'/main'},
@@ -121,9 +130,9 @@ export default {
         }
     },
     computed:{
-        showPersonalContent(){
 
-        }
+
+
     },
     created:function(){
         this.autoLogin();
@@ -138,8 +147,10 @@ export default {
         autoLogin(){
             axios.get('/api/user')
                 .then((res) => {
+                    if(!this.isLoggedIn)this.showAlert();
                     this.isLoggedIn = true;
                     this.userInfo = res.data;
+
                 })
                 .catch((err) => {
                     this.isLoggedIn = false;
@@ -147,6 +158,12 @@ export default {
                     console.log(err);
                 })
 
+        },
+        showAlert(){
+            this.isShowAlert = true;
+            setTimeout(() => {
+                    this.isShowAlert = false}
+                ,3000)
         }
     }
 }
