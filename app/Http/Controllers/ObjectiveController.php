@@ -12,4 +12,10 @@ class ObjectiveController extends Controller
 
         return $objectives;
     }
+
+    public function create(Request $request){
+        $objective = new Objective();
+        $objective->title = $request->title;
+        $objective->save();
+    }
 }

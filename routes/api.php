@@ -23,6 +23,9 @@ Route::middleware('auth:sanctum')->group(function(){
     });
     Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'index']);
     Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
+    Route::post('/objectives/create', [\App\Http\Controllers\ObjectiveController::class, 'create']);
+
+
 });
 
 
