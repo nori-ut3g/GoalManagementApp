@@ -16,7 +16,7 @@
 <div id="app">
     <v-container>
         <app-component></app-component>
-        <router-view></router-view>
+
     </v-container>
 
 </div>

@@ -68,7 +68,7 @@
                         </v-list-item-group>
                     </v-list>
                 </v-navigation-drawer>
-
+                <router-view></router-view>
 <!--                <router-view to="/user/login"></router-view>-->
                     <!--Main Content-->
                     <!--                Objectiveコンテンツ内容-->
