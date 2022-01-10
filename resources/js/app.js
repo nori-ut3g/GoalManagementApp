@@ -5,6 +5,8 @@ import VueRouter from "vue-router";
 import AppComponent from "./components/AppContent";
 import LogInComponent from "./components/LogInComponent";
 import SignUpComponent from "./components/SignUpComponent";
+import ObjectiveContentComponent from "./components/ObjectiveContentComponent";
+import ObjectiveTableComponent from "./components/ObjectiveTableComponent";
 
 
 /**
@@ -29,11 +31,18 @@ const router = new VueRouter({
         {
             path: '/login',
             component: LogInComponent
-        }
+        },
+        {
+            path: '/main',
+            component: ObjectiveContentComponent
+        },
+        {
+            path: '/list',
+            component: ObjectiveTableComponent
+        },
     ]
     }
 )
-
 
 
 /**

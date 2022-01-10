@@ -13,14 +13,19 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'register']);
 
 Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
 
-Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'index']);
-Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/user', function(Request $request){
+        return $request->user();
+    });
+    Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'index']);
+    Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
+});
+
+
+
+
+

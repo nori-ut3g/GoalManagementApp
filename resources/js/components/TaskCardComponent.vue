@@ -32,11 +32,7 @@
 export default {
     name: "TaskCardComponent",
     props:['task'],
-    data(){
-        return{
-            task:[]
-        }
-    }
+
 }
 
 </script>

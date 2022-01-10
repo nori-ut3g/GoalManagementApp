@@ -11,20 +11,19 @@ class LoginController extends Controller
 {
     //
     public function login(Request $request){
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
+        $result = false;
+        $status = 401;
+        $message = 'ユーザが見つかりません。';
+        $user = null;
+        $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            $user = User::whereEmail($request->email)->first();
-
-            $user->tokens()->delete();
-            $token = $user->createToken("login:user{$user->id}")->plainTextToken;
-
-            return response()->json(['token' => $token ], Response::HTTP_OK);
+            // Success
+            $result = true;
+            $status = 200;
+            $message = 'OK';
         }
+        return response()->json(['result' => $result, 'status' => $status, 'message' => $message]);
 
-        return response()->json('User Not Found.', Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
-}
+

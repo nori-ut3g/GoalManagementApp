@@ -35,7 +35,7 @@
                         <v-list-item link>
                             <v-list-item-content>
                                 <v-list-item-title class="text-h6">
-                                    John Leider
+
                                 </v-list-item-title>
                                 <v-list-item-subtitle>john@vuetifyjs.com</v-list-item-subtitle>
                             </v-list-item-content>
@@ -56,6 +56,7 @@
                             <v-list-item
                                 v-for="(item, i) in items"
                                 :key="i"
+                                :to="item.link"
                             >
                                 <v-list-item-icon>
                                     <v-icon v-text="item.icon"></v-icon>
@@ -69,11 +70,11 @@
                     </v-list>
                 </v-navigation-drawer>
 <!--                <objective-table-component></objective-table-component>-->
-<!--                <router-view></router-view>-->
+                <router-view></router-view>
 <!--                <router-view to="/user/login"></router-view>-->
                     <!--Main Content-->
                     <!--                Objectiveコンテンツ内容-->
-                                    <objective-content-component></objective-content-component>
+<!--                                    <objective-content-component></objective-content-component>-->
                     <!--                Objective一覧-->
                     <!--                <objective-table-component></objective-table-component>-->
                     <!--                SignUp-->
@@ -108,16 +109,24 @@ export default {
     data() {
         return {
             sideBar: true,
+            userInfo:[],
             items: [
-                { text: 'My Files', icon: 'mdi-folder' },
-                { text: 'Shared with me', icon: 'mdi-account-multiple' },
-                { text: 'Starred', icon: 'mdi-star' },
-                { text: 'Recent', icon: 'mdi-history' },
-                { text: 'Offline', icon: 'mdi-check-circle' },
-                { text: 'Uploads', icon: 'mdi-upload' },
-                { text: 'Backups', icon: 'mdi-cloud-upload' },
+                { text: 'My Files', icon: 'mdi-folder' , link:'/list'},
+                { text: 'Main', icon: 'mdi-folder' , link:'/main'},
                 ]
         }
+    },
+    computed:{
+        showPersonalContent(){
+
+        }
+    },
+    created:function(){
+        axios.get('api/user')
+        .then((res) => {
+            this.userInfo = res.data;
+            console.log(this.userInfo)
+        })
     }
 }
 </script>

@@ -15,7 +15,7 @@
                 v-model="user.password"
             ></v-text-field>
         </v-col>
-        <v-btn @click="submit">Register</v-btn>
+        <v-btn @click="login">Login</v-btn>
     </v-card>
 </template>
 
@@ -28,12 +28,23 @@ export default {
         }
     },
     methods: {
-        submit(){
-            axios.post('/api/login', this.user)
+        login(){
+            axios.get('/sanctum/csrf-cookie')
                 .then((res) => {
-                    console.log(res.data)
+                    axios.post('/api/login', this.user)
+                        .then((res) => {
+                            console.log(res.data)
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
                 })
-        }
+                .catch((err) => {
+                    console.log(err);
+                })
+        },
+
+
     }
 }
 </script>

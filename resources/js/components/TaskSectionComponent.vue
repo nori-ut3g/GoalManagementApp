@@ -23,7 +23,7 @@ export default {
     props: ['tasks'],
     data(){
         return{
-            tasks:[]
+            // tasks:[]
         }
     }
 }
