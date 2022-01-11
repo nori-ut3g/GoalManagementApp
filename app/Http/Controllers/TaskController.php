@@ -17,4 +17,7 @@ class TaskController extends Controller
 //        $tasks = Task::where('folder_id', $current_Objective->id)->get();
 //        return $tasks;
     }
+    public function showTasks(int $id){
+        return Task::where('objective_id', $id)->get();
+    }
 }

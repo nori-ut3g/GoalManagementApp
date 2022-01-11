@@ -44,7 +44,12 @@ const router = new VueRouter({
         {
             path: '/create',
             component: CreateObjectiveComponent
-        }
+        },
+        {
+            path: '/objective/:id',
+            component: ObjectiveContentComponent
+        },
+
     ]
     }
 )

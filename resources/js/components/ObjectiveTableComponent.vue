@@ -6,6 +6,7 @@
             :items="objectives"
             :items-per-page="5"
             class="elevation-1"
+            @click:row="clickRow"
         ></v-data-table>
 
     </div>
@@ -42,6 +43,10 @@ export default {
                     this.objectives = res.data;
                     console.log(res.data)
                 })
+        },
+        clickRow (row) {
+            this.$router.push('/objective/'+row.id)
+            console.log('clickRow', row.id)
         }
     }
 }

@@ -38,9 +38,13 @@ export default {
         }
     },
     created:function () {
-        axios.get('api/tasks')
+        //console.log(this.$route.params.id)
+        axios.get(`/api/objectives/${this.$route.params.id}/tasks`)
         .then((res) => {
             this.tasks = res.data;
+        })
+        .catch((error) =>{
+            console.log(error)
         })
     },
     computed:{
