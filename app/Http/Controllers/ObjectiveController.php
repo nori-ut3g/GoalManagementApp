@@ -16,6 +16,8 @@ class ObjectiveController extends Controller
     public function create(Request $request){
         $objective = new Objective();
         $objective->title = $request->title;
+        $objective->due_date = $request->due_date;
+
         $objective->save();
     }
 }

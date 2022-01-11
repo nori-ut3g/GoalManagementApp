@@ -125,7 +125,8 @@ export default {
             isShowAlert:false,
             items: [
                 { text: 'My Files', icon: 'mdi-folder' , link:'/list'},
-                { text: 'Main', icon: 'mdi-folder' , link:'/main'},
+                { text: 'Create Objective', icon: 'mdi-folder' , link:'/create'},
+
                 ]
         }
     },

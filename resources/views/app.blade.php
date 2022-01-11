@@ -14,10 +14,13 @@
 </head>
 <body>
 <div id="app">
-    <v-container>
-        <app-component></app-component>
+    <v-app>
+        <v-container>
+            <app-component></app-component>
 
-    </v-container>
+        </v-container>
+    </v-app>
+
 
 </div>
 <!-- Scripts -->

@@ -7,6 +7,7 @@ import LogInComponent from "./components/LogInComponent";
 import SignUpComponent from "./components/SignUpComponent";
 import ObjectiveContentComponent from "./components/ObjectiveContentComponent";
 import ObjectiveTableComponent from "./components/ObjectiveTableComponent";
+import CreateObjectiveComponent from "./components/CreateObjectiveComponent";
 
 
 /**
@@ -40,6 +41,10 @@ const router = new VueRouter({
             path: '/list',
             component: ObjectiveTableComponent
         },
+        {
+            path: '/create',
+            component: CreateObjectiveComponent
+        }
     ]
     }
 )

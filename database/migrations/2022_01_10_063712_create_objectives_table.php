@@ -15,7 +15,8 @@ class CreateObjectivesTable extends Migration
     {
         Schema::create('objectives', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title', 20);
+            $table->string('title', 100);
+            $table->date('due_date');
             $table->timestamps();
         });
     }
