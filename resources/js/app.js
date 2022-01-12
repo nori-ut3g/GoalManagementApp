@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuetify from "./vuetify";
 import VueRouter from "vue-router";
 
+import WelcomeComponent from "./components/WelcomeComponent";
 import AppComponent from "./components/AppContent";
 import LogInComponent from "./components/LogInComponent";
 import SignUpComponent from "./components/SignUpComponent";
@@ -25,6 +26,10 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode: 'history',
     routes: [
+        {
+            path: '/home',
+            component: WelcomeComponent
+        },
         {
             path: '/signup',
             component: SignUpComponent

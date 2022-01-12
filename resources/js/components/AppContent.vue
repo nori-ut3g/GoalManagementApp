@@ -4,7 +4,7 @@
             <!-- Header -->
             <v-app-bar app clippedLeft flat dark color="indigo darken-3">
                 <v-app-bar-nav-icon @click.stop="sideBar=!sideBar"></v-app-bar-nav-icon>
-                <v-btn to="/">Home</v-btn>
+                <v-btn to="/home">Home</v-btn>
 
                 <v-spacer></v-spacer>
 
@@ -81,7 +81,9 @@
                     </v-list>
                 </v-navigation-drawer>
 <!--                <objective-table-component></objective-table-component>-->
-                <router-view></router-view>
+                <router-view
+                    :userInfo="userInfo"
+                ></router-view>
 <!--                <router-view to="/user/login"></router-view>-->
                     <!--Main Content-->
                     <!--                Objectiveコンテンツ内容-->
