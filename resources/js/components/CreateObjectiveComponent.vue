@@ -60,25 +60,47 @@ export default {
     name: "CreateObjective",
     data(){
         return{
+            userInfo:{},
             objective:{
                 title:"",
                 // due_date:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
-                due_date:""
+                due_date:"",
             },
             menu: false,
+
         }
+    },
+    created:function(){
+        this.getUserInfo();
     },
     methods:{
         create(){
-            axios.post('/api/objectives/create', this.objective)
+            let sendData = {
+                title : this.objective.title,
+                due_date: this.objective.due_date,
+                user_id: this.userInfo.id
+            }
+
+            axios.post('/api/objectives/create', sendData)
                 .then((res) => {
-                    console.log(this.objective)
+                    console.log(sendData)
                 })
             .catch((error) =>{
                 console.log(error),
-                    console.log(this.objective)
+                    console.log(sendData)
 
             })
+        },
+        getUserInfo(){
+            axios.get('/api/user')
+                .then((res) => {
+                    console.log(res.data);
+                    this.userInfo = res.data;
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+
         },
     }
 }

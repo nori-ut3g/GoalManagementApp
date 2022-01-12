@@ -15,8 +15,10 @@ class CreateObjectivesTable extends Migration
     {
         Schema::create('objectives', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('title', 100);
             $table->date('due_date');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

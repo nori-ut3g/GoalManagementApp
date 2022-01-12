@@ -20,6 +20,7 @@ class ObjectivesTableSeeder extends Seeder
         foreach($titleSamples as $title){
             DB::table('objectives')->insert([
                 'title' => $title,
+                'user_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
