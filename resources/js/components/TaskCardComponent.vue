@@ -13,11 +13,14 @@
                         min-height="30"
                     >
                         <strong>{{task.title}}</strong>
+                        <strong>{{task.title}}</strong>
+                        <strong>{{task.title}}</strong>
+                        <strong>{{task.title}}</strong>
                     </v-card>
                 </div>
 
 
-?
+
             </v-container>
         </v-card>
     </v-col>
@@ -27,6 +30,13 @@
 export default {
     name: "TaskCardComponent",
     props:['task'],
+    methods:{
+        create(){
+
+        },
+
+
+    }
 
 }
 

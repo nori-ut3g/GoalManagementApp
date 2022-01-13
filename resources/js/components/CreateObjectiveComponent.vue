@@ -83,7 +83,8 @@ export default {
 
             axios.post('/api/objectives/create', sendData)
                 .then((res) => {
-                    console.log(sendData)
+                    console.log(res.data)
+                    this.$router.push(`/objective/${res.data.objective_id}`);
                 })
             .catch((error) =>{
                 console.log(error),
