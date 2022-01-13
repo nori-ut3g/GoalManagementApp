@@ -15,6 +15,10 @@ class ObjectiveController extends Controller
         return $objectives;
     }
 
+    public function getObjective($id){
+        return Objective::find($id);
+    }
+
     //作成後のidを返す
     public function create(Request $request){
         $objective = new Objective();

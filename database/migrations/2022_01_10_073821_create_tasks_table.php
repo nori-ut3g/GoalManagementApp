@@ -18,8 +18,8 @@ class CreateTasksTable extends Migration
             $table->bigInteger('order')->default(0);
             $table->bigInteger('objective_id')->unsigned();
             $table->integer('status')->default(0);
-            $table->string('title', 30);
-            $table->string('contents', 200);
+            $table->string('title', 30)->nullable();
+            $table->string('contents', 200)->nullable();
             $table->date('start_date')->nullable()->default(NULL);;
             $table->date('finish_date')->nullable()->default(NULL);;
             $table->timestamps();

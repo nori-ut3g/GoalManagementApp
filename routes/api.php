@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->group(function(){
         return $request->user();
     });
     Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'index']);
+    Route::get('/objective/{objective_id}', [\App\Http\Controllers\ObjectiveController::class, 'getObjective']);
+
 //    Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
     Route::get('/objectives/{objective_id}/tasks', [\App\Http\Controllers\TaskController::class, 'showTasks']);
     Route::post('/objectives/{objective_id}/task/create', [\App\Http\Controllers\TaskController::class, 'createTask']);
