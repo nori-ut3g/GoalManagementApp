@@ -9,10 +9,45 @@
         </v-col>
 
         <v-col cols="12">
-            <v-sheet height="600">
+            <v-sheet >
+                <v-btn
+                    outlined
+                    class="mr-4"
+                    color="grey darken-2"
+                    @click="setToday"
+                >
+                    Today
+                </v-btn>
+                <v-btn
+                    fab
+                    text
+                    small
+                    color="grey darken-2"
+                    @click="prev"
+                >
+                    <v-icon small>
+                        mdi-chevron-left
+                    </v-icon>
+                </v-btn>
+                <v-btn
+                    fab
+                    text
+                    small
+                    color="grey darken-2"
+                    @click="next"
+                >
+                    <v-icon small>
+                        mdi-chevron-right
+                    </v-icon>
+                </v-btn>
+                <v-toolbar-title v-if="$refs.calendar">
+                    {{ $refs.calendar.title }}
+                </v-toolbar-title>
                 <v-calendar
                     ref="calendar"
+                    v-model="focus"
                     :events="events"
+                    :event-more="true"
                     @change="refreshCalenderEvents"
                 ></v-calendar>
             </v-sheet>
@@ -147,7 +182,8 @@ export default {
             workingTasks:[],
             completedTasks:[],
             events:[],
-            tempDate:"" //test用
+            tempDate:"", //test用,
+            focus: '',
         }
     },
     created:function () {
@@ -231,7 +267,7 @@ export default {
                     start: new Date(task.start_date),
                     end: new Date(finish_date),
                     color: task.status === 1 ? 'green' : 'blue' ,
-                    timed: true,
+                    timed: false
                 })
             }
             this.events = events;
@@ -296,6 +332,15 @@ export default {
             this.getData();
             this.divideData()
             this.refreshCalenderEvents()
+        },
+        setToday(){
+            this.focus = date
+        },
+        next(){
+            this.$refs.calendar.next()
+        },
+        prev(){
+            this.$refs.calendar.prev()
         }
 
 
