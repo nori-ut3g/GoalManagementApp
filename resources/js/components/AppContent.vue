@@ -38,9 +38,9 @@
                 <v-navigation-drawer v-if="isLoggedIn" app clipped v-model="sideBar" dark color="">
                     <v-list>
                         <v-list-item>
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
-                            </v-list-item-avatar>
+<!--                            <v-list-item-avatar>-->
+<!--                                <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>-->
+<!--                            </v-list-item-avatar>-->
                         </v-list-item>
 
                         <v-list-item link>
@@ -118,7 +118,10 @@ export default {
     components: {
         LogInComponent,
         SignUpComponent,
-        ObjectiveTableComponent, ObjectiveContentComponent, ProgressBarComponent, TaskSectionComponent},
+        ObjectiveTableComponent,
+        ObjectiveContentComponent,
+        ProgressBarComponent,
+        TaskSectionComponent,},
     data() {
         return {
             sideBar: false,

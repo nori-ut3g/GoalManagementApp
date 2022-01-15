@@ -26,8 +26,8 @@ export default {
                 },
                 { text: 'Title', value: 'title' },
                 { text: 'Due', value: 'due_date' },
-                { text: 'Update', value: 'updated_at' },
-                { text: 'Create', value: 'created_at' }
+                // { text: 'Update', value: 'updated_at' },
+                // { text: 'Create', value: 'created_at' }
             ],
             objectives:[],
 

@@ -24,8 +24,10 @@ class TaskController extends Controller
         $task->status = $request->status;
         $task->title = $request->title;
         $task->contents = $request->contents;
-        $task->start_date = Carbon::now();
-        $task->finish_date = Carbon::now();
+//        $task->start_date = Carbon::now();
+        $task->start_date = null;
+//        $task->finish_date = Carbon::now();
+        $task->finish_date = null;
         $task->save();
         return new JsonResponse(['task' => $task]);
 
@@ -52,9 +54,22 @@ class TaskController extends Controller
     }
 
     //タスク終了
-    public function end(int $id){
+    public function finish(int $id){
         $task = Task::find($id);
         $task->finish_date = Carbon::now();
+        $task->save();
+    }
+    //タスク開始
+    public function setStartDate(int $id, Request $request){
+        $task = Task::find($id);
+        $task->start_date = $request->date;
+        $task->save();
+    }
+
+    //タスク終了
+    public function setFinishDate(int $id, Request $request){
+        $task = Task::find($id);
+        $task->finish_date = $request->date;
         $task->save();
     }
 
