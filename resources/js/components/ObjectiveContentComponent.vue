@@ -30,19 +30,19 @@
                         <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
                         <!--                    </div>-->
                         <v-expansion-panels>
-                                    <v-expansion-panel
-                                        v-for="(task, index) in waitingTasks"
-                                        :key="task.id"
-                                        :id="task.id"
-                                    >
-                                        <v-expansion-panel-header>
-                                            {{task.title}} + {{task.id}}
-                                        </v-expansion-panel-header>
-                                        <v-expansion-panel-content>
-                                            {{task.contents}}
-                                            start
-                                        </v-expansion-panel-content>
-                                    </v-expansion-panel>
+                            <v-expansion-panel
+                                v-for="(task, index) in waitingTasks"
+                                :key="task.id"
+                                :id="task.id"
+                            >
+                                <TaskCardComponent
+                                    :task="task"
+                                    :objective-id="objective_id"
+                                    v-on:refresh="refresh"
+                                >
+
+                                </TaskCardComponent>
+                            </v-expansion-panel>
                         </v-expansion-panels>
                     </v-row>
                 </v-container>
@@ -61,22 +61,29 @@
                         <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
                         <!--                    </div>-->
                         <v-expansion-panels>
-                                    <v-expansion-panel
-                                    v-for="(task, index) in workingTasks"
-                                    :key="task.id"
-                                    :id="task.id"
+                            <v-expansion-panel
+                            v-for="(task, index) in workingTasks"
+                            :key="task.id"
+                            :id="task.id"
+                            >
+                                <TaskCardComponent
+                                :task="task"
+                                :objective-id="objective_id"
+                                v-on:refresh="refresh"
                                 >
-                                        <v-expansion-panel-header>
-                                            {{task.title}} + {{task.id}}
-                                        </v-expansion-panel-header>
-                                        <v-expansion-panel-content>
-                                            {{task.contents}}
-                                        </v-expansion-panel-content>
-                                    </v-expansion-panel>
+
+                                </TaskCardComponent>
+<!--                                <v-expansion-panel-header>-->
+<!--                                    {{task.title}} + {{task.id}}-->
+<!--                                    <v-btn @click="finishTask(task.id)">＞</v-btn>-->
+<!--                                </v-expansion-panel-header>-->
+<!--                                <v-expansion-panel-content>-->
+<!--                                    {{task.contents}}-->
+<!--                                </v-expansion-panel-content>-->
+                            </v-expansion-panel>
                         </v-expansion-panels>
                     </v-row>
                 </v-container>
-                <v-card><v-btn @click="createTask(1)">Create</v-btn></v-card>
 
             </v-card>
         </v-col>
@@ -92,22 +99,22 @@
                         <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
                         <!--                    </div>-->
                         <v-expansion-panels>
-                                    <v-expansion-panel
-                                    v-for="(task, index) in completedTasks"
-                                    :key="task.id"
-                                    :id="task.id"
-                                    >
-                                        <v-expansion-panel-header>
-                                            {{task.title}} + {{task.id}}
-                                        </v-expansion-panel-header>
-                                        <v-expansion-panel-content>
-                                            {{task.contents}}
-                                        </v-expansion-panel-content>
-                                    </v-expansion-panel>
+                            <v-expansion-panel
+                            v-for="(task, index) in completedTasks"
+                            :key="task.id"
+                            :id="task.id"
+                            >
+                                <TaskCardComponent
+                                    :task="task"
+                                    :objective-id="objective_id"
+                                    v-on:refresh="refresh"
+                                >
+
+                                </TaskCardComponent>
+                            </v-expansion-panel>
                         </v-expansion-panels>
                     </v-row>
                 </v-container>
-                <v-card><v-btn @click="createTask(2)">Create</v-btn></v-card>
 
             </v-card>
         </v-col>
@@ -121,9 +128,11 @@ import draggable from 'vuedraggable'
 
 import ProgressBarComponent from "./ProgressBarComponent";
 import TaskSectionComponent from "./TaskSectionComponent";
+import TaskCardComponent from "./TaskCardComponent";
 export default {
     name: "ObjectiveContentComponent",
     components: {
+        TaskCardComponent,
         TaskSectionComponent,
         ProgressBarComponent,
         draggable,
@@ -203,7 +212,6 @@ export default {
             axios.get(`/api/objective/${this.$route.params.id}`)
                 .then((res) => {
                     this.objective = res.data;
-                    console.log(this.objective)
                 })
                 .catch((error) =>{
                     console.log(error)
@@ -213,14 +221,11 @@ export default {
             let events = []
             for(const task of this.tasks){
 
-                console.log(task.id)
                 if(task.start_date === null) continue;
                 let finish_date;
                 if(task.finish_date === null) finish_date = new Date().toISOString().split("T")[0].replaceAll("-", "/");
                 else finish_date = task.finish_date;
 
-                console.log(task.start_date)
-                console.log(task.finish_date)
                 events.push({
                     name: task.title,
                     start: new Date(task.start_date),
@@ -238,7 +243,6 @@ export default {
             }
             axios.post(`/api/objectives/${this.objective_id}/task/${taskId}/start`, sendDate)
                 .then((res) => {
-                    console.log(res)
                     this.getData();
                     this.refreshCalenderEvents()
                 })
@@ -252,7 +256,6 @@ export default {
             }
             axios.post(`/api/objectives/${this.objective_id}/task/${taskId}/finish`, sendDate)
                 .then((res) => {
-                    console.log(res)
                     this.getData();
                     this.refreshCalenderEvents()
                 })
@@ -263,10 +266,9 @@ export default {
         getEventColor(event) {
             return event.color;
         },
-        startDate(taskId){
+        startTask(taskId){
             axios.get(`/api/objectives/${this.objective_id}/task/${taskId}/start`)
                 .then((res) => {
-                    console.log(res)
                     this.getData();
                     this.refreshCalenderEvents()
                 })
@@ -274,10 +276,9 @@ export default {
                     console.log(error)
                 })
         },
-        finishDate(taskId){
+        finishTask(taskId){
             axios.get(`/api/objectives/${this.objective_id}/task/${taskId}/finish`)
                 .then((res) => {
-                    console.log(res)
                     this.getData();
                     this.refreshCalenderEvents()
                 })
@@ -285,34 +286,20 @@ export default {
                     console.log(error)
                 })
         },
-        onEnd(event){
-            if(event.from === event.to){
-                console.log("同じやつ")
-                return
-            }
+        resetFinishDate(){
 
-            let task = this.tasks.find(task => task.id === Number(event.item.id));
-            if(task.status === 0){
-                this.startDate()
-            }else if(task.status === 1){
+        },
+        resetStartDate(){
 
-            }else{
-
-            }
-
-
-
-
-            // let from = e.from.name;
-            // let to = e.to.name;
-            // let now =  new Date(now).toISOString().split("T")[0].replaceAll("-", "/");
-            // //移動元
-            // if(from === "waitingTasks" && to === "workingTasks"){
-            //     this.setStartDate()
-            // }
-            // //移動先がWorkingTaskListなら、Startを更新（
-            // e.to
+        },
+        refresh(){
+            this.getData();
+            this.divideData()
+            this.refreshCalenderEvents()
         }
+
+
+
     }
 
 

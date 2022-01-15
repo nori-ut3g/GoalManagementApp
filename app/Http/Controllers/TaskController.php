@@ -47,27 +47,30 @@ class TaskController extends Controller
     }
 
     //タスク開始
-    public function start(int $id){
+    public function start(int $objective_id, int $id){
         $task = Task::find($id);
         $task->start_date = Carbon::now();
+        $task->status = 1;
         $task->save();
     }
 
     //タスク終了
-    public function finish(int $id){
+    public function finish(int $objective_id, int $id){
         $task = Task::find($id);
         $task->finish_date = Carbon::now();
+        $task->status = 2;
         $task->save();
     }
     //タスク開始
-    public function setStartDate(int $id, Request $request){
+    public function setStartDate(int $objective_id, int $id, Request $request){
         $task = Task::find($id);
         $task->start_date = $request->date;
         $task->save();
+
     }
 
     //タスク終了
-    public function setFinishDate(int $id, Request $request){
+    public function setFinishDate(int $objective_id, int $id, Request $request){
         $task = Task::find($id);
         $task->finish_date = $request->date;
         $task->save();
