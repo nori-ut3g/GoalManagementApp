@@ -35,7 +35,7 @@
                 >
                     {{userInfo.name}}でログインしました。
                 </v-alert>
-                <v-navigation-drawer v-if="isLoggedIn" app clipped v-model="sideBar" dark color="">
+                <v-navigation-drawer  app clipped v-model="sideBar" dark color="">
                     <v-list>
                         <v-list-item>
 <!--                            <v-list-item-avatar>-->
