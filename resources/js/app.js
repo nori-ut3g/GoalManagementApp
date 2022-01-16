@@ -24,7 +24,7 @@ window.Vue = require('vue').default;
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     routes: [
         {
             path: '/home',

@@ -141,7 +141,7 @@ export default {
 
     },
     created:function(){
-        this.autoLogin();
+        // this.autoLogin();
     },
     methods:{
         logout() {
