@@ -150,16 +150,9 @@ export default {
     },
     methods:{
         startTask(){
-            console.log('startTask')
-            console.log(this.task.id)
-            console.log()
             axios.get(`/api/objectives/${this.objectiveId}/task/${this.task.id}/start`)
                 .then((res) => {
-                    console.log(res);
                     this.refresh();
-                    // this.getData();
-                    // this.refreshCalenderEvents()
-
                 })
                 .catch((error) =>{
                     console.log(error)
@@ -168,10 +161,7 @@ export default {
         finishTask(){
             axios.get(`/api/objectives/${this.objectiveId}/task/${this.task.id}/finish`)
                 .then((res) => {
-                    console.log(res)
                     this.refresh();
-                    // this.getData();
-                    // this.refreshCalenderEvents()
                 })
                 .catch((error) =>{
                     console.log(error)
@@ -181,13 +171,11 @@ export default {
             this.$emit('refresh');
         },
         setStartDate(){
-            console.log(this.startDate)
             let sendDate = {
                 "date": this.startDate
             }
             axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/start`, sendDate)
                 .then((res) => {
-                    console.log(res)
                     this.refresh();
                 })
                 .catch((error) =>{
@@ -195,13 +183,11 @@ export default {
                 })
         },
         setFinishDate(){
-            console.log(this.finishDate)
             let sendDate = {
                 "date": this.finishDate
             }
             axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/finish`, sendDate)
                 .then((res) => {
-                    console.log(res)
                     this.refresh();
                 })
                 .catch((error) =>{
@@ -214,7 +200,6 @@ export default {
             }
             axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_title`, sendDate)
                 .then((res) => {
-                    console.log(res)
                     this.refresh();
                 })
                 .catch((error) =>{
@@ -228,7 +213,6 @@ export default {
             this.isTaskContentsFieldFocus = true;
         },
         taskTitleFieldOutFocus(title){
-
             this.changeTitle(title);
             this.isTaskTitleFieldFocus = false;
         },

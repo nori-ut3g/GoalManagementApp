@@ -198,7 +198,7 @@ export default {
             const sendData = {
                 objective_id : this.objective_id,
                 status : status,
-                title: "newTask",
+                title: "",
                 note: "newContent",
             }
             axios.post(`/api/objectives/${this.objective_id}/task/create`, sendData)
