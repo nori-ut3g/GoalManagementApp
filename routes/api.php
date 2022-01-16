@@ -30,7 +30,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/objectives/{objective_id}/tasks', [\App\Http\Controllers\TaskController::class, 'showTasks']);
     Route::post('/objectives/{objective_id}/task/create', [\App\Http\Controllers\TaskController::class, 'createTask']);
     Route::post('/objectives/{objective_id}/task/{id}/edit_title', [\App\Http\Controllers\TaskController::class, 'editTitle']);
-    Route::post('/objectives/{objective_id}/task/{id}/edit_contents', [\App\Http\Controllers\TaskController::class, 'editContents']);
+    Route::post('/objectives/{objective_id}/task/{id}/edit_note', [\App\Http\Controllers\TaskController::class, 'editnote']);
     Route::get('/objectives/{objective_id}/task/{id}/start', [\App\Http\Controllers\TaskController::class, 'start']);
     Route::get('/objectives/{objective_id}/task/{id}/finish', [\App\Http\Controllers\TaskController::class, 'finish']);
     Route::post('/objectives/{objective_id}/task/{id}/start', [\App\Http\Controllers\TaskController::class, 'setStartDate']);

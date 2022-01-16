@@ -266,7 +266,7 @@ export default {
                     name: task.title,
                     start: new Date(task.start_date),
                     end: new Date(finish_date),
-                    color: task.status === 1 ? 'green' : 'blue' ,
+                    color: task.status === 1 ? 'warning' : 'green' ,
                     timed: false
                 })
             }

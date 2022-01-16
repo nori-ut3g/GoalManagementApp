@@ -34,13 +34,13 @@ class TaskController extends Controller
     }
 
     //タスクの内容変更
-    public function editTitle(int $id, Request $request){
+    public function editTitle(int $objective_id, int $id, Request $request){
         $task = Task::find($id);
         $task->title = $request->title;
         $task->save();
     }
 
-    public function editContents(int $id, Request $request){
+    public function editNote(int $objective_id, int $id, Request $request){
         $task = Task::find($id);
         $task->note = $request->note;
         $task->save();

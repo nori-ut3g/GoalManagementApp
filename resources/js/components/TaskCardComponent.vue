@@ -1,11 +1,32 @@
 <template>
     <div>
+        <v-text-field
+            v-if="isTaskTitleFieldFocus"
+            @blur="taskTitleFieldOutFocus(task.title)"
+            :value="task.title"
+            elevation="3"
+            autofocus
+            width="180"
+            v-model="task.title"
+        ></v-text-field>
+        <v-card
+            v-else
+            solo
+            v-on:dblclick="taskTitleFieldDbClick"
+            tile
+            width="180"
+            min-height="30"
+            class="my-2"
+        >
+            <strong>{{task.title}}</strong>
+        </v-card>
         <v-expansion-panel-header>
-            {{task.title}} + {{task.id}}
+
+
+
             {{task.start_date}}
             {{task.finish_date}}
             <br>
-            {{task.status}}
         </v-expansion-panel-header>
         <v-expansion-panel-content>
             <v-menu
@@ -122,6 +143,9 @@ export default {
             startDateMenu: false,
             finishDate:"",//new Date(this.task.finish_date),
             finishDateMenu:false,
+
+            isTaskTitleFieldFocus:false,
+            isTaskContentsFieldFocus:false
         }
     },
     methods:{
@@ -183,7 +207,34 @@ export default {
                 .catch((error) =>{
                     console.log(error)
                 })
-        }
+        },
+        changeTitle(title){
+            let sendDate = {
+                "title": title
+            }
+            axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_title`, sendDate)
+                .then((res) => {
+                    console.log(res)
+                    this.refresh();
+                })
+                .catch((error) =>{
+                    console.log(error)
+                })
+        },
+        taskTitleFieldDbClick(){
+            this.isTaskTitleFieldFocus = true;
+        },
+        taskContentsFieldDbClick(){
+            this.isTaskContentsFieldFocus = true;
+        },
+        taskTitleFieldOutFocus(title){
+
+            this.changeTitle(title);
+            this.isTaskTitleFieldFocus = false;
+        },
+        taskContentsFieldOutFocus(){
+            this.isTaskContentsFieldFocus = false;
+        },
 
 
     }
