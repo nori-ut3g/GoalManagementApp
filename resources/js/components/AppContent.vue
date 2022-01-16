@@ -145,7 +145,7 @@ export default {
     },
     methods:{
         logout() {
-            this.isLoggedIn = false;
+            this.isLoggedIn = true;
             console.log("logout")
             axios.get('/api/logout')
 
