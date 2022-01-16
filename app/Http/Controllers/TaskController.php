@@ -23,7 +23,7 @@ class TaskController extends Controller
         $task->objective_id = (int)$request->objective_id;
         $task->status = $request->status;
         $task->title = $request->title;
-        $task->contents = $request->contents;
+        $task->note = $request->note;
 //        $task->start_date = Carbon::now();
         $task->start_date = null;
 //        $task->finish_date = Carbon::now();
@@ -42,7 +42,7 @@ class TaskController extends Controller
 
     public function editContents(int $id, Request $request){
         $task = Task::find($id);
-        $task->contents = $request->contents;
+        $task->note = $request->note;
         $task->save();
     }
 

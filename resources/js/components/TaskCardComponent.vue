@@ -93,7 +93,7 @@
                 </v-date-picker>
             </v-menu>
 
-            {{task.contents}}
+            {{task.note}}
         </v-expansion-panel-content>
 
         <v-btn
