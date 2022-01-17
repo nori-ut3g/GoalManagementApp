@@ -24,8 +24,9 @@ class ObjectiveController extends Controller
 
     //作成後のidを返す
     public function create(Request $request){
+        $user_id = Auth::id();
         $objective = new Objective();
-        $objective->user_id = $request->user_id;
+        $objective->user_id = $user_id;
         $objective->title = $request->title;
         $objective->due_date = $request->due_date;
 

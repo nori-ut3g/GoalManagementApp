@@ -14,8 +14,8 @@ class CreateObjectivesTable extends Migration
     public function up()
     {
         Schema::create('objectives', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
             $table->string('title', 100);
             $table->date('due_date');
             $table->foreign('user_id')->references('id')->on('users');

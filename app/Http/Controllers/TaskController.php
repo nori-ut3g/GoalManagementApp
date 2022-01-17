@@ -20,7 +20,7 @@ class TaskController extends Controller
 
         $task = new Task();
         $task->order = 0;
-        $task->objective_id = (int)$request->objective_id;
+        $task->objective_id = $request->objective_id;
         $task->status = $request->status;
         $task->title = $request->title;
         $task->note = $request->note;
