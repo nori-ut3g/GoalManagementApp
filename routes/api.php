@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user', function(Request $request){
         return $request->user();
     });
-    Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'index']);
+    Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'getUserObjectives']);
     Route::get('/objective/{objective_id}', [\App\Http\Controllers\ObjectiveController::class, 'getObjective']);
 
 //    Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
