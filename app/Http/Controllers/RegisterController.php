@@ -13,12 +13,24 @@ use Symfony\Component\HttpFoundation\Response;
 class RegisterController extends Controller
 {
     //
+
+    public function emailValidator(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'email', 'unique:users'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        return response()->json('OK', Response::HTTP_OK);
+    }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required'
+            'name' => ['required', 'string', 'max:20', 'min:4'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'string', 'min:8']
         ]);
 
         if ($validator->fails()) {
@@ -31,25 +43,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $this->login($request);
-
-        return response()->json('User registration completed', Response::HTTP_OK);
-    }
-
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => 'required',
-        ]);
-
-        if ($this->getGuard()->attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return new JsonResponse(['message' => 'ログインしました']);
-        }
-
-        throw new Exception('ログインに失敗しました。再度お試しください');
+        return response()->json('ユーザ登録しました', Response::HTTP_OK);
     }
 
     private function getGuard(){

@@ -9,9 +9,9 @@
                 <v-spacer></v-spacer>
 
 
-                <v-btn v-if="!isLoggedIn" to="/signup">SignUp</v-btn>
-                <v-btn v-if="!isLoggedIn" to="/login">Login</v-btn>
-                <v-btn v-if="isLoggedIn" @click="logout">Logout</v-btn>
+                <v-btn  to="/signup">SignUp</v-btn>
+                <v-btn  to="/login">Login</v-btn>
+                <v-btn  @click="logout">Logout</v-btn>
 
 
 
