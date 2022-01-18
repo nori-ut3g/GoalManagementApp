@@ -47,7 +47,7 @@ export default {
             },
             error:{
                 email:false
-            }
+            },
         }
     },
     created() {
@@ -79,6 +79,7 @@ export default {
             axios.post('/api/email_validator', sendData)
                     .then((res) => {
                         this.error.email = false;
+                        this.errorMessage.email = "";
                     })
                     .catch((err) => {
                         console.log(err.response.data.email[0])
