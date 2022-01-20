@@ -30,9 +30,14 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/objectives/{objective_id}/tasks', [\App\Http\Controllers\TaskController::class, 'showTasks']);
     Route::post('/objectives/{objective_id}/task/create', [\App\Http\Controllers\TaskController::class, 'createTask']);
     Route::post('/objectives/{objective_id}/task/{id}/edit_title', [\App\Http\Controllers\TaskController::class, 'editTitle']);
-    Route::post('/objectives/{objective_id}/task/{id}/edit_note', [\App\Http\Controllers\TaskController::class, 'editnote']);
+    Route::post('/objectives/{objective_id}/task/{id}/edit_note', [\App\Http\Controllers\TaskController::class, 'editNote']);
     Route::get('/objectives/{objective_id}/task/{id}/start', [\App\Http\Controllers\TaskController::class, 'start']);
     Route::get('/objectives/{objective_id}/task/{id}/finish', [\App\Http\Controllers\TaskController::class, 'finish']);
+    Route::get('/objectives/{objective_id}/task/{id}/undo_start', [\App\Http\Controllers\TaskController::class, 'undoStart']);
+    Route::get('/objectives/{objective_id}/task/{id}/undo_finish', [\App\Http\Controllers\TaskController::class, 'undoFinish']);
+    Route::delete('/objectives/{objective_id}/task/{id}/delete', [\App\Http\Controllers\TaskController::class, 'deleteTask']);
+
+
     Route::post('/objectives/{objective_id}/task/{id}/start', [\App\Http\Controllers\TaskController::class, 'setStartDate']);
     Route::post('/objectives/{objective_id}/task/{id}/finish', [\App\Http\Controllers\TaskController::class, 'setFinishDate']);
 

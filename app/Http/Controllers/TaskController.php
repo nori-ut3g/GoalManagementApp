@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends Controller
 {
-    public function showTasks(int $objective_id){
+    public function showTasks(string $objective_id){
         return Task::where('objective_id', $objective_id)->get();
     }
 
@@ -34,20 +34,20 @@ class TaskController extends Controller
     }
 
     //タスクの内容変更
-    public function editTitle(int $objective_id, int $id, Request $request){
+    public function editTitle(string $objective_id, string $id, Request $request){
         $task = Task::find($id);
         $task->title = $request->title;
         $task->save();
     }
 
-    public function editNote(int $objective_id, int $id, Request $request){
+    public function editNote(string $objective_id, string $id, Request $request){
         $task = Task::find($id);
         $task->note = $request->note;
         $task->save();
     }
 
     //タスク開始
-    public function start(int $objective_id, int $id){
+    public function start(string $objective_id, string $id){
         $task = Task::find($id);
         $task->start_date = Carbon::now();
         $task->status = 1;
@@ -55,14 +55,37 @@ class TaskController extends Controller
     }
 
     //タスク終了
-    public function finish(int $objective_id, int $id){
+    public function finish(string $objective_id, string $id){
         $task = Task::find($id);
         $task->finish_date = Carbon::now();
         $task->status = 2;
         $task->save();
     }
+
+    //タスク開始へ戻す
+    public function undoStart(string $objective_id, string $id){
+        $task = Task::find($id);
+        $task->start_date = null;
+        $task->status = 0;
+        $task->save();
+    }
+
+    public function undoFinish(string $objective_id, string $id){
+        $task = Task::find($id);
+        $task->finish_date = null;
+        $task->status = 1;
+        $task->save();
+    }
+
+    public function deleteTask(string $objective_id, string $id){
+        $task = Task::find($id);
+        $task->delete();
+    }
+
+
+
     //タスク開始
-    public function setStartDate(int $objective_id, int $id, Request $request){
+    public function setStartDate(string $objective_id, string $id, Request $request){
         $task = Task::find($id);
         $task->start_date = $request->date;
         $task->save();
@@ -70,7 +93,7 @@ class TaskController extends Controller
     }
 
     //タスク終了
-    public function setFinishDate(int $objective_id, int $id, Request $request){
+    public function setFinishDate(string $objective_id, string $id, Request $request){
         $task = Task::find($id);
         $task->finish_date = $request->date;
         $task->save();
