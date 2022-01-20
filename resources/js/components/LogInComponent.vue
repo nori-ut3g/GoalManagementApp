@@ -29,8 +29,8 @@ export default {
     },
     methods: {
         login(){
-            axios.get('/sanctum/csrf-cookie')
-                .then((res) => {
+            // axios.get('/sanctum/csrf-cookie')
+            //     .then((res) => {
                     axios.post('/api/login', this.user)
                         .then((res) => {
                             console.log(res.data)
@@ -39,10 +39,10 @@ export default {
                         .catch((err) => {
                             console.log(err);
                         })
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
+                // })
+                // .catch((err) => {
+                //     console.log(err);
+                // })
         },
 
 

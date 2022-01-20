@@ -9,6 +9,8 @@ import SignUpComponent from "./components/SignUpComponent";
 import ObjectiveContentComponent from "./components/ObjectiveContentComponent";
 import ObjectiveTableComponent from "./components/ObjectiveTableComponent";
 import CreateObjectiveComponent from "./components/CreateObjectiveComponent";
+import HomeComponent from "./components/HomeComponent";
+import welcomeComponent from "./components/WelcomeComponent";
 
 
 /**
@@ -25,10 +27,20 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: 'hash',
+    data(){
+        return {
+            isLoggedIn: false
+        }
+    },
     routes: [
         {
+            path: '/',
+            name:'',
+            component: welcomeComponent
+        },
+        {
             path: '/home',
-            component: WelcomeComponent
+            component: HomeComponent
         },
         {
             path: '/signup',

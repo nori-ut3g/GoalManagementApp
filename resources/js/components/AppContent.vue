@@ -25,16 +25,16 @@
 
             <!-- Body -->
             <v-main>
-                <!-- SideBar -->
+<!--                &lt;!&ndash; SideBar &ndash;&gt;-->
 
-                <v-alert
-                    border="bottom"
-                    color="pink darken-1"
-                    dark
-                    v-if="isShowAlert"
-                >
-                    {{userInfo.name}}でログインしました。
-                </v-alert>
+<!--                <v-alert-->
+<!--                    border="bottom"-->
+<!--                    color="pink darken-1"-->
+<!--                    dark-->
+<!--                    v-if="isShowAlert"-->
+<!--                >-->
+<!--                    {{userInfo.name}}でログインしました。-->
+<!--                </v-alert>-->
                 <v-navigation-drawer  app clipped v-model="sideBar" dark color="">
                     <v-list>
                         <v-list-item>

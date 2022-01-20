@@ -61,16 +61,21 @@ export default {
             axios.post('/api/register', this.user)
             .then((res) => {
                 console.log(res.data)
+                this.login()
             })
             .catch((error) =>{
-                // this.errorMessage.email = typeof(error.response.data.email) === "undefined" ? "" : error.response.data.email[0];
-                // this.errorMessage.name = typeof(error.response.data.name) === "undefined" ? "" : error.response.data.name[0];
-                // this.errorMessage.password = typeof(error.response.data.password) === "undefined" ? "" : error.response.data.password[0];
-                // this.setRules();
-                // console.log(this.errorMessage.email)
-                // console.log(error.response.data.email[0])
-                // this.errorMessage.email = error.email;
+
             })
+        },
+        login(){
+            axios.post('/api/register', this.user)
+                .then((res) => {
+                    console.log(res.data)
+                    this.login()
+                })
+                .catch((error) =>{
+                    this.$router.push('/login')
+                })
         },
         isAvailableEmail(){
             let sendData = {
