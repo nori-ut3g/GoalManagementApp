@@ -17,6 +17,7 @@
                 :label="isShared ? 'Share' : 'Private'"
                 @change="switchShareOrPrivate"
             ></v-switch>
+            https://{{sharedID}}
             <v-card v-if="isShared">
 
 
@@ -402,6 +403,7 @@ export default {
 
 
         share(){
+
             let sendData = {
                 objective_id : this.objective_id
             }
