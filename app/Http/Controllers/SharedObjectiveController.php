@@ -35,7 +35,7 @@ class SharedObjectiveController extends Controller
         if($sharedObjective === null){
             return new JsonResponse(['shared_objective' => null]);
         }else{
-            return new JsonResponse(['shared_objective' => $sharedObjective[0]]);
+            return new JsonResponse(['shared_objective' => $sharedObjective]);
         }
     }
 
