@@ -408,7 +408,7 @@ export default {
             axios.post(`/api/objectives/share`, sendData)
                 .then((res) => {
                     console.log(res)
-                    this.sharedURL = res.data.id;
+                    this.sharedID = res.data.id;
                     this.isShared = true;
                 })
                 .catch((error) =>{
@@ -419,7 +419,7 @@ export default {
 
             axios.delete(`/api/objectives/private/${this.objective_id}`)
                 .then((res) => {
-                    this.sharedURL = "";
+                    this.sharedID = "";
                     this.isShared = false;
                 })
                 .catch((error) =>{
