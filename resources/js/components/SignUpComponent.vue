@@ -61,6 +61,7 @@ export default {
             axios.post('/api/register', this.user)
             .then((res) => {
                 console.log(res.data)
+
                 this.login()
             })
             .catch((error) =>{
@@ -68,10 +69,11 @@ export default {
             })
         },
         login(){
-            axios.post('/api/register', this.user)
+            console.log(this.user)
+            axios.post('/api/login', this.user)
                 .then((res) => {
                     console.log(res.data)
-                    this.login()
+                    this.$router.push('/home')
                 })
                 .catch((error) =>{
                     this.$router.push('/login')
