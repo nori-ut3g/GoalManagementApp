@@ -30,12 +30,12 @@ class SharedObjectiveController extends Controller
 
     public function getSharedObjectiveId($objective_id){
 
-        $sharedObjective = SharedObjective::where('objective_id', $objective_id)->get();
+        $sharedObjective = SharedObjective::where('objective_id', $objective_id)->first();
 
         if($sharedObjective === null){
             return new JsonResponse(['shared_objective' => null]);
         }else{
-            return new JsonResponse(['shared_objective' => $sharedObjective]);
+            return new JsonResponse(['shared_objective' => $sharedObjective[0]]);
         }
     }
 
