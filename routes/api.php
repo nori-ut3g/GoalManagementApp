@@ -18,15 +18,18 @@ Route::post('/email_validator', [\App\Http\Controllers\RegisterController::class
 Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
 Route::get('/logout', [\App\Http\Controllers\LoginController::class, 'logout']);
 
+Route::get('/sharedObjective/{shared_objective_id}', [\App\Http\Controllers\SharedObjectiveController::class, 'getSharedObjective']);
+
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user', function(Request $request){
         return $request->user();
     });
     Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'getUserObjectives']);
-    Route::get('/objective/{objective_id}', [\App\Http\Controllers\ObjectiveController::class, 'getObjective']);
+    Route::get('/objectives/{objective_id}', [\App\Http\Controllers\ObjectiveController::class, 'getObjective']);
+    Route::post('/objectives/create', [\App\Http\Controllers\ObjectiveController::class, 'create']);
 
-//    Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
+    //    Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
     Route::get('/objectives/{objective_id}/tasks', [\App\Http\Controllers\TaskController::class, 'showTasks']);
     Route::post('/objectives/{objective_id}/task/create', [\App\Http\Controllers\TaskController::class, 'createTask']);
     Route::post('/objectives/{objective_id}/task/{id}/edit_title', [\App\Http\Controllers\TaskController::class, 'editTitle']);
@@ -41,9 +44,9 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/objectives/{objective_id}/task/{id}/start', [\App\Http\Controllers\TaskController::class, 'setStartDate']);
     Route::post('/objectives/{objective_id}/task/{id}/finish', [\App\Http\Controllers\TaskController::class, 'setFinishDate']);
 
-
-    Route::post('/objectives/create', [\App\Http\Controllers\ObjectiveController::class, 'create']);
-
+    Route::post('/objectives/share', [\App\Http\Controllers\SharedObjectiveController::class, 'share']);
+    Route::delete('/objectives/private/{objective_id}', [\App\Http\Controllers\SharedObjectiveController::class, 'private']);
+    Route::get('/objectives/shared_id/{objective_id}', [\App\Http\Controllers\SharedObjectiveController::class, 'getSharedObjectiveId']);
 
 });
 

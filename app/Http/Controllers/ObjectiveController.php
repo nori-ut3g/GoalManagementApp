@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ObjectiveController extends Controller
 {
+    //TODO:Authで認証Validatorをつくる
     public function getUserObjectives(){
         $user_id = Auth::id();
         $objectives = Objective::where("user_id", $user_id)->get();
@@ -33,4 +34,6 @@ class ObjectiveController extends Controller
         $objective->save();
         return new JsonResponse(['objective_id' => $objective->id]);
     }
+
+
 }

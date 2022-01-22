@@ -8,6 +8,36 @@
             <v-card><p class="text-h4">{{objective.due_date}}まで</p></v-card>
         </v-col>
 
+        <v-container
+            class="px-0"
+            fluid
+        >
+            <v-switch
+                v-model="isShared"
+                :label="isShared ? 'Share' : 'Private'"
+                @change="switchShareOrPrivate"
+            ></v-switch>
+            <v-card v-if="isShared">
+
+
+                https://{{sharedID}}
+
+                <v-btn
+                    color="#1DA1F2"
+                    :href="twitterShareURL"
+                >
+                    <v-icon
+                        large
+                        left
+                    >
+                        mdi-twitter
+                    </v-icon>
+                    <span class="text-h6 font-weight-light">share</span>
+                </v-btn>
+            </v-card>
+        </v-container>
+
+
         <v-col cols="12">
             <v-sheet >
                 <v-btn
@@ -184,6 +214,8 @@ export default {
             events:[],
             tempDate:"", //test用,
             focus: '',
+            isShared: false,
+            sharedID:""
         }
     },
     created:function () {
@@ -191,7 +223,10 @@ export default {
 
     },
     computed:{
-
+        twitterShareURL(){
+            console.log("https://twitter.com/intent/tweet?url=https://" + this.sharedID + "&text=テストtweet&hashtags=test,テスト")
+            return "https://twitter.com/intent/tweet?url=https://" + this.sharedID + "&text=テストtweet&hashtags=test,テスト";
+        }
     },
     methods:{
         createTask(status){
@@ -245,9 +280,23 @@ export default {
                 .catch((error) =>{
                     console.log(error)
                 })
-            axios.get(`/api/objective/${this.$route.params.id}`)
+            axios.get(`/api/objectives/${this.$route.params.id}`)
                 .then((res) => {
                     this.objective = res.data;
+                })
+                .catch((error) =>{
+                    console.log(error)
+                })
+            axios.get(`/api/objectives/shared_id/${this.$route.params.id}`)
+                .then((res) => {
+                    let sharedObjective = res.data.shared_objective;
+                    if(sharedObjective){
+                        this.isShared = true;
+                        this.sharedID = sharedObjective.id;
+                    }else{
+                        this.isShared = false;
+                        this.sharedID = "";
+                    }
                 })
                 .catch((error) =>{
                     console.log(error)
@@ -341,6 +390,41 @@ export default {
         },
         prev(){
             this.$refs.calendar.prev()
+        },
+        switchShareOrPrivate(){
+            if(this.isShared){
+                this.share();
+
+            }else{
+                this.private()
+            }
+        },
+
+
+        share(){
+            let sendData = {
+                objective_id : this.objective_id
+            }
+            axios.post(`/api/objectives/share`, sendData)
+                .then((res) => {
+                    console.log(res)
+                    this.sharedURL = res.data.id;
+                    this.isShared = true;
+                })
+                .catch((error) =>{
+                    console.log(error)
+                })
+        },
+        private(){
+
+            axios.delete(`/api/objectives/private/${this.objective_id}`)
+                .then((res) => {
+                    this.sharedURL = "";
+                    this.isShared = false;
+                })
+                .catch((error) =>{
+                    console.log(error)
+                })
         }
 
 
