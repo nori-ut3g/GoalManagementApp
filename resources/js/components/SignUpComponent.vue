@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <div>
         <v-col cols="12">
             <v-text-field
                 label="UserName"
@@ -7,8 +7,6 @@
                 v-model="user.name"
             ></v-text-field>
         </v-col>
-
-
 
         <v-col cols="12">
             <v-text-field
@@ -29,9 +27,14 @@
             ></v-text-field>
 
         </v-col>
+        <v-divider></v-divider>
+        <v-card-actions>
+            <v-btn @click="cancel">Cancel</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn @click="submit">Register</v-btn>
+        </v-card-actions>
 
-        <v-btn @click="submit">Register</v-btn>
-    </v-card>
+    </div>
 </template>
 
 <script>
@@ -76,7 +79,6 @@ export default {
                     this.$router.push('/home')
                 })
                 .catch((error) =>{
-                    this.$router.push('/login')
                 })
         },
         isAvailableEmail(){
@@ -93,7 +95,11 @@ export default {
                         this.error.email = true;
                         this.errorMessage.email = err.response.data.email[0];
                     })
+        },
+        cancel(){
+            this.$emit('parent-cancel')
         }
+
     }
 }
 </script>

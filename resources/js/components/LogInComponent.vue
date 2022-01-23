@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <div>
         <v-col cols="12">
             <v-text-field
                 label="Email Address"
@@ -15,8 +15,13 @@
                 v-model="user.password"
             ></v-text-field>
         </v-col>
-        <v-btn @click="login">Login</v-btn>
-    </v-card>
+        <v-divider></v-divider>
+        <v-card-actions>
+            <v-btn @click="cancel">Cancel</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn @click="login">Login</v-btn>
+        </v-card-actions>
+    </div>
 </template>
 
 <script>
@@ -29,21 +34,19 @@ export default {
     },
     methods: {
         login(){
-            // axios.get('/sanctum/csrf-cookie')
-            //     .then((res) => {
-                    axios.post('/api/login', this.user)
-                        .then((res) => {
-                            console.log(res.data)
-                            this.$router.push('/')
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        })
-                // })
-                // .catch((err) => {
-                //     console.log(err);
-                // })
+            axios.post('/api/login', this.user)
+                .then((res) => {
+                    console.log(res.data)
+                    this.$router.push('/home')
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
         },
+        cancel(){
+            this.$emit('parent-cancel')
+        }
+
 
 
     }

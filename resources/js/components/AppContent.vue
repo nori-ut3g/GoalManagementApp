@@ -1,107 +1,9 @@
 <template>
     <div>
         <v-container>
-            <!-- Header -->
-            <v-app-bar app clippedLeft flat dark color="indigo darken-3">
-                <v-app-bar-nav-icon @click.stop="sideBar=!sideBar"></v-app-bar-nav-icon>
-                <v-btn to="/home">Home</v-btn>
-
-                <v-spacer></v-spacer>
-
-
-                <v-btn  to="/signup">SignUp</v-btn>
-                <v-btn  to="/login">Login</v-btn>
-                <v-btn  @click="logout">Logout</v-btn>
-
-
-
-
-<!--                <router-link v-bind:to="{name: 'user.register'}">-->
-<!--                    <button class="btn btn-success">Logout</button>-->
-<!--                </router-link>-->
-
-            </v-app-bar>
-            <
-
-            <!-- Body -->
-            <v-main>
-<!--                &lt;!&ndash; SideBar &ndash;&gt;-->
-
-<!--                <v-alert-->
-<!--                    border="bottom"-->
-<!--                    color="pink darken-1"-->
-<!--                    dark-->
-<!--                    v-if="isShowAlert"-->
-<!--                >-->
-<!--                    {{userInfo.name}}でログインしました。-->
-<!--                </v-alert>-->
-                <v-navigation-drawer  app clipped v-model="sideBar" dark color="">
-                    <v-list>
-                        <v-list-item>
-<!--                            <v-list-item-avatar>-->
-<!--                                <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>-->
-<!--                            </v-list-item-avatar>-->
-                        </v-list-item>
-
-                        <v-list-item link>
-                            <v-list-item-content>
-                                <v-list-item-title class="text-h6">
-
-                                </v-list-item-title>
-                                <v-list-item-subtitle>{{userInfo.email}}</v-list-item-subtitle>
-                            </v-list-item-content>
-
-                            <v-list-item-action>
-                                <v-icon>mdi-menu-down</v-icon>
-                            </v-list-item-action>
-                        </v-list-item>
-                    </v-list>
-                    <v-divider></v-divider>
-                    <v-list
-                        nav
-                        dense
-                    >
-                        <v-list-item-group
-                            color="primary"
-                        >
-                            <v-list-item
-                                v-for="(item, i) in items"
-                                :key="i"
-                                :to="item.link"
-                            >
-                                <v-list-item-icon>
-                                    <v-icon v-text="item.icon"></v-icon>
-                                </v-list-item-icon>
-
-                                <v-list-item-content>
-                                    <v-list-item-title v-text="item.text"></v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
-                </v-navigation-drawer>
-<!--                <objective-table-component></objective-table-component>-->
-                <router-view
-                    :userInfo="userInfo"
-                ></router-view>
-<!--                <router-view to="/user/login"></router-view>-->
-                    <!--Main Content-->
-                    <!--                Objectiveコンテンツ内容-->
-<!--                                    <objective-content-component></objective-content-component>-->
-                    <!--                Objective一覧-->
-                    <!--                <objective-table-component></objective-table-component>-->
-                    <!--                SignUp-->
-                    <!--                <sign-up-component></sign-up-component>-->
-                    <!--                LogIn-->
-<!--                    <log-in-component></log-in-component>-->
-
-
-            </v-main>
-
-
-
+            <router-view
+            ></router-view>
         </v-container>
-
     </div>
 </template>
 
@@ -124,15 +26,6 @@ export default {
         TaskSectionComponent,},
     data() {
         return {
-            sideBar: false,
-            userInfo:[],
-            isLoggedIn:false,
-            isShowAlert:false,
-            items: [
-                { text: 'My Files', icon: 'mdi-folder' , link:'/list'},
-                { text: 'Create Objective', icon: 'mdi-folder' , link:'/create'},
-
-                ]
         }
     },
     computed:{
@@ -144,6 +37,20 @@ export default {
         // this.autoLogin();
     },
     methods:{
+        checkAuth(){
+            axios.get('/api/user')
+                .then((res) => {
+                    this.isLoggedIn = true;
+                    this.userInfo = res.data;
+                })
+                .catch((err) => {
+                    this.isLoggedIn = false;
+                    console.log(err);
+                })
+        },
+        test(){
+          console.log("AppContntがよばれた")
+        },
         logout() {
             this.isLoggedIn = true;
             console.log("logout")

@@ -1,22 +1,28 @@
 <template>
 <div>
-    こんにちは{{userInfo.name}}さん
-    <v-sheet height="600">
+    <header-component>
 
-        <v-calendar
-            ref="calendar"
+    </header-component>
+    <v-main>
+        こんにちは{{userInfo.name}}さん
+        <v-sheet height="600">
 
-            :events="events"
-        ></v-calendar>
-    </v-sheet>
+            <v-calendar
+                ref="calendar"
+
+                :events="events"
+            ></v-calendar>
+        </v-sheet>
+    </v-main>
 </div>
 
 </template>
 
 <script>
+import HeaderComponent from "./HeaderComponent";
 export default {
     name: "WelcomeComponent",
-
+    components: {HeaderComponent},
     data() {
         return {
             userInfo:{},

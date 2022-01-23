@@ -33,9 +33,9 @@ const router = new VueRouter({
         }
     },
     routes: [
+
         {
             path: '/',
-            name:'',
             component: welcomeComponent
         },
         {

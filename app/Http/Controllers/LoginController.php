@@ -20,7 +20,7 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if ($this->getGuard()->attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
             return new JsonResponse(['message' => 'ログインしました']);
@@ -32,11 +32,12 @@ class LoginController extends Controller
     //
     public function logout(Request $request)
     {
-        $this->getGuard()->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        Auth::logout();
 
-        return view('app');
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+        return new JsonResponse(['message' => 'ログアウトしました']);
     }
 
     private function getGuard(){

@@ -1,190 +1,195 @@
 <template>
-    <v-row>
-        <!--        未着手-->
-        <v-col cols="12">
-            <v-card><p class="text-h4">{{objective.title}}</p></v-card>
-        </v-col>
-        <v-col cols="12">
-            <v-card><p class="text-h4">{{objective.due_date}}まで</p></v-card>
-        </v-col>
+    <div>
+        <header-component>
 
-        <v-container
-            class="px-0"
-            fluid
-        >
-            <v-switch
-                v-model="isShared"
-                :label="isShared ? 'Share' : 'Private'"
-                @change="switchShareOrPrivate"
-            ></v-switch>
-            <v-card v-if="isShared">
+        </header-component>
+        <v-row>
+            <!--        未着手-->
+            <v-col cols="12">
+                <v-card><p class="text-h4">{{objective.title}}</p></v-card>
+            </v-col>
+            <v-col cols="12">
+                <v-card><p class="text-h4">{{objective.due_date}}まで</p></v-card>
+            </v-col>
+
+            <v-container
+                class="px-0"
+                fluid
+            >
+                <v-switch
+                    v-model="isShared"
+                    :label="isShared ? 'Share' : 'Private'"
+                    @change="switchShareOrPrivate"
+                ></v-switch>
+                <v-card v-if="isShared">
 
 
-                https://{{sharedID}}
+                    https://{{sharedID}}
 
-                <v-btn
-                    color="#1DA1F2"
-                    :href="twitterShareURL"
-                >
-                    <v-icon
-                        large
-                        left
+                    <v-btn
+                        color="#1DA1F2"
+                        :href="twitterShareURL"
                     >
-                        mdi-twitter
-                    </v-icon>
-                    <span class="text-h6 font-weight-light">share</span>
-                </v-btn>
-            </v-card>
-        </v-container>
+                        <v-icon
+                            large
+                            left
+                        >
+                            mdi-twitter
+                        </v-icon>
+                        <span class="text-h6 font-weight-light">share</span>
+                    </v-btn>
+                </v-card>
+            </v-container>
 
 
-        <v-col cols="12">
-            <v-sheet >
-                <v-btn
-                    outlined
-                    class="mr-4"
-                    color="grey darken-2"
-                    @click="setToday"
+            <v-col cols="12">
+                <v-sheet >
+                    <v-btn
+                        outlined
+                        class="mr-4"
+                        color="grey darken-2"
+                        @click="setToday"
+                    >
+                        Today
+                    </v-btn>
+                    <v-btn
+                        fab
+                        text
+                        small
+                        color="grey darken-2"
+                        @click="prev"
+                    >
+                        <v-icon small>
+                            mdi-chevron-left
+                        </v-icon>
+                    </v-btn>
+                    <v-btn
+                        fab
+                        text
+                        small
+                        color="grey darken-2"
+                        @click="next"
+                    >
+                        <v-icon small>
+                            mdi-chevron-right
+                        </v-icon>
+                    </v-btn>
+                    <v-toolbar-title v-if="$refs.calendar">
+                        {{ $refs.calendar.title }}
+                    </v-toolbar-title>
+                    <v-calendar
+                        ref="calendar"
+                        v-model="focus"
+                        :events="events"
+                        :event-more="true"
+                        @change="refreshCalenderEvents"
+                    ></v-calendar>
+                </v-sheet>
+            </v-col>
+
+
+            <v-col cols="4">
+                <v-card>未着手</v-card>
+                <v-card
+                    max-width="400"
                 >
-                    Today
-                </v-btn>
-                <v-btn
-                    fab
-                    text
-                    small
-                    color="grey darken-2"
-                    @click="prev"
+                    <v-container>
+                        <v-row>
+                            <!--                    <div v-for="(task, index) in tasks" :key="index" >-->
+                            <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
+                            <!--                    </div>-->
+                            <v-expansion-panels>
+                                <v-expansion-panel
+                                    v-for="(task, index) in waitingTasks"
+                                    :key="task.id"
+                                    :id="task.id"
+                                >
+                                    <TaskCardComponent
+                                        :task="task"
+                                        :objective-id="objective_id"
+                                        v-on:refresh="refresh"
+                                    >
+
+                                    </TaskCardComponent>
+                                </v-expansion-panel>
+                            </v-expansion-panels>
+                        </v-row>
+                    </v-container>
+                    <v-card><v-btn @click="createTask(0)">Create</v-btn></v-card>
+                </v-card>
+            </v-col>
+            <!--        実行中-->
+            <v-col cols="4">
+                <v-card>実行中</v-card>
+                <v-card
+                    max-width="400"
                 >
-                    <v-icon small>
-                        mdi-chevron-left
-                    </v-icon>
-                </v-btn>
-                <v-btn
-                    fab
-                    text
-                    small
-                    color="grey darken-2"
-                    @click="next"
+                    <v-container>
+                        <v-row>
+                            <!--                    <div v-for="(task, index) in tasks" :key="index" >-->
+                            <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
+                            <!--                    </div>-->
+                            <v-expansion-panels>
+                                <v-expansion-panel
+                                    v-for="(task, index) in workingTasks"
+                                    :key="task.id"
+                                    :id="task.id"
+                                >
+                                    <TaskCardComponent
+                                        :task="task"
+                                        :objective-id="objective_id"
+                                        v-on:refresh="refresh"
+                                    >
+
+                                    </TaskCardComponent>
+                                    <!--                                <v-expansion-panel-header>-->
+                                    <!--                                    {{task.title}} + {{task.id}}-->
+                                    <!--                                    <v-btn @click="finishTask(task.id)">＞</v-btn>-->
+                                    <!--                                </v-expansion-panel-header>-->
+                                    <!--                                <v-expansion-panel-content>-->
+                                    <!--                                    {{task.contents}}-->
+                                    <!--                                </v-expansion-panel-content>-->
+                                </v-expansion-panel>
+                            </v-expansion-panels>
+                        </v-row>
+                    </v-container>
+
+                </v-card>
+            </v-col>
+            <!--        &lt;!&ndash;        完了&ndash;&gt;-->
+            <v-col cols="4">
+                <v-card>完了</v-card>
+                <v-card
+                    max-width="400"
                 >
-                    <v-icon small>
-                        mdi-chevron-right
-                    </v-icon>
-                </v-btn>
-                <v-toolbar-title v-if="$refs.calendar">
-                    {{ $refs.calendar.title }}
-                </v-toolbar-title>
-                <v-calendar
-                    ref="calendar"
-                    v-model="focus"
-                    :events="events"
-                    :event-more="true"
-                    @change="refreshCalenderEvents"
-                ></v-calendar>
-            </v-sheet>
-        </v-col>
-
-
-        <v-col cols="4">
-            <v-card>未着手</v-card>
-            <v-card
-                max-width="400"
-            >
-                <v-container>
-                    <v-row>
-                        <!--                    <div v-for="(task, index) in tasks" :key="index" >-->
-                        <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
-                        <!--                    </div>-->
-                        <v-expansion-panels>
-                            <v-expansion-panel
-                                v-for="(task, index) in waitingTasks"
-                                :key="task.id"
-                                :id="task.id"
-                            >
-                                <TaskCardComponent
-                                    :task="task"
-                                    :objective-id="objective_id"
-                                    v-on:refresh="refresh"
+                    <v-container>
+                        <v-row>
+                            <!--                    <div v-for="(task, index) in tasks" :key="index" >-->
+                            <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
+                            <!--                    </div>-->
+                            <v-expansion-panels>
+                                <v-expansion-panel
+                                    v-for="(task, index) in completedTasks"
+                                    :key="task.id"
+                                    :id="task.id"
                                 >
+                                    <TaskCardComponent
+                                        :task="task"
+                                        :objective-id="objective_id"
+                                        v-on:refresh="refresh"
+                                    >
 
-                                </TaskCardComponent>
-                            </v-expansion-panel>
-                        </v-expansion-panels>
-                    </v-row>
-                </v-container>
-                <v-card><v-btn @click="createTask(0)">Create</v-btn></v-card>
-            </v-card>
-        </v-col>
-        <!--        実行中-->
-        <v-col cols="4">
-            <v-card>実行中</v-card>
-            <v-card
-                max-width="400"
-            >
-                <v-container>
-                    <v-row>
-                        <!--                    <div v-for="(task, index) in tasks" :key="index" >-->
-                        <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
-                        <!--                    </div>-->
-                        <v-expansion-panels>
-                            <v-expansion-panel
-                            v-for="(task, index) in workingTasks"
-                            :key="task.id"
-                            :id="task.id"
-                            >
-                                <TaskCardComponent
-                                :task="task"
-                                :objective-id="objective_id"
-                                v-on:refresh="refresh"
-                                >
+                                    </TaskCardComponent>
+                                </v-expansion-panel>
+                            </v-expansion-panels>
+                        </v-row>
+                    </v-container>
 
-                                </TaskCardComponent>
-<!--                                <v-expansion-panel-header>-->
-<!--                                    {{task.title}} + {{task.id}}-->
-<!--                                    <v-btn @click="finishTask(task.id)">＞</v-btn>-->
-<!--                                </v-expansion-panel-header>-->
-<!--                                <v-expansion-panel-content>-->
-<!--                                    {{task.contents}}-->
-<!--                                </v-expansion-panel-content>-->
-                            </v-expansion-panel>
-                        </v-expansion-panels>
-                    </v-row>
-                </v-container>
+                </v-card>
+            </v-col>
 
-            </v-card>
-        </v-col>
-<!--        &lt;!&ndash;        完了&ndash;&gt;-->
-        <v-col cols="4">
-            <v-card>完了</v-card>
-            <v-card
-                max-width="400"
-            >
-                <v-container>
-                    <v-row>
-                        <!--                    <div v-for="(task, index) in tasks" :key="index" >-->
-                        <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
-                        <!--                    </div>-->
-                        <v-expansion-panels>
-                            <v-expansion-panel
-                            v-for="(task, index) in completedTasks"
-                            :key="task.id"
-                            :id="task.id"
-                            >
-                                <TaskCardComponent
-                                    :task="task"
-                                    :objective-id="objective_id"
-                                    v-on:refresh="refresh"
-                                >
-
-                                </TaskCardComponent>
-                            </v-expansion-panel>
-                        </v-expansion-panels>
-                    </v-row>
-                </v-container>
-
-            </v-card>
-        </v-col>
-
-    </v-row>
+        </v-row>
+    </div>
 
 </template>
 
@@ -194,9 +199,11 @@ import draggable from 'vuedraggable'
 import ProgressBarComponent from "./ProgressBarComponent";
 import TaskSectionComponent from "./TaskSectionComponent";
 import TaskCardComponent from "./TaskCardComponent";
+import HeaderComponent from "./HeaderComponent";
 export default {
     name: "ObjectiveContentComponent",
     components: {
+        HeaderComponent,
         TaskCardComponent,
         TaskSectionComponent,
         ProgressBarComponent,
