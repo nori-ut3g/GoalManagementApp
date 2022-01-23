@@ -19,7 +19,7 @@ Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
 Route::get('/logout', [\App\Http\Controllers\LoginController::class, 'logout']);
 
 Route::get('/sharedObjective/{shared_objective_id}', [\App\Http\Controllers\SharedObjectiveController::class, 'getSharedObjective']);
-
+Route::get('/sharedObjective/{shared_objective_id}/tasks', [\App\Http\Controllers\SharedObjectiveController::class, 'getTasks']);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user', function(Request $request){

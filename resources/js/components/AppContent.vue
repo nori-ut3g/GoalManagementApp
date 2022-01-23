@@ -37,47 +37,6 @@ export default {
         // this.autoLogin();
     },
     methods:{
-        checkAuth(){
-            axios.get('/api/user')
-                .then((res) => {
-                    this.isLoggedIn = true;
-                    this.userInfo = res.data;
-                })
-                .catch((err) => {
-                    this.isLoggedIn = false;
-                    console.log(err);
-                })
-        },
-        test(){
-          console.log("AppContntがよばれた")
-        },
-        logout() {
-            this.isLoggedIn = true;
-            console.log("logout")
-            axios.get('/api/logout')
-
-        },
-        autoLogin(){
-            axios.get('/api/user')
-                .then((res) => {
-                    if(!this.isLoggedIn)this.showAlert();
-                    this.isLoggedIn = true;
-                    this.userInfo = res.data;
-
-                })
-                .catch((err) => {
-                    this.isLoggedIn = false;
-                    this.$router.push('/login')
-                    console.log(err);
-                })
-
-        },
-        showAlert(){
-            this.isShowAlert = true;
-            setTimeout(() => {
-                    this.isShowAlert = false}
-                ,3000)
-        }
     }
 }
 </script>

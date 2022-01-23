@@ -31,11 +31,10 @@ class SharedObjectiveController extends Controller
     public function getSharedObjectiveId($objective_id){
 
         $sharedObjective = SharedObjective::where('objective_id', $objective_id)->first();
-
         if($sharedObjective === null){
             return new JsonResponse(['shared_objective' => null]);
         }else{
-            return new JsonResponse(['shared_objective' => $sharedObjective[0]]);
+            return new JsonResponse(['shared_objective' => $sharedObjective]);
         }
     }
 
@@ -48,6 +47,12 @@ class SharedObjectiveController extends Controller
             $objective = Objective::find($sharedObjective->objective_id);
             return new JsonResponse(['objective' => $objective]);
         }
+    }
+
+    public function getTasks($shared_objective_id){
+        $sharedObjective = SharedObjective::find($shared_objective_id);
+
+        return Task::where('objective_id', $sharedObjective->objective_id)->get();
     }
 
 

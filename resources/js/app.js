@@ -11,6 +11,7 @@ import ObjectiveTableComponent from "./components/ObjectiveTableComponent";
 import CreateObjectiveComponent from "./components/CreateObjectiveComponent";
 import HomeComponent from "./components/HomeComponent";
 import welcomeComponent from "./components/WelcomeComponent";
+import SharedObjectiveComponent from "./components/SharedObjectiveComponent";
 
 
 /**
@@ -65,6 +66,10 @@ const router = new VueRouter({
         {
             path: '/objective/:id',
             component: ObjectiveContentComponent
+        },
+        {
+            path: '/share/objective/:id',
+            component: SharedObjectiveComponent
         },
 
     ]

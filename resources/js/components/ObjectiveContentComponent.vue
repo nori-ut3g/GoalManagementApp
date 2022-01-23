@@ -24,7 +24,14 @@
                                 :label="isShared ? 'Share' : 'Private'"
                                 @change="switchShareOrPrivate"
                             ></v-switch>
-                                <v-btn
+                        <v-btn
+                            :to="shareURL"
+                            v-if="isShared"
+                        >
+                            {{"https://localhost/#/share/objective/" + this.sharedID }}
+                        </v-btn>
+
+                        <v-btn
                                     color="#1DA1F2"
                                     :href="twitterShareURL"
                                     v-if="isShared"
@@ -208,8 +215,10 @@ export default {
     },
     computed:{
         twitterShareURL(){
-            console.log("https://twitter.com/intent/tweet?url=https://" + this.sharedID + "&text=テストtweet&hashtags=test,テスト")
-            return "https://twitter.com/intent/tweet?url=https://" + this.sharedID + "&text=テストtweet&hashtags=test,テスト";
+            return "https://twitter.com/intent/tweet?url=https://localhost/#/share/objective/" + this.sharedID + "&text=GoalManagementApp&hashtags=portfolio";
+        },
+        shareURL(){
+            return "/share/objective/" + this.sharedID;
         }
     },
     methods:{
@@ -274,6 +283,7 @@ export default {
             axios.get(`/api/objectives/shared_id/${this.$route.params.id}`)
                 .then((res) => {
                     let sharedObjective = res.data.shared_objective;
+
                     if(sharedObjective){
                         this.isShared = true;
                         this.sharedID = sharedObjective.id;

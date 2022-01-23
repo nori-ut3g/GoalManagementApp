@@ -2,7 +2,7 @@
     <div>
         <v-app-bar app clippedLeft flat dark color="indigo darken-3">
             <v-app-bar-nav-icon @click.stop="sideBar=!sideBar"></v-app-bar-nav-icon>
-            <v-btn to="/home">Home</v-btn>
+            <v-btn v-if="isLoggedIn" to="/home">Home</v-btn>
 
             <v-spacer></v-spacer>
 
@@ -150,7 +150,7 @@ export default {
                 })
                 .catch((err) => {
                     this.isLoggedIn = false;
-                    this.$router.push('/')
+                    // this.$router.push('/')
                     console.log(err);
                 })
         },
