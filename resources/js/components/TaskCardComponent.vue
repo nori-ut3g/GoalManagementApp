@@ -25,7 +25,9 @@
                     {{task.title}}
                 </v-card-title>
             </v-card>
+            <v-col>
 
+            </v-col>
             <v-icon
                 v-if="task.status !== 0"
                 @click="prev"
@@ -52,24 +54,13 @@
                 mdi-arrow-right-thick
             </v-icon>
 
+            <v-btn
+                icon
+                @click="show = !show"
+            >
+                <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+            </v-btn>
 
-            <v-card-actions>
-                <v-btn
-                    color="orange lighten-2"
-                    text
-                >
-                    Explore
-                </v-btn>
-
-                <v-spacer></v-spacer>
-
-                <v-btn
-                    icon
-                    @click="show = !show"
-                >
-                    <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                </v-btn>
-            </v-card-actions>
 
             <v-card>
 
