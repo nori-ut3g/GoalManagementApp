@@ -4,14 +4,64 @@
 
     </header-component>
     <v-main>
-        こんにちは{{userInfo.name}}さん
-        <v-sheet height="600">
+        <v-row>
+            <v-col
+                cols=12
+            >
+                こんにちは{{userInfo.name}}さん
+            </v-col>
+            <v-col
+                cols=12
+            >
+                <v-btn
+                    fab
+                    text
+                    small
+                    color="grey darken-2"
+                    @click="prevMonth"
+                >
+                    <v-icon small>
+                        mdi-chevron-left
+                    </v-icon>
+                </v-btn>
 
-            <v-calendar
-                ref="calendar"
-                :events="events"
-            ></v-calendar>
-        </v-sheet>
+                <v-btn
+                    outlined
+                    class="mr-4"
+                    color="grey darken-2"
+                    @click="setToday"
+                >
+                    Today
+                </v-btn>
+
+
+                <v-btn
+                    fab
+                    text
+                    small
+                    color="grey darken-2"
+                    @click="nextMonth"
+                >
+                    <v-icon small>
+                        mdi-chevron-right
+                    </v-icon>
+                </v-btn>
+            </v-col>
+
+            <v-col
+                cols=12
+            >
+                <v-sheet height="600">
+                    <v-calendar
+                        ref="calendar"
+                        v-model="value"
+                        :events="events"
+                        color="green"
+                    ></v-calendar>
+                </v-sheet>
+            </v-col>
+        </v-row>
+
     </v-main>
 </div>
 
@@ -29,6 +79,7 @@ export default {
 
             ],
             objectives:[],
+            value: new Date().toISOString().split("T")[0].replaceAll("-", "/")
         }
     },
     created:function(){
@@ -74,7 +125,16 @@ export default {
                 })
             }
             this.events = events;
-        }
+        },
+        nextMonth(){
+            this.$refs.calendar.next()
+        },
+        prevMonth(){
+            this.$refs.calendar.prev()
+        },
+        setToday () {
+            this.value = ''
+        },
     }
 }
 </script>

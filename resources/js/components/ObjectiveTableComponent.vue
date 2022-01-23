@@ -1,14 +1,14 @@
 <template>
     <div>
-
-        <v-data-table
-            :headers="headers"
-            :items="objectives"
-            :items-per-page="5"
-            class="elevation-1"
-            @click:row="clickRow"
-        ></v-data-table>
-
+        <v-main>
+            <v-data-table
+                :headers="headers"
+                :items="objectives"
+                :items-per-page="5"
+                class="elevation-1"
+                @click:row="clickRow"
+            ></v-data-table>
+        </v-main>
     </div>
 
 </template>
