@@ -78,7 +78,6 @@ export default {
             },
             menu: false,
             today:new Date().toISOString().split("T")[0]
-
         }
     },
     created:function(){

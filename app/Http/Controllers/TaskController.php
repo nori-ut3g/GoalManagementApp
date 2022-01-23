@@ -87,7 +87,7 @@ class TaskController extends Controller
     //タスク開始
     public function setStartDate(string $objective_id, string $id, Request $request){
         $task = Task::find($id);
-        $task->start_date = $request->date;
+        $task->start_date = $request->start_date;
         $task->save();
 
     }
@@ -95,7 +95,7 @@ class TaskController extends Controller
     //タスク終了
     public function setFinishDate(string $objective_id, string $id, Request $request){
         $task = Task::find($id);
-        $task->finish_date = $request->date;
+        $task->finish_date = $request->finish_date;
         $task->save();
     }
 

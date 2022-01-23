@@ -75,6 +75,7 @@
                     </v-card>
                     <v-icon
                         v-if="task.status === 2"
+                        @click="datePickerDialog = true"
                     >
                         mdi-calendar-month
                     </v-icon>
@@ -84,6 +85,123 @@
                     >
                         mdi-delete
                     </v-icon>
+
+
+
+                    <v-dialog
+                        v-model="datePickerDialog"
+                        width="500"
+                    >
+                        <v-card>
+                            <v-card-title class="text-h5 grey lighten-2">
+                                Date
+                            </v-card-title>
+
+                            <v-divider></v-divider>
+
+                            <v-card-subtitle>
+                                Start Date
+                            </v-card-subtitle>
+                            <v-card-actions>
+                                <v-menu
+                                    ref="start"
+                                    v-model="startDateMenu"
+                                    :close-on-content-click="false"
+                                    :return-value.sync="task.start_date"
+                                    transition="scale-transition"
+                                    offset-y
+                                    min-width="auto"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+
+                                        <v-text-field
+                                            v-model="task.start_date"
+                                            value="task.start_date"
+                                            prepend-icon="mdi-calendar"
+                                            readonly
+                                            v-bind="attrs"
+                                            v-on="on"
+                                        ></v-text-field>
+                                    </template>
+                                    <v-date-picker
+                                        v-model="task.start_date"
+                                        no-title
+                                        scrollable
+                                    >
+                                        <v-spacer></v-spacer>
+                                        <v-btn
+                                            text
+                                            color="primary"
+                                            @click="startDateMenu = false"
+                                        >
+                                            Cancel
+                                        </v-btn>
+                                        <v-btn
+                                            text
+                                            color="primary"
+                                            @click="changeStartDate"
+                                        >
+                                            OK
+                                        </v-btn>
+                                    </v-date-picker>
+                                </v-menu>
+
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+
+                            <v-divider></v-divider>
+
+                            <v-card-subtitle>
+                                Finish Date
+                            </v-card-subtitle>
+                            <v-card-actions>
+                                <v-menu
+                                    ref="menu"
+                                    v-model="finishDateMenu"
+                                    :close-on-content-click="false"
+                                    :return-value.sync="task.finish_date"
+                                    transition="scale-transition"
+                                    offset-y
+                                    min-width="auto"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+
+                                        <v-text-field
+                                            v-model="task.finish_date"
+                                            value="task.finish_date"
+                                            prepend-icon="mdi-calendar"
+                                            readonly
+                                            v-bind="attrs"
+                                            v-on="on"
+                                        ></v-text-field>
+                                    </template>
+                                    <v-date-picker
+                                        v-model="task.finish_date"
+                                        no-title
+                                        scrollable
+                                    >
+                                        <v-spacer></v-spacer>
+                                        <v-btn
+                                            text
+                                            color="primary"
+                                            @click="finishDateMenu = false"
+                                        >
+                                            Cancel
+                                        </v-btn>
+                                        <v-btn
+                                            text
+                                            color="primary"
+                                            @click="changeFinishDate"
+                                        >
+                                            OK
+                                        </v-btn>
+                                    </v-date-picker>
+                                </v-menu>
+
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
                 </div>
             </v-expand-transition>
         </v-col>
@@ -104,6 +222,7 @@ export default {
             isTaskTitleFieldFocus:false,
             isTaskNoteFieldFocus:false,
             show: false,
+            datePickerDialog:false,
         }
     },
     methods:{
@@ -242,6 +361,37 @@ export default {
 
             this.isTaskNoteFieldFocus = false;
         },
+
+        changeStartDate(){
+            let sendDate = {
+                "start_date": this.task.start_date
+            }
+
+            axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/start`, sendDate)
+                .then((res) => {
+
+                    this.startDateMenu = false;
+                    this.refresh();
+                })
+                .catch((error) =>{
+                    console.log(error)
+                })
+
+        },
+        changeFinishDate(){
+            let sendDate = {
+                "finish_date": this.task.finish_date
+            }
+
+            axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/finish`, sendDate)
+                .then((res) => {
+                    this.finishDateMenu = false;
+                    this.refresh();
+                })
+                .catch((error) =>{
+                    console.log(error)
+                })
+        }
 
 
     }
