@@ -9,7 +9,6 @@
 
             <v-calendar
                 ref="calendar"
-
                 :events="events"
             ></v-calendar>
         </v-sheet>
@@ -27,34 +26,55 @@ export default {
         return {
             userInfo:{},
             events: [
-                {
-                    name: '月次報告',
-                    start: '2022-01-01 09:00',
-                    end: '2022-02-01 17:00',
-                },
-                {
-                    name: '出張',
-                    start: '2021-10-11',
-                    end: '2021-10-15',
-                }
+
             ],
+            objectives:[],
         }
     },
     created:function(){
-        this.getUserInfo();
+        this.getData();
     },
     methods:{
-        getUserInfo(){
+
+        getData(){
             axios.get('/api/user')
                 .then((res) => {
                     this.userInfo = res.data;
+                    this.getObjectives();
                 })
                 .catch((err) => {
                     console.log(err);
-
+                    console.log(this.userInfo)
                 })
 
         },
+        getObjectives(){
+            console.log('aaa')
+            axios.get('/api/objectives')
+                .then((res) => {
+
+                    this.objectives = res.data;
+
+                    this.refreshCalenderEvents()
+                })
+        },
+        refreshCalenderEvents(){
+            let events = []
+            for(const objective of this.objectives){
+                if(objective.created_at === null) continue;
+                let due_date;
+                if(objective.due_date === null) due_date = new Date().toISOString().split("T")[0].replaceAll("-", "/");
+                else due_date = objective.due_date;
+
+                events.push({
+                    name: objective.title,
+                    start: new Date(objective.created_at),
+                    end: new Date(due_date),
+                    timed: false
+                })
+            }
+            this.events = events;
+        }
     }
 }
 </script>
