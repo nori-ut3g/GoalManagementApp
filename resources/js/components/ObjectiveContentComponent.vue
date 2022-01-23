@@ -19,31 +19,25 @@
                             </v-icon>
                             {{objective.due_date}}
                         </v-card-text>
-                        <v-col cols="12">
                             <v-switch
                                 v-model="isShared"
                                 :label="isShared ? 'Share' : 'Private'"
                                 @change="switchShareOrPrivate"
                             ></v-switch>
-                            <v-card
-                                v-if="isShared"
-                            >
-                                https://{{sharedID}}
-                                <br>
                                 <v-btn
                                     color="#1DA1F2"
                                     :href="twitterShareURL"
+                                    v-if="isShared"
                                 >
                                     <v-icon
                                         left
                                         color="white"
+                                        small
                                     >
                                         mdi-twitter
                                     </v-icon>
                                     <span>share</span>
                                 </v-btn>
-                            </v-card>
-                        </v-col>
 
                     </v-card>
                 </v-col>
