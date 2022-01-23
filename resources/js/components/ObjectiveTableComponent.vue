@@ -1,5 +1,8 @@
 <template>
     <div>
+        <header-component>
+
+        </header-component>
         <v-main>
             <v-data-table
                 :headers="headers"
@@ -14,8 +17,10 @@
 </template>
 
 <script>
+import HeaderComponent from "./HeaderComponent";
 export default {
     name: "ObjectiveTableComponent",
+    components: {HeaderComponent},
     data () {
         return {
             headers: [
@@ -26,8 +31,6 @@ export default {
                 },
                 { text: 'Title', value: 'title' },
                 { text: 'Due', value: 'due_date' },
-                // { text: 'Update', value: 'updated_at' },
-                { text: 'Create', value: 'created_at' }
             ],
             objectives:[],
 

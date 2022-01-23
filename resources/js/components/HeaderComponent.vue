@@ -124,8 +124,8 @@ export default {
             isLoggedIn:false,
             isShowAlert:false,
             items: [
-                { text: 'My Files', icon: 'mdi-folder' , link:'/list'},
-                { text: 'Create Objective', icon: 'mdi-folder' , link:'/create'},
+                { text: 'My Goals', icon: 'mdi-folder' , link:'/list'},
+                { text: 'Create Goal', icon: 'mdi-folder' , link:'/create'},
 
             ],
             loginDialog : false,

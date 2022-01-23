@@ -3,60 +3,63 @@
         <header-component>
 
         </header-component>
-        <v-card>
-            <v-col cols="12">
-                <v-text-field
-                    label="Objective"
-                    value="Title"
-                    v-model="objective.title"
-                ></v-text-field>
-            </v-col>
-
-            <v-menu
-                ref="menu"
-                v-model="menu"
-                :close-on-content-click="false"
-                :return-value.sync="objective.due_date"
-                transition="scale-transition"
-                offset-y
-                min-width="auto"
-            >
-                <template v-slot:activator="{ on, attrs }">
+        <v-main>
+            <v-card>
+                <v-col cols="12">
                     <v-text-field
-                        v-model="objective.due_date"
-                        label="Due Date"
-                        prepend-icon="mdi-calendar"
-                        readonly
-                        v-bind="attrs"
-                        v-on="on"
+                        label="Goal"
+                        value="Title"
+                        v-model="objective.title"
                     ></v-text-field>
-                </template>
-                <v-date-picker
-                    v-model="objective.due_date"
-                    no-title
-                    scrollable
+                </v-col>
+
+                <v-menu
+                    ref="menu"
+                    v-model="menu"
+                    :close-on-content-click="false"
+                    :return-value.sync="objective.due_date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
                 >
-                    <v-spacer></v-spacer>
-                    <v-btn
-                        text
-                        color="primary"
-                        @click="menu = false"
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                            v-model="objective.due_date"
+                            label="Due Date"
+                            prepend-icon="mdi-calendar"
+                            readonly
+                            v-bind="attrs"
+                            v-on="on"
+                        ></v-text-field>
+                    </template>
+                    <v-date-picker
+                        v-model="objective.due_date"
+                        no-title
+                        scrollable
+                        :min="today"
                     >
-                        Cancel
-                    </v-btn>
-                    <v-btn
-                        text
-                        color="primary"
-                        @click="$refs.menu.save(objective.due_date)"
-                    >
-                        OK
-                    </v-btn>
-                </v-date-picker>
-            </v-menu>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            text
+                            color="primary"
+                            @click="menu = false"
+                        >
+                            Cancel
+                        </v-btn>
+                        <v-btn
+                            text
+                            color="primary"
+                            @click="$refs.menu.save(objective.due_date)"
+                        >
+                            OK
+                        </v-btn>
+                    </v-date-picker>
+                </v-menu>
 
-            <v-btn @click="create()">Create</v-btn>
+                <v-btn @click="create()">Create</v-btn>
 
-        </v-card>
+            </v-card>
+        </v-main>
     </div>
 </template>
 
@@ -74,6 +77,7 @@ export default {
                 due_date:"",
             },
             menu: false,
+            today:new Date().toISOString().split("T")[0]
 
         }
     },
@@ -107,6 +111,9 @@ export default {
                 })
 
         },
+        allowDate(){
+
+        }
     }
 }
 </script>

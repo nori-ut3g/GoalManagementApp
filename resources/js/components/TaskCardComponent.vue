@@ -2,7 +2,6 @@
     <v-card
         :color="cardColor"
     >
-
         <v-col cols="12">
             <v-text-field
                 v-if="isTaskTitleFieldFocus"
