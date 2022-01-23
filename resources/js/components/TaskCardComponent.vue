@@ -1,7 +1,8 @@
 <template>
     <v-card
-        max-width="374"
+        :color="cardColor"
     >
+
         <v-container>
             <v-text-field
                 v-if="isTaskTitleFieldFocus"
@@ -226,7 +227,7 @@
 <script>
 export default {
     name: "TaskCardComponent",
-    props:['objectiveId', 'task'],
+    props:['objectiveId', 'task', 'cardColor'],
     data(){
         return{
             startDate: "",//(new Date(this.task.start_date)),

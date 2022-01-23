@@ -5,56 +5,51 @@
         </header-component>
         <v-main>
             <v-row>
-                <!--        未着手-->
                 <v-col cols="12">
                     <v-card>
-                        <v-card-title>{{objective.title}}</v-card-title>
-                        <v-card-text>{{objective.due_date}}まで</v-card-text>
-                    </v-card>
-                </v-col>
-                <v-col cols="12">
-
-                </v-col>
-
-                <v-col cols="12">
-                    <v-switch
-                        v-model="isShared"
-                        :label="isShared ? 'Share' : 'Private'"
-                        @change="switchShareOrPrivate"
-                    ></v-switch>
-                    <v-card v-if="isShared">
-
-
-                        https://{{sharedID}}
-
-                        <v-btn
-                            color="#1DA1F2"
-                            :href="twitterShareURL"
-                        >
-                            <v-icon
-                                large
-                                left
-                            >
-                                mdi-twitter
+                        <v-card-title>
+                            <v-icon>
+                                mdi-flag-checkered
                             </v-icon>
-                            <span class="text-h6 font-weight-light">share</span>
-                        </v-btn>
+                            {{objective.title}}
+                        </v-card-title>
+                        <v-card-text>
+                            <v-icon>
+                                mdi-calendar-range
+                            </v-icon>
+                            {{objective.due_date}}
+                        </v-card-text>
+                        <v-col cols="12">
+                            <v-switch
+                                v-model="isShared"
+                                :label="isShared ? 'Share' : 'Private'"
+                                @change="switchShareOrPrivate"
+                            ></v-switch>
+                            <v-card
+                                v-if="isShared"
+                            >
+                                https://{{sharedID}}
+                                <br>
+                                <v-btn
+                                    color="#1DA1F2"
+                                    :href="twitterShareURL"
+                                >
+                                    <v-icon
+                                        left
+                                        color="white"
+                                    >
+                                        mdi-twitter
+                                    </v-icon>
+                                    <span>share</span>
+                                </v-btn>
+                            </v-card>
+                        </v-col>
+
                     </v-card>
                 </v-col>
 
-
-
-
                 <v-col cols="12">
-                    <v-sheet >
-                        <v-btn
-                            outlined
-                            class="mr-4"
-                            color="grey darken-2"
-                            @click="setToday"
-                        >
-                            Today
-                        </v-btn>
+                    <v-sheet>
                         <v-btn
                             fab
                             text
@@ -67,6 +62,15 @@
                             </v-icon>
                         </v-btn>
                         <v-btn
+                            outlined
+                            class="mr-4"
+                            color="grey darken-2"
+                            @click="setToday"
+                        >
+                            Today
+                        </v-btn>
+
+                        <v-btn
                             fab
                             text
                             small
@@ -77,67 +81,46 @@
                                 mdi-chevron-right
                             </v-icon>
                         </v-btn>
-                        <v-toolbar-title v-if="$refs.calendar">
-                            {{ $refs.calendar.title }}
-                        </v-toolbar-title>
                         <v-calendar
                             ref="calendar"
                             v-model="focus"
                             :events="events"
                             :event-more="true"
                             @change="refreshCalenderEvents"
+                            color="green"
                         ></v-calendar>
                     </v-sheet>
                 </v-col>
 
-
                 <v-col cols="4">
-                    <v-card>
+                    <v-card color="grey lighten-4">
                         <v-card-title class="text-center">Waiting</v-card-title>
-                        <v-card
-                        >
-                            <v-container>
-                                <v-row>
-                                    <!--                    <div v-for="(task, index) in tasks" :key="index" >-->
-                                    <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
-                                    <!--                    </div>-->
-                                    <v-expansion-panels>
-                                        <v-expansion-panel
-                                            v-for="(task, index) in waitingTasks"
-                                            :key="task.id"
-                                            :id="task.id"
+                            <v-expansion-panels>
+                                <v-container>
+                                    <v-expansion-panel
+                                        v-for="(task, index) in waitingTasks"
+                                        :key="task.id"
+                                        :id="task.id"
+                                    >
+                                        <TaskCardComponent
+                                            :task="task"
+                                            :objective-id="objective_id"
+                                            :card-color="cardColor.waiting"
+                                            v-on:refresh="refresh"
                                         >
-                                            <TaskCardComponent
-                                                :task="task"
-                                                :objective-id="objective_id"
-                                                v-on:refresh="refresh"
-                                            >
-
-                                            </TaskCardComponent>
-                                        </v-expansion-panel>
-                                    </v-expansion-panels>
-                                </v-row>
-                            </v-container>
-                            <v-card>
-                                <v-spacer></v-spacer>
-                                <v-btn @click="createTask(0)">Create</v-btn>
-                            </v-card>
-                        </v-card>
+                                        </TaskCardComponent>
+                                    </v-expansion-panel>
+                                </v-container>
+                            </v-expansion-panels>
+                        <v-spacer></v-spacer>
+                        <v-btn @click="createTask(0)">Create</v-btn>
                     </v-card>
-
                 </v-col>
-                <!--        実行中-->
                 <v-col cols="4">
-                    <v-card>実行中</v-card>
-                    <v-card
-                        max-width="400"
-                    >
-                        <v-container>
-                            <v-row>
-                                <!--                    <div v-for="(task, index) in tasks" :key="index" >-->
-                                <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
-                                <!--                    </div>-->
-                                <v-expansion-panels>
+                    <v-card color="grey lighten-4">
+                        <v-card-title>Working</v-card-title>
+                            <v-expansion-panels>
+                                <v-container>
                                     <v-expansion-panel
                                         v-for="(task, index) in workingTasks"
                                         :key="task.id"
@@ -147,35 +130,19 @@
                                             :task="task"
                                             :objective-id="objective_id"
                                             v-on:refresh="refresh"
+                                            :card-color="cardColor.working"
                                         >
-
                                         </TaskCardComponent>
-                                        <!--                                <v-expansion-panel-header>-->
-                                        <!--                                    {{task.title}} + {{task.id}}-->
-                                        <!--                                    <v-btn @click="finishTask(task.id)">＞</v-btn>-->
-                                        <!--                                </v-expansion-panel-header>-->
-                                        <!--                                <v-expansion-panel-content>-->
-                                        <!--                                    {{task.contents}}-->
-                                        <!--                                </v-expansion-panel-content>-->
                                     </v-expansion-panel>
-                                </v-expansion-panels>
-                            </v-row>
-                        </v-container>
-
+                                </v-container>
+                            </v-expansion-panels>
                     </v-card>
                 </v-col>
-                <!--        &lt;!&ndash;        完了&ndash;&gt;-->
                 <v-col cols="4">
-                    <v-card>完了</v-card>
-                    <v-card
-                        max-width="400"
-                    >
-                        <v-container>
-                            <v-row>
-                                <!--                    <div v-for="(task, index) in tasks" :key="index" >-->
-                                <!--                        <task-card-component  :task="task" class="my-2" ></task-card-component>-->
-                                <!--                    </div>-->
-                                <v-expansion-panels>
+                    <v-card  color="grey lighten-4">
+                        <v-card-title>Complete</v-card-title>
+                            <v-expansion-panels>
+                                <v-container>
                                     <v-expansion-panel
                                         v-for="(task, index) in completedTasks"
                                         :key="task.id"
@@ -185,17 +152,14 @@
                                             :task="task"
                                             :objective-id="objective_id"
                                             v-on:refresh="refresh"
+                                            :card-color="cardColor.complete"
                                         >
-
                                         </TaskCardComponent>
                                     </v-expansion-panel>
-                                </v-expansion-panels>
-                            </v-row>
-                        </v-container>
-
+                                </v-container>
+                            </v-expansion-panels>
                     </v-card>
                 </v-col>
-
             </v-row>
         </v-main>
     </div>
@@ -227,11 +191,21 @@ export default {
             waitingTasks:[],
             workingTasks:[],
             completedTasks:[],
+            eachTasks:{
+                waiting:[],
+                working:[],
+                complete:[]
+            },
             events:[],
             tempDate:"", //test用,
             focus: '',
             isShared: false,
-            sharedID:""
+            sharedID:"",
+            cardColor:{
+                waiting:"blue lighten-5",
+                working:"red lighten-5",
+                complete:"green lighten-5"
+            }
         }
     },
     created:function () {
