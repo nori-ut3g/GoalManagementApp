@@ -28,7 +28,7 @@
                             :to="shareURL"
                             v-if="isShared"
                         >
-                            {{"https://localhost/#/share/objective/" + this.sharedID }}
+                            {{"manage-goals.com" + "/#/share/objective/" + sharedID }}
                         </v-btn>
 
                         <v-btn
@@ -206,7 +206,7 @@ export default {
                 waiting:"blue lighten-5",
                 working:"red lighten-5",
                 complete:"green lighten-5"
-            }
+            },
         }
     },
     created:function () {
@@ -215,7 +215,8 @@ export default {
     },
     computed:{
         twitterShareURL(){
-            return "https://twitter.com/intent/tweet?url=https://localhost/#/share/objective/" + this.sharedID + "&text=GoalManagementApp&hashtags=portfolio";
+
+            return "https://twitter.com/intent/tweet?url="+ "manage-goals.com" + "/#/share/objective/" + this.sharedID + "&text=GoalManagementApp&hashtags=portfolio";
         },
         shareURL(){
             return "/share/objective/" + this.sharedID;

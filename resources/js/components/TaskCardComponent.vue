@@ -9,7 +9,6 @@
                 :value="task.title"
                 elevation="3"
                 autofocus
-
                 v-model="task.title"
             ></v-text-field>
             <v-card
@@ -68,8 +67,7 @@
                             v-on:dblclick="taskNoteFieldDbClick"
                         >
                             {{task.note}}
-                        </v-card-text>
-                    </div>
+                        </v-card-text>                    </div>
 
 
                     </v-card>
