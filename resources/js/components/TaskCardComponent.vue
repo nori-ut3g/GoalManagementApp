@@ -3,7 +3,7 @@
         :color="cardColor"
     >
 
-        <v-container>
+        <v-col cols="12">
             <v-text-field
                 v-if="isTaskTitleFieldFocus"
                 @blur="taskTitleFieldOutFocus(task.title)"
@@ -25,9 +25,8 @@
                     {{task.title}}
                 </v-card-title>
             </v-card>
-            <v-col>
 
-            </v-col>
+
             <v-icon
                 v-if="task.status !== 0"
                 @click="prev"
@@ -35,17 +34,7 @@
                 mdi-arrow-left-thick
             </v-icon>
 
-            <v-icon
-                v-if="task.status === 2"
-            >
-                mdi-calendar-month
-            </v-icon>
 
-            <v-icon
-                @click="deleteTask"
-            >
-                mdi-delete
-            </v-icon>
 
             <v-icon
                 v-if="task.status !== 2"
@@ -54,165 +43,52 @@
                 mdi-arrow-right-thick
             </v-icon>
 
+
             <v-btn
                 icon
                 @click="show = !show"
             >
                 <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
             </v-btn>
+        </v-col>
 
+        <v-col cols="12">
 
-            <v-card>
-
-                <v-expand-transition>
-                    <div v-show="show">
-                        <v-divider></v-divider>
-
-                        <v-card-text>
-
-                            開始時間
-                            終了時間
-                            Note
-
+            <v-expand-transition>
+                <div v-show="show">
+                    <v-card>
+                    <div>
+                        <v-text-field
+                            v-if="isTaskNoteFieldFocus"
+                            @blur="taskNoteFieldOutFocus(task.note)"
+                            :value="task.note"
+                            v-model="task.note"
+                        ></v-text-field>
+                        <v-card-text
+                            v-else
+                            v-on:dblclick="taskNoteFieldDbClick"
+                        >
+                            {{task.note}}
                         </v-card-text>
                     </div>
-                </v-expand-transition>
 
-            </v-card>
-        </v-container>
+
+                    </v-card>
+                    <v-icon
+                        v-if="task.status === 2"
+                    >
+                        mdi-calendar-month
+                    </v-icon>
+
+                    <v-icon
+                        @click="deleteTask"
+                    >
+                        mdi-delete
+                    </v-icon>
+                </div>
+            </v-expand-transition>
+        </v-col>
     </v-card>
-<!--    <div>-->
-<!--        <v-text-field-->
-<!--            v-if="isTaskTitleFieldFocus"-->
-<!--            @blur="taskTitleFieldOutFocus(task.title)"-->
-<!--            :value="task.title"-->
-<!--            elevation="3"-->
-<!--            autofocus-->
-<!--            width="180"-->
-<!--            v-model="task.title"-->
-<!--        ></v-text-field>-->
-<!--        <v-card-->
-<!--            v-else-->
-<!--            solo-->
-<!--            v-on:dblclick="taskTitleFieldDbClick"-->
-<!--            tile-->
-<!--            width="180"-->
-<!--            min-height="30"-->
-<!--            class="my-2"-->
-<!--        >-->
-<!--            <strong>{{task.title}}</strong>-->
-<!--        </v-card>-->
-<!--        <v-expansion-panel-header>-->
-
-
-
-<!--            {{task.start_date}}-->
-<!--            {{task.finish_date}}-->
-<!--            <br>-->
-<!--        </v-expansion-panel-header>-->
-<!--        <v-expansion-panel-content>-->
-<!--            <v-menu-->
-<!--                v-if="task.status !== 0"-->
-<!--                ref="startDateMenu"-->
-<!--                v-model="startDateMenu"-->
-<!--                :close-on-content-click="false"-->
-<!--                :return-value.sync="startDate"-->
-<!--                transition="scale-transition"-->
-<!--                offset-y-->
-<!--                min-width="auto"-->
-<!--            >-->
-<!--                <template v-slot:activator="{ on, attrs }">-->
-<!--                    <v-text-field-->
-<!--                        v-model="startDate"-->
-<!--                        label="Start Date"-->
-<!--                        prepend-icon="mdi-calendar"-->
-<!--                        readonly-->
-<!--                        v-bind="attrs"-->
-<!--                        v-on="on"-->
-<!--                    ></v-text-field>-->
-<!--                </template>-->
-<!--                <v-date-picker-->
-<!--                    v-model="startDate"-->
-<!--                    no-title-->
-<!--                    scrollable-->
-<!--                >-->
-<!--                    <v-spacer></v-spacer>-->
-<!--                    <v-btn-->
-<!--                        text-->
-<!--                        color="primary"-->
-<!--                        @click="startDateMenu = false"-->
-<!--                    >-->
-<!--                        Cancel-->
-<!--                    </v-btn>-->
-<!--                    <v-btn-->
-<!--                        text-->
-<!--                        color="primary"-->
-<!--                        @click="setStartDate"-->
-<!--                    >-->
-<!--                        OK-->
-<!--                    </v-btn>-->
-<!--                </v-date-picker>-->
-<!--            </v-menu>-->
-<!--            <v-menu-->
-<!--                v-if="task.status === 2"-->
-<!--                ref="finishDateMenu"-->
-<!--                v-model="finishDateMenu"-->
-<!--                :close-on-content-click="false"-->
-<!--                :return-value.sync="finishDate"-->
-<!--                transition="scale-transition"-->
-<!--                offset-y-->
-<!--                min-width="auto"-->
-<!--            >-->
-<!--                <template v-slot:activator="{ on, attrs }">-->
-<!--                    <v-text-field-->
-<!--                        v-model="finishDate"-->
-<!--                        label="Finish Date"-->
-<!--                        prepend-icon="mdi-calendar"-->
-<!--                        readonly-->
-<!--                        v-bind="attrs"-->
-<!--                        v-on="on"-->
-<!--                    ></v-text-field>-->
-<!--                </template>-->
-<!--                <v-date-picker-->
-<!--                    v-model="finishDate"-->
-<!--                    no-title-->
-<!--                    scrollable-->
-<!--                >-->
-<!--                    <v-spacer></v-spacer>-->
-<!--                    <v-btn-->
-<!--                        text-->
-<!--                        color="primary"-->
-<!--                        @click="finishDateMenu = false"-->
-<!--                    >-->
-<!--                        Cancel-->
-<!--                    </v-btn>-->
-<!--                    <v-btn-->
-<!--                        text-->
-<!--                        color="primary"-->
-<!--                        @click="setFinishDate"-->
-<!--                    >-->
-<!--                        OK-->
-<!--                    </v-btn>-->
-<!--                </v-date-picker>-->
-<!--            </v-menu>-->
-
-<!--            {{task.note}}-->
-<!--        </v-expansion-panel-content>-->
-
-<!--        <v-btn-->
-<!--            v-if="task.status === 0"-->
-<!--            @click="startTask"-->
-<!--        >-->
-<!--            ＞-->
-<!--        </v-btn>-->
-<!--        <v-btn-->
-<!--            v-if="task.status === 1"-->
-<!--            @click="finishTask"-->
-<!--        >-->
-<!--            ＞-->
-<!--        </v-btn>-->
-
-<!--    </div>-->
 </template>
 
 <script>
@@ -227,13 +103,12 @@ export default {
             finishDateMenu:false,
 
             isTaskTitleFieldFocus:false,
-            isTaskContentsFieldFocus:false,
+            isTaskNoteFieldFocus:false,
             show: false,
         }
     },
     methods:{
         next(){
-            console.log('nest')
             if(this.task.status === 0){
                 this.startTask();
             }else if(this.task.status === 1){
@@ -340,18 +215,33 @@ export default {
                     console.log(error)
                 })
         },
+        changeNote(note){
+            let sendDate = {
+                "note": note
+            }
+            axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_note`, sendDate)
+                .then((res) => {
+                    console.log(note)
+                    this.refresh();
+                })
+                .catch((error) =>{
+                    console.log(error)
+                })
+        },
         taskTitleFieldDbClick(){
             this.isTaskTitleFieldFocus = true;
         },
-        taskContentsFieldDbClick(){
-            this.isTaskContentsFieldFocus = true;
+        taskNoteFieldDbClick(){
+            this.isTaskNoteFieldFocus = true;
         },
         taskTitleFieldOutFocus(title){
             this.changeTitle(title);
             this.isTaskTitleFieldFocus = false;
         },
-        taskContentsFieldOutFocus(){
-            this.isTaskContentsFieldFocus = false;
+        taskNoteFieldOutFocus(note){
+            this.changeNote(note);
+
+            this.isTaskNoteFieldFocus = false;
         },
 
 
