@@ -14,6 +14,7 @@ class CreateObjectivesTable extends Migration
     public function up()
     {
         Schema::create('objectives', function (Blueprint $table) {
+            \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->string('title', 100);
