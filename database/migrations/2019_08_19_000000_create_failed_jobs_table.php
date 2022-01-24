@@ -14,8 +14,9 @@ class CreateFailedJobsTable extends Migration
     public function up()
     {
         Schema::create('failed_jobs', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->string('uuid');
+            \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
+            $table->id();
+            $table->string('uuid')->unique();
             $table->text('connection');
             $table->text('queue');
             $table->longText('payload');
