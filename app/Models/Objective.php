@@ -12,6 +12,6 @@ class Objective extends Model
 
     public function tasks()
     {
-        return $this->hasMany('app\Models\Task');
+        return $this->hasMany(Task::class);
     }
 }

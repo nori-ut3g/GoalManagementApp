@@ -7,6 +7,7 @@ use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends Controller
@@ -20,17 +21,18 @@ class TaskController extends Controller
 
         $task = new Task();
         $task->order = 0;
+        $task->user_id = Auth::id();
         $task->objective_id = $request->objective_id;
         $task->status = $request->status;
         $task->title = $request->title;
         $task->note = $request->note;
-//        $task->start_date = Carbon::now();
         $task->start_date = null;
-//        $task->finish_date = Carbon::now();
         $task->finish_date = null;
         $task->save();
+
         return new JsonResponse(['task' => $task]);
 
+        //->tasks()->save()
     }
 
     //タスクの内容変更

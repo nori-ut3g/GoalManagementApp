@@ -17,6 +17,7 @@ class CreateTasksTable extends Migration
 //            \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
             $table->uuid('id')->primary();
             $table->bigInteger('order')->default(0);
+            $table->uuid('user_id');
             $table->uuid('objective_id');
             $table->integer('status')->default(0);
             $table->string('title', 30)->nullable();
@@ -26,6 +27,7 @@ class CreateTasksTable extends Migration
             $table->timestamps();
 
             $table->foreign('objective_id')->references('id')->on('objectives');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

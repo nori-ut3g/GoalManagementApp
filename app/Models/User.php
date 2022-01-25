@@ -43,6 +43,7 @@ class User extends Authenticatable
     ];
 
     public function objectives(){
-        return $this->hasMany('app\Models\Objective');
+        return $this->hasMany(Objective::class);
     }
+
 }

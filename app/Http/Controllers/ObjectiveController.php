@@ -12,10 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ObjectiveController extends Controller
 {
     public function getUserObjectives(){
-        $user_id = Auth::id();
-        $objectives = Objective::where("user_id", $user_id)->get();
-
-        return $objectives;
+        return Auth::user()->objectives()->get();
     }
 
     public function getObjective($id){
