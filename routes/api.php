@@ -28,6 +28,10 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'getUserObjectives']);
     Route::get('/objectives/{objective_id}', [\App\Http\Controllers\ObjectiveController::class, 'getObjective']);
     Route::post('/objectives/create', [\App\Http\Controllers\ObjectiveController::class, 'create']);
+    Route::get('/objectives/{objective_id}/finish', [\App\Http\Controllers\ObjectiveController::class, 'finish']);
+    Route::get('/objectives/{objective_id}/undo_finish', [\App\Http\Controllers\ObjectiveController::class, 'undoFinish']);
+
+
 
     //    Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
     Route::get('/objectives/{objective_id}/tasks', [\App\Http\Controllers\TaskController::class, 'showTasks']);

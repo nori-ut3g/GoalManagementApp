@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Objective;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,14 +25,39 @@ class ObjectiveController extends Controller
 
     //作成後のidを返す
     public function create(Request $request){
-        $user_id = Auth::id();
+        $user = Auth::user();
         $objective = new Objective();
-        $objective->user_id = $user_id;
         $objective->title = $request->title;
         $objective->due_date = $request->due_date;
 
-        $objective->save();
+        $user->objectives()->save($objective);
+
+
         return new JsonResponse(['objective_id' => $objective->id]);
+    }
+
+    public function finish($objective_id){
+        $objective = Auth::user()
+            ->objectives()
+            ->where('id', $objective_id)
+            ->get();
+
+        $objective->status = 1;
+        $objective->finish_date = Carbon::now();
+
+        $objective->save();
+    }
+
+    public function undoFinish($objective_id){
+        $objective = Auth::user()
+            ->objectives()
+            ->where('id', $objective_id)
+            ->get();
+
+        $objective->status = 0;
+        $objective->finish_date = null;
+
+        $objective->save();
     }
 
 
