@@ -151,7 +151,7 @@ export default {
                 .catch((err) => {
                     this.isLoggedIn = false;
                     // this.$router.push('/')
-                    console.log(err);
+                    // console.log(err);
                 })
         },
         test(){

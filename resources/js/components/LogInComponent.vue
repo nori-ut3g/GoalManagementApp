@@ -40,7 +40,7 @@ export default {
                     this.$router.push('/home')
                 })
                 .catch((err) => {
-                    console.log(err);
+                    // console.log(err);
                 })
         },
         cancel(){
