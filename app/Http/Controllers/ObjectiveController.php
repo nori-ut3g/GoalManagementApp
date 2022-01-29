@@ -68,5 +68,47 @@ class ObjectiveController extends Controller
         $objective->save();
     }
 
+    public function delete($objective_id){
+        $objective = Auth::user()
+            ->objectives()
+            ->where('id', $objective_id)
+            ->get();
+
+            $tasks = $objective->tasks()->get();
+            foreach ($tasks as $task){
+                $task -> delete();
+            }
+            $sharedObjectives = $objective->sharedObjectives()->get();
+
+            foreach ($sharedObjectives as $sharedObjective){
+                $sharedObjective->delete();
+            }
+            $objective -> delete();
+        return new JsonResponse(['message' => '目標を削除しました。']);
+    }
+
+    public function allDelete(){
+        $user = Auth::user();
+        $objectives = $user->objectives()->get();
+
+        foreach ($objectives as $objective){
+            //目標内のタスクをすべて削除削除する
+            $tasks = $objective->tasks()->get();
+            foreach ($tasks as $task){
+                $task -> delete();
+            }
+
+            //公開用DB内の関連データを削除する。
+            $sharedObjectives = $objective->sharedObjectives()->get();
+            foreach ($sharedObjectives as $sharedObjective){
+                $sharedObjective->delete();
+            }
+
+            $objective -> delete();
+        }
+        return new JsonResponse(['message' => '目標を全て削除しました。']);
+
+    }
+
 
 }

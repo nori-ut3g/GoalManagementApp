@@ -25,7 +25,15 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user', function(Request $request){
         return $request->user();
     });
+    Route::put('/user/update_name', [\App\Http\Controllers\RegisterController::class, 'changeName']);
+    Route::put('/user/update_email', [\App\Http\Controllers\RegisterController::class, 'changeEmail']);
+    Route::put('/user/update_pass', [\App\Http\Controllers\RegisterController::class, 'changePassword']);
+    Route::delete('/user/delete', [\App\Http\Controllers\RegisterController::class, 'delete']);
+
+
     Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'getUserObjectives']);
+    Route::delete('/objectives/delete', [\App\Http\Controllers\ObjectiveController::class, 'allDelete']);
+    Route::delete('/objectives/{objective_id}\delete', [\App\Http\Controllers\ObjectiveController::class, 'delete']);
     Route::get('/objectives/{objective_id}', [\App\Http\Controllers\ObjectiveController::class, 'getObjective']);
     Route::post('/objectives/create', [\App\Http\Controllers\ObjectiveController::class, 'create']);
     Route::get('/objectives/{objective_id}/finish', [\App\Http\Controllers\ObjectiveController::class, 'finish']);
