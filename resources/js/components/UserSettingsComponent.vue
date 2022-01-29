@@ -157,26 +157,42 @@
                                         text
                                         @click="dialog.changePassword = true"
                                     >
-                                        Delete All Goals
+                                        Change Password
                                     </v-btn>
-                                    <v-dialog v-model="dialog.changePassword" width="500">
+                                    <v-dialog
+                                        v-model="dialog.changePassword"
+                                        width="500"
+                                        @click:outside="pushPasswordChangeDialogOutside"
+                                    >
                                         <v-card>
                                             <v-card-title class="text-h5 grey lighten-2">
                                                 Change password
                                             </v-card-title>
-
+                                            <v-text-field
+                                                v-model="input.currentPassword"
+                                                required
+                                                class="mx-5"
+                                                :type="show.currentPassword ? 'text' : 'password'"
+                                                :append-icon="show.currentPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                                @click:append="show.currentPassword = !show.currentPassword"
+                                            ></v-text-field>
+                                            <v-text-field
+                                                v-model="input.newPassword"
+                                                required
+                                                class="mx-5"
+                                                :type="show.newPassword ? 'text' : 'password'"
+                                                :append-icon="show.newPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                                @click:append="show.newPassword = !show.newPassword"
+                                            ></v-text-field>
                                             <v-card-text>
-                                                一度削除すると元に戻せません。削除しますか？
-                                                現在のパスワードを入力してください。
 
-                                                新しいパスワードを入力してください。
                                             </v-card-text>
 
                                             <v-divider></v-divider>
                                             <v-card-actions>
                                                 <v-btn
                                                     text
-                                                    @click="dialog.changePassword = true"
+                                                    @click="pushPasswordChangeDialogOutside"
                                                 >
                                                     Cancel
                                                 </v-btn>
@@ -335,10 +351,17 @@ export default {
             },
             input:{
                 name:"",
-                email:""
+                email:"",
+                currentPassword:"",
+                newPassword:"",
+
             },
             current:{
                 email:""
+            },
+            show:{
+                currentPassword:false,
+                newPassword:false
             }
 
         }
@@ -372,6 +395,7 @@ export default {
             }
             axios.put('/api/user/update_name', sendData)
                 .then((res) => {
+                    this.input.newName = '';
                     //再度画面の更新
                     this.$router.go({path: this.$router.currentRoute.path, force: true})
                 })
@@ -385,14 +409,26 @@ export default {
             }
             axios.put('/api/user/update_email', sendData)
                 .then((res) => {
+                    this.input.email = '';
                     //再度画面の更新
-                    // this.$router.go({path: this.$router.currentRoute.path, force: true})
+                    this.$router.go({path: this.$router.currentRoute.path, force: true})
                 })
                 .catch((err) => {
                 })
         },
         changePassword: function(){
-
+            const sendData = {
+                current_password: this.input.currentPassword,
+                new_password: this.input.newPassword
+            }
+            axios.put('/api/user/update_pass', sendData)
+                .then((res) => {
+                    this.dialog.changePassword=false;
+                    this.input.currentPassword = '';
+                    this.input.newPassword = '';
+                })
+                .catch((err) => {
+                })
         },
         getUserEmail: function(){
             axios.get('/api/user')
@@ -406,6 +442,11 @@ export default {
         pushEmailChangeDialogOutside(){
             this.dialog.changeEmail=false;
             this.input.email = this.current.email;
+        },
+        pushPasswordChangeDialogOutside(){
+            this.dialog.changePassword=false;
+            this.input.currentPassword = '';
+            this.input.newPassword = '';
         }
 
 

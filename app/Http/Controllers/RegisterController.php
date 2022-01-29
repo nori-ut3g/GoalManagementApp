@@ -83,14 +83,14 @@ class RegisterController extends Controller
         new JsonResponse(['message' => '名前を変更しました。']);
     }
 
-    public function changePassword($request){
+    public function changePassword(Request $request){
         $user = Auth::user();
 
         if(!password_verify($request->current_password, $user->getAuthPassword())){
             new JsonResponse(['message' => 'passwordが違います']);
         }
         $validator = Validator::make($request->all(), [
-            'password' => ['required', 'string', 'min:8']
+            'current_password' => ['required', 'string', 'min:8']
         ]);
 
         if ($validator->fails()) {
@@ -101,7 +101,7 @@ class RegisterController extends Controller
         $user->password = bcrypt($request->new_password);
         $user->save();
 
-        new JsonResponse(['message' => 'passwordを変更しました。']);
+        return new JsonResponse(['message' => 'passwordを変更しました。']);
 
     }
 
