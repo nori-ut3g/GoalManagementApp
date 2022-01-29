@@ -48,7 +48,7 @@
 
                                             <v-divider></v-divider>
                                                 <v-text-field
-                                                    v-model="input.newName"
+                                                    v-model="input.name"
                                                     :counter="10"
                                                     label="First name"
                                                     required
@@ -97,21 +97,28 @@
                                     >
                                         Change Email
                                     </v-btn>
-                                    <v-dialog v-model="dialog.changeEmail" width="500">
+                                    <v-dialog
+                                        @click:outside="pushEmailChangeDialogOutside"
+                                        v-model="dialog.changeEmail"
+                                        width="500"
+                                    >
                                         <v-card>
                                             <v-card-title class="text-h5 grey lighten-2">
                                                 Change Email
                                             </v-card-title>
 
-                                            <v-card-text>
-                                                現在のメールアドレス
-                                            </v-card-text>
+                                            <v-text-field
+                                                v-model="input.email"
+                                                required
+                                                class="mx-5"
+                                                clearable
+                                            ></v-text-field>
 
                                             <v-divider></v-divider>
                                             <v-card-actions>
                                                 <v-btn
                                                     text
-                                                    @click="dialog.changeEmail = true"
+                                                    @click="pushEmailChangeDialogOutside"
                                                 >
                                                     Cancel
                                                 </v-btn>
@@ -327,11 +334,20 @@ export default {
                 changePassword:false
             },
             input:{
-                newName:"",
-
+                name:"",
+                email:""
+            },
+            current:{
+                email:""
             }
+
         }
     },
+    created:function(){
+        // this.autoLogin();
+        this.getUserEmail();
+    },
+
     methods: {
         deleteAllGoals: function(){
             console.log('ddd')
@@ -351,7 +367,6 @@ export default {
                 })
         },
         changeName: function(){
-            console.log(this.input.newName)
             const sendData = {
                 name : this.input.newName
             }
@@ -365,11 +380,35 @@ export default {
 
         },
         changeEmail: function(){
-
+            const sendData = {
+                email : this.input.email
+            }
+            axios.put('/api/user/update_email', sendData)
+                .then((res) => {
+                    //再度画面の更新
+                    // this.$router.go({path: this.$router.currentRoute.path, force: true})
+                })
+                .catch((err) => {
+                })
         },
         changePassword: function(){
 
+        },
+        getUserEmail: function(){
+            axios.get('/api/user')
+                .then((res) => {
+                    console.log(res.data.email)
+                   this.current.email = res.data.email;
+                })
+                .catch((err) => {
+                })
+        },
+        pushEmailChangeDialogOutside(){
+            this.dialog.changeEmail=false;
+            this.input.email = this.current.email;
         }
+
+
     }
 }
 </script>

@@ -50,21 +50,20 @@ class RegisterController extends Controller
         return response()->json('ユーザ登録しました', Response::HTTP_OK);
     }
 
-    public function changeEmail($request){
+    public function changeEmail(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => ['required', 'email', 'unique:users'],
         ]);
 
         if ($validator->fails()) {
             throw new ValidationException($validator);
-//            return response()->json($validator->messages(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $user = Auth::user();
         $user->email = $request->email;
         $user->save();
 
-        new JsonResponse(['message' => '名前を変更しました。']);
+        return new JsonResponse(['message' => 'メールアドレスを変更しました。']);
     }
 
     public function changeName(Request $request){
