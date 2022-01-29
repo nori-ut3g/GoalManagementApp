@@ -67,13 +67,10 @@ class RegisterController extends Controller
         new JsonResponse(['message' => '名前を変更しました。']);
     }
 
-    public function changeName($request){
-
+    public function changeName(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:20', 'min:4'],
         ]);
-
-
 
         if ($validator->fails()) {
             throw new ValidationException($validator);
@@ -81,7 +78,7 @@ class RegisterController extends Controller
         }
 
         $user = Auth::user();
-        $user->name = $request->new_name;
+        $user->name = $request->name;
         $user->save();
 
         new JsonResponse(['message' => '名前を変更しました。']);

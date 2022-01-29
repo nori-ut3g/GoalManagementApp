@@ -47,9 +47,17 @@
                                             </v-card-title>
 
                                             <v-divider></v-divider>
+                                                <v-text-field
+                                                    v-model="input.newName"
+                                                    :counter="10"
+                                                    label="First name"
+                                                    required
+                                                    class="mx-5"
+                                                ></v-text-field>
+
                                             <v-card-actions>
                                                 <v-btn
-                                                    @click="dialog.changeName = true"
+                                                    @click="dialog.changeName = false"
                                                 >
                                                     Cancel
                                                 </v-btn>
@@ -318,7 +326,7 @@ export default {
                 changeEmail:false,
                 changePassword:false
             },
-            tmp:{
+            input:{
                 newName:"",
 
             }
@@ -335,14 +343,25 @@ export default {
                 })        },
         deleteAccount: function(){
             axios.delete('/api/user/delete')
-            .then((res) => {
-                this.$router.push('/')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+                .then((res) => {
+                    this.$router.push('/')
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         },
         changeName: function(){
+            console.log(this.input.newName)
+            const sendData = {
+                name : this.input.newName
+            }
+            axios.put('/api/user/update_name', sendData)
+                .then((res) => {
+                    //再度画面の更新
+                    this.$router.go({path: this.$router.currentRoute.path, force: true})
+                })
+                .catch((err) => {
+                })
 
         },
         changeEmail: function(){
