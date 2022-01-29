@@ -65,22 +65,22 @@
         <v-navigation-drawer  app clipped v-model="sideBar" dark color="">
             <v-list>
                 <v-list-item>
-                    <!--                            <v-list-item-avatar>-->
-                    <!--                                <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>-->
-                    <!--                            </v-list-item-avatar>-->
+                    <v-list-item-title
+                        class="text-h4"
+                    >{{userInfo.name}}
+                    </v-list-item-title>
                 </v-list-item>
 
-                <v-list-item link>
+                <v-list-item>
                     <v-list-item-content>
                         <v-list-item-title class="text-h6">
 
                         </v-list-item-title>
-                        <v-list-item-subtitle>{{userInfo.email}}</v-list-item-subtitle>
+                        <v-list-item-subtitle>
+                            {{userInfo.email}}
+                        </v-list-item-subtitle>
                     </v-list-item-content>
 
-                    <v-list-item-action>
-                        <v-icon>mdi-menu-down</v-icon>
-                    </v-list-item-action>
                 </v-list-item>
             </v-list>
             <v-divider></v-divider>
@@ -125,7 +125,8 @@ export default {
             isShowAlert:false,
             items: [
                 { text: 'My Goals', icon: 'mdi-folder' , link:'/list'},
-                { text: 'Create Goal', icon: 'mdi-folder' , link:'/create'},
+                { text: 'Create Goal', icon: 'mdi-flag-checkered' , link:'/create'},
+                { text: 'User Settings', icon: 'mdi-account-cog', link:'/userSettings'}
 
             ],
             loginDialog : false,

@@ -12,6 +12,7 @@ import CreateObjectiveComponent from "./components/CreateObjectiveComponent";
 import HomeComponent from "./components/HomeComponent";
 import welcomeComponent from "./components/WelcomeComponent";
 import SharedObjectiveComponent from "./components/SharedObjectiveComponent";
+import UserSettingsComponent from "./components/UserSettingsComponent";
 
 
 /**
@@ -71,6 +72,10 @@ const router = new VueRouter({
             path: '/share/objective/:id',
             component: SharedObjectiveComponent
         },
+        {
+            path: '/UserSettings',
+            component: UserSettingsComponent
+        }
 
     ]
     }

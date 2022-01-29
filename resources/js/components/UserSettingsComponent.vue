@@ -1,0 +1,318 @@
+<template>
+    <div>
+        <header-component>
+
+        </header-component>
+
+        <v-main>
+
+            <v-sheet
+                outlined
+                color="grey"
+                rounded
+                class="my-2"
+            >
+                <v-card
+                    class="mx-auto"
+                    outlined
+                >
+
+                    <v-list>
+                        <v-container>
+                            <v-list-item two-line>
+                                <v-list-item-content>
+                                    <v-list-item-title>ユーザーネームの変更</v-list-item-title>
+                                    <v-list-item-subtitle></v-list-item-subtitle>
+                                </v-list-item-content>
+                                <v-row
+                                    align="center"
+                                    justify="end"
+                                >
+                                    <v-btn
+                                        outlined
+                                        text
+                                        @click="dialog.changeName = true"
+                                    >
+                                        Change user name
+                                    </v-btn>
+                                    <v-dialog
+                                        v-model="dialog.changeName"
+                                        width="500"
+                                    >
+                                        <v-card>
+                                            <v-card-title
+                                                class="text-h5 grey lighten-2"
+                                            >
+                                                 Enter a new username
+                                            </v-card-title>
+
+                                            <v-divider></v-divider>
+                                            <v-card-actions>
+                                                <v-btn
+                                                    @click="dialog.changeName = true"
+                                                >
+                                                    Cancel
+                                                </v-btn>
+                                                <v-spacer></v-spacer>
+
+                                                <v-btn
+                                                    color="primary"
+                                                    @click="changeName"
+                                                >
+                                                    Change username
+                                                </v-btn>
+                                            </v-card-actions>
+                                        </v-card>
+                                    </v-dialog>
+                                </v-row>
+                            </v-list-item>
+                        </v-container>
+                    </v-list>
+
+                    <v-divider></v-divider>
+
+                    <v-list>
+                        <v-container>
+                            <v-list-item two-line>
+                                <v-list-item-content>
+                                    <v-list-item-title>メールアドレスの変更</v-list-item-title>
+                                    <v-list-item-subtitle></v-list-item-subtitle>
+                                </v-list-item-content>
+                                <v-row
+                                    align="center"
+                                    justify="end"
+                                >
+                                    <v-btn
+                                        outlined
+                                        text
+                                        @click="dialog.changeEmail = true"
+                                    >
+                                        Change Email
+                                    </v-btn>
+                                    <v-dialog v-model="dialog.changeEmail" width="500">
+                                        <v-card>
+                                            <v-card-title class="text-h5 grey lighten-2">
+                                                Change Email
+                                            </v-card-title>
+
+                                            <v-card-text>
+                                                現在のメールアドレス
+                                            </v-card-text>
+
+                                            <v-divider></v-divider>
+                                            <v-card-actions>
+                                                <v-btn
+                                                    text
+                                                    @click="dialog.changeEmail = true"
+                                                >
+                                                    Cancel
+                                                </v-btn>
+                                                <v-spacer></v-spacer>
+
+                                                <v-btn
+                                                    color="primary"
+                                                    text
+                                                    @click="changeEmail"
+                                                >
+                                                    Change Email
+                                                </v-btn>
+                                            </v-card-actions>
+                                        </v-card>
+                                    </v-dialog>
+                                </v-row>
+                            </v-list-item>
+                        </v-container>
+                    </v-list>
+
+                    <v-divider></v-divider>
+
+                    <v-list>
+                        <v-container>
+                            <v-list-item two-line>
+                                <v-list-item-content>
+                                    <v-list-item-title>パスワードの変更</v-list-item-title>
+                                    <v-list-item-subtitle></v-list-item-subtitle>
+                                </v-list-item-content>
+                                <v-row
+                                    align="center"
+                                    justify="end"
+                                >
+                                    <v-btn
+                                        outlined
+                                        text
+                                        @click="dialog.changePassword = true"
+                                    >
+                                        Delete All Goals
+                                    </v-btn>
+                                    <v-dialog v-model="dialog.changePassword" width="500">
+                                        <v-card>
+                                            <v-card-title class="text-h5 grey lighten-2">
+                                                Change password
+                                            </v-card-title>
+
+                                            <v-card-text>
+                                                一度削除すると元に戻せません。削除しますか？
+                                                現在のパスワードを入力してください。
+
+                                                新しいパスワードを入力してください。
+                                            </v-card-text>
+
+                                            <v-divider></v-divider>
+                                            <v-card-actions>
+                                                <v-btn
+                                                    text
+                                                    @click="dialog.changePassword = true"
+                                                >
+                                                    Cancel
+                                                </v-btn>
+                                                <v-spacer></v-spacer>
+
+                                                <v-btn
+                                                    color="primary"
+                                                    text
+                                                    @click="changePassword"
+                                                >
+                                                    Change password
+                                                </v-btn>
+                                            </v-card-actions>
+                                        </v-card>
+                                    </v-dialog>
+                                </v-row>
+                            </v-list-item>
+                        </v-container>
+                    </v-list>
+
+                </v-card>
+            </v-sheet>
+
+            <v-spacer></v-spacer>
+
+            <v-sheet outlined color="red" rounded>
+                <v-card
+                    class="mx-auto"
+                    outlined
+                >
+                    <v-list>
+                        <v-container>
+                            <v-list-item two-line>
+                                <v-list-item-content>
+                                    <v-list-item-title>すべての目標とタスクを削除する</v-list-item-title>
+                                    <v-list-item-subtitle>公開中の目標も削除されます。</v-list-item-subtitle>
+                                </v-list-item-content>
+                                <v-row
+                                    align="center"
+                                    justify="end"
+                                >
+                                    <v-btn
+                                        outlined
+                                        text
+                                        @click="dialog.deleteAllGoals = true"
+                                    >
+                                        Delete All Goals
+                                    </v-btn>
+                                    <v-dialog v-model="dialog.deleteAllGoals" width="500">
+                                        <v-card>
+                                            <v-card-title class="text-h5 grey lighten-2">
+                                                Delete All Goals
+                                            </v-card-title>
+
+                                            <v-card-text>
+                                                一度削除すると元に戻せません。削除しますか？
+                                            </v-card-text>
+
+                                            <v-divider></v-divider>
+                                            <v-card-actions>
+                                                <v-btn
+                                                    text
+                                                    @click="dialog.deleteAllGoals = true"
+                                                >
+                                                    Cancel
+                                                </v-btn>
+                                                <v-spacer></v-spacer>
+
+                                                <v-btn
+                                                    color="primary"
+                                                    text
+                                                    @click="deleteAllGoals"
+                                                >
+                                                    Delete All Goals
+                                                </v-btn>
+                                            </v-card-actions>
+                                        </v-card>
+                                    </v-dialog>
+                                </v-row>
+                            </v-list-item>
+                        </v-container>
+                    </v-list>
+                    <v-divider></v-divider>
+                    <v-list>
+                        <v-container>
+                            <v-list-item two-line>
+                                <v-list-item-content>
+                                    <v-list-item-title>退会する</v-list-item-title>
+                                    <v-list-item-subtitle>〇〇さんに関するすべてのデータが削除されます。</v-list-item-subtitle>
+                                </v-list-item-content>
+                                <v-row
+                                    align="center"
+                                    justify="end"
+                                >
+                                    <v-btn
+                                        outlined
+                                        text
+                                    >
+                                        Delete Account
+                                    </v-btn>
+                                </v-row>
+                            </v-list-item>
+                        </v-container>
+                    </v-list>
+                    <v-divider></v-divider>
+                </v-card>
+            </v-sheet>
+        </v-main>
+    </div>
+</template>
+<script>
+import HeaderComponent from "./HeaderComponent";
+
+export default {
+    name: "UserSettingComponent",
+    components: {HeaderComponent},
+    data(){
+        return {
+            dialog:{
+                deleteAllGoals:false,
+                deleteAccount:false,
+                changeName:false,
+                changeEmail:false,
+                changePassword:false
+            },
+            tmp:{
+                newName:"",
+
+            }
+        }
+    },
+    methods: {
+        deleteAllGoals: function(){
+
+        },
+        deleteAccount: function(){
+
+        },
+        changeName: function(){
+
+        },
+        changeEmail: function(){
+
+        },
+        changePassword: function(){
+
+        }
+    }
+}
+</script>
+
+<style scoped>
+
+</style>
