@@ -5,9 +5,9 @@
         <v-col cols="12">
             <v-text-field
                 label="Task"
-                @click="task.edit = true"
                 v-model="task.title"
                 :readonly="!title.edit"
+                @click="title.edit = true"
                 @blur="taskTitleFieldOutFocus(task.title)"
             ></v-text-field>
 
@@ -39,11 +39,11 @@
                 <div v-show="show">
                     <div>
                         <v-textarea
-                            @click="note.edit = true"
-                            :auto-grow="note.edit"
                             label="Note"
                             v-model="task.note"
+                            :auto-grow="note.edit"
                             :readonly="!note.edit"
+                            @click="note.edit = true"
                             @blur="taskNoteFieldOutFocus(task.note)"
                             outlined
                         ></v-textarea>
@@ -224,50 +224,47 @@ export default {
                    this.undoFinishTask();
                }
            }
-
         },
         deleteTask(){
             if (confirm('削除しますか？')){
                 axios.delete(`/api/objectives/${this.objectiveId}/task/${this.task.id}/delete`)
-                    .then((res) => {
+                    .then(() => {
                         this.refresh();
                     })
-                    .catch((error) =>{
+                    .catch(() =>{
                     })
             }
         },
         startTask(){
             axios.get(`/api/objectives/${this.objectiveId}/task/${this.task.id}/start`)
-                .then((res) => {
+                .then(() => {
                     this.refresh();
                 })
-                .catch((error) =>{
+                .catch(() =>{
                 })
         },
         finishTask(){
             axios.get(`/api/objectives/${this.objectiveId}/task/${this.task.id}/finish`)
-                .then((res) => {
+                .then(() => {
                     this.refresh();
                 })
-                .catch((error) =>{
-                    console.log(error)
+                .catch(() =>{
                 })
         },
         undoStartTask(){
             axios.get(`/api/objectives/${this.objectiveId}/task/${this.task.id}/undo_start`)
-                .then((res) => {
+                .then(() => {
                     this.refresh();
                 })
-                .catch((error) =>{
-                    console.log(error)
+                .catch(() =>{
                 })
         },
         undoFinishTask(){
             axios.get(`/api/objectives/${this.objectiveId}/task/${this.task.id}/undo_finish`)
-                .then((res) => {
+                .then(() => {
                     this.refresh();
                 })
-                .catch((error) =>{
+                .catch(() =>{
                 })
         },
 
@@ -279,10 +276,10 @@ export default {
                 "date": this.startDate
             }
             axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/start`, sendDate)
-                .then((res) => {
+                .then(() => {
                     this.refresh();
                 })
-                .catch((error) =>{
+                .catch(() =>{
                 })
         },
         setFinishDate(){
@@ -290,10 +287,10 @@ export default {
                 "date": this.finishDate
             }
             axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/finish`, sendDate)
-                .then((res) => {
+                .then(() => {
                     this.refresh();
                 })
-                .catch((error) =>{
+                .catch(() =>{
                 })
         },
         changeTitle(title){
@@ -301,41 +298,31 @@ export default {
                 "title": title
             }
             axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_title`, sendDate)
-                .then((res) => {
+                .then(() => {
                     this.refresh();
                 })
-                .catch((error) =>{
+                .catch(() =>{
                 })
         },
         changeNote(note){
-            console.log(note)
             let sendDate = {
                 "note": note
             }
             axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_note`, sendDate)
-                .then((res) => {
+                .then(() => {
                     this.refresh();
                 })
-                .catch((error) =>{
+                .catch(() =>{
                 })
         },
-        taskTitleFieldDbClick(){
-            this.isTaskTitleFieldFocus = true;
-        },
-        taskNoteFieldDbClick(){
-            this.isTaskNoteFieldFocus = true;
-        },
         taskTitleFieldOutFocus(title){
-            console.log("aaa")
             this.changeTitle(title);
             this.title.edit = false;
             this.isTaskTitleFieldFocus = false;
         },
         taskNoteFieldOutFocus(note){
-            this.note.edit = false;
-            console.log('push note')
             this.changeNote(note);
-
+            this.note.edit = false;
             this.isTaskNoteFieldFocus = false;
         },
 
@@ -345,12 +332,11 @@ export default {
             }
 
             axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/start`, sendDate)
-                .then((res) => {
-
+                .then(() => {
                     this.startDateMenu = false;
                     this.refresh();
                 })
-                .catch((error) =>{
+                .catch(() =>{
                 })
 
         },
