@@ -1,9 +1,11 @@
 <template>
     <div>
         <v-app-bar app clippedLeft flat dark color="indigo darken-3">
-            <v-app-bar-nav-icon @click.stop="sideBar=!sideBar"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon
+                v-if="isLoggedIn"
+                @click.stop="sideBar=!sideBar"
+            ></v-app-bar-nav-icon>
             <v-btn v-if="isLoggedIn" to="/home">Home</v-btn>
-
             <v-spacer></v-spacer>
 
             <v-btn
@@ -21,6 +23,7 @@
 
                     <log-in-component
                         @parent-cancel="loginCancel"
+                        @alert="showAlert"
                     ></log-in-component>
 
                     <v-divider></v-divider>
@@ -61,8 +64,23 @@
                 @click="logout"
                 v-if="isLoggedIn"
             >Logout</v-btn>
+
         </v-app-bar>
-        <v-navigation-drawer  app clipped v-model="sideBar" dark color="">
+        <v-alert
+            border="top"
+            color="red lighten-2"
+            dark
+            v-if="alert.isShow"
+        >
+            {{alert.message}}
+        </v-alert>
+        <v-navigation-drawer
+            app
+            clipped
+            v-model="sideBar"
+            dark
+            color=""
+        >
             <v-list>
                 <v-list-item>
                     <v-list-item-title
@@ -106,7 +124,9 @@
                     </v-list-item>
                 </v-list-item-group>
             </v-list>
+
         </v-navigation-drawer>
+
     </div>
 
 </template>
@@ -122,7 +142,10 @@ export default {
             sideBar: false,
             userInfo:[],
             isLoggedIn:false,
-            isShowAlert:false,
+            alert:{
+                isShow:false,
+                message:""
+            },
             items: [
                 { text: 'My Goals', icon: 'mdi-folder' , link:'/list'},
                 { text: 'Create Goal', icon: 'mdi-flag-checkered' , link:'/create'},
@@ -155,9 +178,6 @@ export default {
                     // console.log(err);
                 })
         },
-        test(){
-            console.log("AppContntがよばれた")
-        },
         logout() {
             this.isLoggedIn = false;
 
@@ -171,10 +191,13 @@ export default {
             // this.checkAuth();
 
         },
-        showAlert(){
-            this.isShowAlert = true;
+        showAlert(message){
+            this.alert.isShow = true;
+            this.alert.message = message;
             setTimeout(() => {
-                    this.isShowAlert = false}
+                    this.alert.isShow = false
+                    this.alert.message = ""
+                }
                 ,3000)
         },
         loginCancel(){
@@ -183,6 +206,7 @@ export default {
         signUpCancel(){
             this.signUpDialog = false;
         }
+
     }
 }
 </script>
