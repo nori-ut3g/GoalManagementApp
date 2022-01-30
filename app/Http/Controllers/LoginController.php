@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -26,22 +27,14 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        try{
+        if (Auth::attempt($credentials)) {
             Auth::attempt($credentials);
             $request->session()->regenerate();
             return new JsonResponse(['message' => 'ログインしました']);
-        } catch(\Throwable $e){
-            throw $e;
+        }else{
+            throw new AuthenticationException;
         }
 
-
-//        if (Auth::attempt($credentials)) {
-//            $request->session()->regenerate();
-//
-//            return new JsonResponse(['message' => 'ログインしました']);
-//        }
-//        throw
-//        throw new Exception('ログインに失敗しました。再度お試しください');
     }
 
     //

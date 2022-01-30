@@ -3,15 +3,15 @@
         <v-col cols="12">
             <v-text-field
                 label="Email Address"
-                value="example@example.com"
                 v-model="user.email"
             ></v-text-field>
         </v-col>
         <v-col cols="12">
             <v-text-field
                 label="Password"
-                value="password"
-
+                :type="show.password ? 'text' : 'password'"
+                :append-icon="show.password ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="show.password = !show.password"
                 v-model="user.password"
             ></v-text-field>
         </v-col>
@@ -29,7 +29,13 @@ export default {
     name: "LogInComponent",
     data(){
         return {
-            user:{}
+            user:{},
+            alert:{
+                message:""
+            },
+            show:{
+                password:false
+            }
         }
     },
     methods: {
@@ -39,11 +45,14 @@ export default {
                     this.$router.push('/home')
                 })
                 .catch((err) => {
-
+                    this.showAlert(err.response.data.message);
                 })
         },
         cancel(){
             this.$emit('parent-cancel')
+        },
+        showAlert(message){
+            this.$emit('alert', message)
         }
     }
 }

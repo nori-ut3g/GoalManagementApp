@@ -37,11 +37,11 @@ const router = new VueRouter({
 
         {
             path: '/',
-            component: welcomeComponent
+            component: welcomeComponent,
         },
         {
             path: '/home',
-            component: HomeComponent
+            component: HomeComponent,
         },
         {
             path: '/signup',

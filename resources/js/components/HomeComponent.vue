@@ -3,7 +3,6 @@
     <header-component>
 
     </header-component>
-    <v-main>
         <v-row>
             <v-col
                 cols=12
@@ -61,8 +60,6 @@
                 </v-sheet>
             </v-col>
         </v-row>
-
-    </v-main>
 </div>
 
 </template>
