@@ -6,7 +6,7 @@
         <v-main>
             <v-data-table
                 :headers="headers"
-                :items="objectives"
+                :items="table"
                 :items-per-page="5"
                 class="elevation-1"
                 @click:row="clickRow"
@@ -30,10 +30,13 @@ export default {
                     value: 'name',
                 },
                 { text: 'Title', value: 'title' },
+                { text: 'Start', value: 'created_at' },
                 { text: 'Due', value: 'due_date' },
+                { text: 'Status', value: 'status' },
+
             ],
             objectives:[],
-
+            table:[],
         }
     },
     created:function (){
@@ -43,14 +46,27 @@ export default {
         getObjectives(){
             axios.get('/api/objectives')
                 .then((res) => {
+                    this.table=[]
                     this.objectives = res.data;
-                    console.log(res.data)
+                    this.convertToTable()
+
                 })
         },
         clickRow (row) {
             this.$router.push('/objective/'+row.id)
-            console.log('clickRow', row.id)
+        },
+        convertToTable(){
+            this.objectives.forEach(objective => {
+                const row = {
+                    title: objective.title,
+                    created_at: objective.created_at.split("T")[0].replaceAll("-", "/"),
+                    due_date:objective.due_date.replaceAll("-", "/"),
+                    status:objective.status === 0 ? 'Working': 'Complete',
+                }
+                this.table.push(row);
+            })
         }
+
     }
 }
 
