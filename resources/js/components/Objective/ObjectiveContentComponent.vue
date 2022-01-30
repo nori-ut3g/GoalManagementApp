@@ -32,20 +32,19 @@
                         </v-btn>
 
                         <v-btn
-                                    color="#1DA1F2"
-                                    :href="twitterShareURL"
-                                    v-if="isShared"
-                                >
-                                    <v-icon
-                                        left
-                                        color="white"
-                                        small
-                                    >
-                                        mdi-twitter
-                                    </v-icon>
-                                    <span>share</span>
-                                </v-btn>
-
+                            color="#1DA1F2"
+                            :href="twitterShareURL"
+                            v-if="isShared"
+                        >
+                            <v-icon
+                                left
+                                color="white"
+                                small
+                            >
+                                mdi-twitter
+                            </v-icon>
+                            <span>share</span>
+                        </v-btn>
                     </v-card>
                 </v-col>
 
@@ -99,14 +98,14 @@
                             <v-expansion-panels>
                                 <v-container>
                                     <v-expansion-panel
-                                        v-for="(task, index) in waitingTasks"
+                                        v-for="(task, index) in card.waiting.tasks"
                                         :key="task.id"
                                         :id="task.id"
                                     >
                                         <TaskCardComponent
                                             :task="task"
                                             :objective-id="objective_id"
-                                            :card-color="cardColor.waiting"
+                                            :card-color="card.waiting.color"
                                             v-on:refresh="refresh"
                                         >
                                         </TaskCardComponent>
@@ -123,7 +122,7 @@
                             <v-expansion-panels>
                                 <v-container>
                                     <v-expansion-panel
-                                        v-for="(task, index) in workingTasks"
+                                        v-for="(task, index) in card.working.tasks"
                                         :key="task.id"
                                         :id="task.id"
                                     >
@@ -131,7 +130,7 @@
                                             :task="task"
                                             :objective-id="objective_id"
                                             v-on:refresh="refresh"
-                                            :card-color="cardColor.working"
+                                            :card-color="card.working.color"
                                         >
                                         </TaskCardComponent>
                                     </v-expansion-panel>
@@ -145,7 +144,7 @@
                             <v-expansion-panels>
                                 <v-container>
                                     <v-expansion-panel
-                                        v-for="(task, index) in completedTasks"
+                                        v-for="(task, index) in card.completed.tasks"
                                         :key="task.id"
                                         :id="task.id"
                                     >
@@ -153,7 +152,7 @@
                                             :task="task"
                                             :objective-id="objective_id"
                                             v-on:refresh="refresh"
-                                            :card-color="cardColor.complete"
+                                            :card-color="card.completed.color"
                                         >
                                         </TaskCardComponent>
                                     </v-expansion-panel>
@@ -168,7 +167,6 @@
 </template>
 
 <script>
-import TaskSectionComponent from "./TaskSectionComponent";
 import TaskCardComponent from "./TaskCardComponent";
 import HeaderComponent from "../Header/HeaderComponent";
 export default {
@@ -176,32 +174,34 @@ export default {
     components: {
         HeaderComponent,
         TaskCardComponent,
-        TaskSectionComponent,
-
     },
     data(){
         return{
             objective:[],
             objective_id : this.$route.params.id,
             tasks:[],
-            waitingTasks:[],
-            workingTasks:[],
-            completedTasks:[],
-            eachTasks:{
-                waiting:[],
-                working:[],
-                complete:[]
+
+            card:{
+                waiting:{
+                    tasks:[],
+                    color:"blue lighten-5"
+                },
+                working:{
+                    tasks:[],
+                    color:"red lighten-5"
+                },
+                completed:{
+                    tasks:[],
+                    color:"green lighten-5"
+                }
             },
             events:[],
-            tempDate:"", //test用,
+
             focus: '',
             isShared: false,
             sharedID:"",
-            cardColor:{
-                waiting:"blue lighten-5",
-                working:"red lighten-5",
-                complete:"green lighten-5"
-            },
+
+
         }
     },
     created:function () {
@@ -230,12 +230,15 @@ export default {
                     console.log(res.data)
                     switch (res.data.task.status){
                         case 0:
+                            this.card.waiting.tasks.push(res.data.task);
                             this.waitingTasks.push(res.data.task);
                             break;
                         case 1:
+                            this.card.working.tasks.push(res.data.task);
                             this.workingTasks.push(res.data.task);
                             break;
                         case 2:
+                            this.card.completed.tasks.push(res.data.task);
                             this.completedTasks.push(res.data.task);
                             break;
                         default:
@@ -248,13 +251,13 @@ export default {
                 })
         },
         divideData(){
-            this.waitingTasks = this.tasks.filter(function(task){
+            this.card.waiting.tasks = this.tasks.filter(function(task){
                 return task.status === 0;
             })
-            this.workingTasks = this.tasks.filter(function(task){
+            this.card.working.tasks = this.tasks.filter(function(task){
                 return task.status === 1;
             })
-            this.completedTasks = this.tasks.filter(function(task){
+            this.card.completed.tasks = this.tasks.filter(function(task){
                 return task.status === 2;
             })
         },

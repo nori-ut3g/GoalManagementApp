@@ -33,7 +33,6 @@
                     Today
                 </v-btn>
 
-
                 <v-btn
                     fab
                     text
@@ -55,7 +54,7 @@
                         ref="calendar"
                         v-model="value"
                         :events="events"
-                        color="green"
+                        :event-more="true"
                     ></v-calendar>
                 </v-sheet>
             </v-col>
@@ -97,12 +96,9 @@ export default {
 
         },
         getObjectives(){
-            console.log('aaa')
             axios.get('/api/objectives')
                 .then((res) => {
-
                     this.objectives = res.data;
-
                     this.refreshCalenderEvents()
                 })
         },

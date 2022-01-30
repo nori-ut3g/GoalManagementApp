@@ -4,26 +4,13 @@
     >
         <v-col cols="12">
             <v-text-field
-                v-if="isTaskTitleFieldFocus"
-                @blur="taskTitleFieldOutFocus(task.title)"
-                :value="task.title"
-                elevation="3"
-                autofocus
+                label="Task"
+                :append-icon="title.edit ? '' : 'mdi-application-edit'"
+                @click:append="title.edit = !title.edit"
                 v-model="task.title"
+                :readonly="!title.edit"
+                @blur="taskTitleFieldOutFocus(task.title)"
             ></v-text-field>
-            <v-card
-                v-else
-                solo
-                v-on:dblclick="taskTitleFieldDbClick"
-                tile
-                min-height="30"
-                class="my-2"
-            >
-                <v-card-title>
-                    {{task.title}}
-                </v-card-title>
-            </v-card>
-
 
             <v-icon
                 v-if="task.status !== 0"
@@ -32,15 +19,12 @@
                 mdi-arrow-left-thick
             </v-icon>
 
-
-
             <v-icon
                 v-if="task.status !== 2"
                 @click="next"
             >
                 mdi-arrow-right-thick
             </v-icon>
-
 
             <v-btn
                 icon
@@ -54,23 +38,18 @@
 
             <v-expand-transition>
                 <div v-show="show">
-                    <v-card>
                     <div>
-                        <v-text-field
-                            v-if="isTaskNoteFieldFocus"
-                            @blur="taskNoteFieldOutFocus(task.note)"
-                            :value="task.note"
+                        <v-textarea
+                            @click="note.edit = true"
+                            :auto-grow="note.edit"
+                            label="Note"
                             v-model="task.note"
-                        ></v-text-field>
-                        <v-card-text
-                            v-else
-                            v-on:dblclick="taskNoteFieldDbClick"
-                        >
-                            {{task.note}}
-                        </v-card-text>                    </div>
+                            :readonly="!note.edit"
+                            @blur="taskNoteFieldOutFocus(task.note)"
+                            outlined
+                        ></v-textarea>
+                    </div>
 
-
-                    </v-card>
                     <v-icon
                         v-if="task.status === 2"
                         @click="datePickerDialog = true"
@@ -83,8 +62,6 @@
                     >
                         mdi-delete
                     </v-icon>
-
-
 
                     <v-dialog
                         v-model="datePickerDialog"
@@ -221,6 +198,13 @@ export default {
             isTaskNoteFieldFocus:false,
             show: false,
             datePickerDialog:false,
+
+            title:{
+                edit:false,
+            },
+            note:{
+                edit:false,
+            }
         }
     },
     methods:{
@@ -291,7 +275,6 @@ export default {
                 })
         },
 
-
         refresh(){
             this.$emit('refresh');
         },
@@ -332,6 +315,7 @@ export default {
                 })
         },
         changeNote(note){
+            console.log(note)
             let sendDate = {
                 "note": note
             }
@@ -351,10 +335,14 @@ export default {
             this.isTaskNoteFieldFocus = true;
         },
         taskTitleFieldOutFocus(title){
+            console.log("aaa")
             this.changeTitle(title);
+            this.title.edit = false;
             this.isTaskTitleFieldFocus = false;
         },
         taskNoteFieldOutFocus(note){
+            this.note.edit = false;
+            console.log('push note')
             this.changeNote(note);
 
             this.isTaskNoteFieldFocus = false;
