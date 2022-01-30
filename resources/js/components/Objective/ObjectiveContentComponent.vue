@@ -236,7 +236,6 @@ export default {
     },
     computed:{
         twitterShareURL(){
-
             return "https://twitter.com/intent/tweet?url="+ "https://manage-goals.com" + "/#/share/objective/" + this.sharedID + "&text=GoalManagementApp&hashtags=portfolio";
         },
         shareURL(){
@@ -269,7 +268,8 @@ export default {
                     }
                     this.tasks.push(res.data.task);
                 })
-                .catch((error) =>{
+                .catch((err) =>{
+                    this.alert(err.response.data.message);
                 })
         },
         divideData(){
@@ -398,7 +398,6 @@ export default {
                 })
         },
         openPreview(){
-
             // window.open("https://manage-goals.com/share/objective/" + this.sharedID,'_blank')
             window.open("#/share/objective/" + this.sharedID,'_blank')
         },
@@ -413,6 +412,9 @@ export default {
                     })
             }
         },
+        alert(message){
+            this.$refs.header.showAlert(message);
+        }
     }
 
 

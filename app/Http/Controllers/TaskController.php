@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\RecordUpperLimitException;
 use App\Models\Objective;
 use App\Models\Task;
 use Carbon\Carbon;
@@ -18,6 +19,16 @@ class TaskController extends Controller
 
     //タスクの新規作成
     public function createTask(Request $request){
+        $user = Auth::user();
+        $maxNum = $user->getMaxTasksNum();
+        $objective = Auth::user()
+            ->objectives()
+            ->find($request->objective_id);
+
+        if(count($objective->tasks()->get()) >= $maxNum){
+            $message = $maxNum . "個以上のタスクは作成できません。";
+            throw new RecordUpperLimitException($message);
+        }
 
         $task = new Task();
         $task->order = 0;

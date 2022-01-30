@@ -25,10 +25,10 @@ class ObjectiveController extends Controller
     //作成後のidを返す
     public function create(Request $request){
         $user = Auth::user();
-        $maxNum = $user->getMaxObjectiveNum();
+        $maxNum = $user->getMaxObjectivesNum();
 
         if(count($user->objectives()->get()) >= $maxNum){
-            $message = "目標設定数上限エラー";
+            $message = $maxNum . "個以上の目標は作成できません。";
             throw new RecordUpperLimitException($message);
         }
 
