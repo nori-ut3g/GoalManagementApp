@@ -62,7 +62,7 @@
                             :events="events"
                             :event-more="true"
                             @change="refreshCalenderEvents"
-                            color="green"
+                            color="indigo lighten-4"
                         ></v-calendar>
                     </v-sheet>
                 </v-col>
@@ -73,13 +73,13 @@
                         <v-expansion-panels>
                             <v-container>
                                 <v-expansion-panel
-                                    v-for="(task, index) in waitingTasks"
+                                    v-for="(task, index) in card.waiting.tasks"
                                     :key="task.id"
                                     :id="task.id"
                                 >
                                     <SharedTaskCard
                                         :task="task"
-                                        :card-color="cardColor.waiting"
+                                        :card-color="card.waiting.color"
                                     >
                                     </SharedTaskCard>
                                 </v-expansion-panel>
@@ -93,14 +93,14 @@
                         <v-expansion-panels>
                             <v-container>
                                 <v-expansion-panel
-                                    v-for="(task, index) in workingTasks"
+                                    v-for="(task, index) in card.working.tasks"
                                     :key="task.id"
                                     :id="task.id"
                                 >
                                     <SharedTaskCard
                                         :task="task"
                                         v-on:refresh="getData"
-                                        :card-color="cardColor.working"
+                                        :card-color="card.working.color"
                                     >
                                     </SharedTaskCard>
                                 </v-expansion-panel>
@@ -114,14 +114,14 @@
                         <v-expansion-panels>
                             <v-container>
                                 <v-expansion-panel
-                                    v-for="(task, index) in completedTasks"
+                                    v-for="(task, index) in card.completed.tasks"
                                     :key="task.id"
                                     :id="task.id"
                                 >
                                     <SharedTaskCard
                                         :task="task"
                                         v-on:refresh="getData"
-                                        :card-color="cardColor.complete"
+                                        :card-color="card.completed.color"
                                     >
                                     </SharedTaskCard>
                                 </v-expansion-panel>
@@ -152,24 +152,35 @@ export default {
             objective:[],
             sharedObjective_id : this.$route.params.id,
             tasks:[],
-            waitingTasks:[],
-            workingTasks:[],
-            completedTasks:[],
-            eachTasks:{
-                waiting:[],
-                working:[],
-                complete:[]
+
+            card:{
+                waiting:{
+                    tasks:[],
+                    color:"blue lighten-5",
+                },
+                working:{
+                    tasks:[],
+                    color:"purple lighten-5",
+                },
+                completed:{
+                    tasks:[],
+                    color:"indigo lighten-5",
+                }
             },
+            calendar:{
+                working:{
+                    color:"purple lighten-2",
+                },
+                completed:{
+                    color:"indigo lighten-2",
+                }
+            },
+
             events:[],
             tempDate:"", //test用,
             focus: '',
             isShared: false,
             sharedID:"",
-            cardColor:{
-                waiting:"blue lighten-5",
-                working:"red lighten-5",
-                complete:"green lighten-5"
-            }
         }
     },
     created:function () {
@@ -178,27 +189,23 @@ export default {
     },
     methods:{
         divideData(){
-            this.waitingTasks = this.tasks.filter(function(task){
+            this.card.waiting.tasks = this.tasks.filter(function(task){
                 return task.status === 0;
             })
-            this.workingTasks = this.tasks.filter(function(task){
+            this.card.working.tasks = this.tasks.filter(function(task){
                 return task.status === 1;
             })
-            this.completedTasks = this.tasks.filter(function(task){
+            this.card.completed.tasks = this.tasks.filter(function(task){
                 return task.status === 2;
             })
         },
         getData(){
             axios.get(`/api/sharedObjective/${this.$route.params.id}`)
                 .then((res) => {
-                    console.log('aaaa')
-                    console.log(res)
-
                     this.objective = res.data.objective
                     this.getTasks()
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
         getTasks(){
@@ -209,14 +216,12 @@ export default {
                     this.refreshCalenderEvents();
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
 
         refreshCalenderEvents(){
             let events = []
             for(const task of this.tasks){
-
                 if(task.start_date === null) continue;
                 let finish_date;
                 if(task.finish_date === null) finish_date = new Date().toISOString().split("T")[0].replaceAll("-", "/");
@@ -226,7 +231,7 @@ export default {
                     name: task.title,
                     start: new Date(task.start_date),
                     end: new Date(finish_date),
-                    color: task.status === 1 ? 'warning' : 'green' ,
+                    color: task.status === 1 ? this.calendar.working.color : this.calendar.completed.color ,
                     timed: false
                 })
             }

@@ -61,7 +61,7 @@ export default {
                     title: objective.title,
                     created_at: objective.created_at.split("T")[0].replaceAll("-", "/"),
                     due_date: objective.due_date.replaceAll("-", "/"),
-                    finish_date: objective.finish_date.replaceAll("-", "/"),
+                    finish_date: objective.finish_date === null ? null : objective.finish_date.replaceAll("-", "/"),
                     status: objective.status === 0 ? 'Working': 'Complete',
                     id: objective.id
                 }

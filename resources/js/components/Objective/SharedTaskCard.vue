@@ -3,16 +3,11 @@
         :color="cardColor"
     >
         <v-col cols="12">
-            <v-card
-                solo
-                tile
-                min-height="30"
-                class="my-2"
-            >
-                <v-card-title>
-                    {{task.title}}
-                </v-card-title>
-            </v-card>
+            <v-text-field
+                label="Task"
+                v-model="task.title"
+                readonly
+            ></v-text-field>
             <v-btn
                 icon
                 @click="show = !show"
@@ -24,14 +19,14 @@
 
             <v-expand-transition>
                 <div v-show="show">
-                    <v-card>
-                        <div>
-                            <v-card-text
-                            >
-                                {{task.note}}
-                            </v-card-text>
-                        </div>
-                    </v-card>
+                    <div>
+                        <v-textarea
+                            label="Note"
+                            v-model="task.note"
+                            readonly
+                            outlined
+                        ></v-textarea>
+                    </div>
                 </div>
             </v-expand-transition>
         </v-col>

@@ -238,7 +238,8 @@ export default {
             return "https://twitter.com/intent/tweet?url="+ "https://manage-goals.com" + "/#/share/objective/" + this.sharedID + "&text=GoalManagementApp&hashtags=portfolio";
         },
         shareURL(){
-            return "https://manage-goals.com/share/objective/" + this.sharedID;
+            return "localhost/share/objective/" + this.sharedID;
+            // return "https://manage-goals.com/share/objective/" + this.sharedID;
         }
     },
     methods:{
@@ -281,6 +282,13 @@ export default {
             })
         },
         getData(){
+            axios.get(`/api/objectives/${this.$route.params.id}`)
+                .then((res) => {
+                    this.objective = res.data;
+                    this.isCompletedObjective = this.objective.status !== 0
+                })
+                .catch((error) =>{
+                })
             axios.get(`/api/objectives/${this.$route.params.id}/tasks`)
                 .then((res) => {
                     this.tasks = res.data;
@@ -289,13 +297,7 @@ export default {
                 })
                 .catch((error) =>{
                 })
-            axios.get(`/api/objectives/${this.$route.params.id}`)
-                .then((res) => {
-                    this.objective = res.data;
-                    this.isCompletedObjective = this.objective.status !== 0
-                })
-                .catch((error) =>{
-                })
+
             axios.get(`/api/objectives/shared_id/${this.$route.params.id}`)
                 .then((res) => {
                     let sharedObjective = res.data.shared_objective;
@@ -394,7 +396,9 @@ export default {
                 })
         },
         openPreview(){
-            window.open("https://manage-goals.com/share/objective/" + this.sharedID,'_blank')
+
+            // window.open("https://manage-goals.com/share/objective/" + this.sharedID,'_blank')
+            window.open("#/share/objective/" + this.sharedID,'_blank')
         },
         achieveObjective(){
             if (confirm('チェック後タスクの編集はできますが、目標の達成日は編集できません。よろしいですか？')){
