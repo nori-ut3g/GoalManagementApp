@@ -1,6 +1,8 @@
 <template>
     <div>
-        <header-component>
+        <header-component
+            ref="header"
+        >
 
         </header-component>
         <v-main>
@@ -410,10 +412,7 @@ export default {
                     .catch((error) =>{
                     })
             }
-        }
-
-
-
+        },
     }
 
 

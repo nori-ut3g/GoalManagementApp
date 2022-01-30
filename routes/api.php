@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'getUserObjectives']);
     Route::delete('/objectives/delete', [\App\Http\Controllers\ObjectiveController::class, 'allDelete']);
-    Route::delete('/objectives/{objective_id}\delete', [\App\Http\Controllers\ObjectiveController::class, 'delete']);
+    Route::delete('/objectives/{objective_id}/delete', [\App\Http\Controllers\ObjectiveController::class, 'delete']);
     Route::get('/objectives/{objective_id}', [\App\Http\Controllers\ObjectiveController::class, 'getObjective']);
     Route::post('/objectives/create', [\App\Http\Controllers\ObjectiveController::class, 'create']);
     Route::get('/objectives/{objective_id}/finish', [\App\Http\Controllers\ObjectiveController::class, 'finish']);

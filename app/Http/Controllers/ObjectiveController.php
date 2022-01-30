@@ -58,8 +58,7 @@ class ObjectiveController extends Controller
     public function undoFinish($objective_id){
         $objective = Auth::user()
             ->objectives()
-            ->where('id', $objective_id)
-            ->get();
+            ->find($objective_id);
 
         $objective->status = 0;
         $objective->finish_date = null;
@@ -70,8 +69,7 @@ class ObjectiveController extends Controller
     public function delete($objective_id){
         $objective = Auth::user()
             ->objectives()
-            ->where('id', $objective_id)
-            ->get();
+            ->find($objective_id);
 
             $tasks = $objective->tasks()->get();
             foreach ($tasks as $task){

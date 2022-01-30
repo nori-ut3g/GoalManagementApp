@@ -48,20 +48,17 @@
                             outlined
                         ></v-textarea>
                     </div>
-
                     <v-icon
                         v-if="task.status === 2"
                         @click="datePickerDialog = true"
                     >
                         mdi-calendar-month
                     </v-icon>
-
                     <v-icon
                         @click="deleteTask"
                     >
                         mdi-delete
                     </v-icon>
-
                     <v-dialog
                         v-model="datePickerDialog"
                         width="500"
@@ -87,7 +84,6 @@
                                     min-width="auto"
                                 >
                                     <template v-slot:activator="{ on, attrs }">
-
                                         <v-text-field
                                             v-model="task.start_date"
                                             value="task.start_date"
@@ -119,12 +115,9 @@
                                         </v-btn>
                                     </v-date-picker>
                                 </v-menu>
-
                                 <v-spacer></v-spacer>
                             </v-card-actions>
-
                             <v-divider></v-divider>
-
                             <v-card-subtitle>
                                 Finish Date
                             </v-card-subtitle>
@@ -171,7 +164,6 @@
                                         </v-btn>
                                     </v-date-picker>
                                 </v-menu>
-
                                 <v-spacer></v-spacer>
                             </v-card-actions>
                         </v-card>
@@ -188,9 +180,9 @@ export default {
     props:['objectiveId', 'task', 'cardColor'],
     data(){
         return{
-            startDate: "",//(new Date(this.task.start_date)),
+            startDate: "",
             startDateMenu: false,
-            finishDate:"",//new Date(this.task.finish_date),
+            finishDate:"",
             finishDateMenu:false,
 
             isTaskTitleFieldFocus:false,
@@ -267,7 +259,6 @@ export default {
                 .catch(() =>{
                 })
         },
-
         refresh(){
             this.$emit('refresh');
         },
@@ -325,12 +316,10 @@ export default {
             this.note.edit = false;
             this.isTaskNoteFieldFocus = false;
         },
-
         changeStartDate(){
             let sendDate = {
                 "start_date": this.task.start_date
             }
-
             axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/start`, sendDate)
                 .then(() => {
                     this.startDateMenu = false;
@@ -338,13 +327,11 @@ export default {
                 })
                 .catch(() =>{
                 })
-
         },
         changeFinishDate(){
             let sendDate = {
                 "finish_date": this.task.finish_date
             }
-
             axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/finish`, sendDate)
                 .then((res) => {
                     this.finishDateMenu = false;
@@ -353,10 +340,7 @@ export default {
                 .catch((error) =>{
                 })
         }
-
-
     }
-
 }
 
 </script>

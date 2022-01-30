@@ -1,6 +1,8 @@
 <template>
     <div>
-        <header-component>
+        <header-component
+            ref="header"
+        >
 
         </header-component>
         <v-main>
@@ -8,9 +10,24 @@
                 :headers="headers"
                 :items="table"
                 :items-per-page="5"
+
                 class="elevation-1"
-                @click:row="clickRow"
-            ></v-data-table>
+            >
+                <template v-slot:item.edit="{ item }">
+                    <v-icon
+                        @click="editObjective(item)"
+                    >
+                        mdi-pencil
+                    </v-icon>
+                </template>
+                <template v-slot:item.delete="{ item }">
+                    <v-icon
+                        @click="deleteObjective(item)"
+                    >
+                        mdi-delete
+                    </v-icon>
+                </template>
+            </v-data-table>
         </v-main>
     </div>
 
@@ -29,12 +46,13 @@ export default {
                     sortable: false,
                     value: 'name',
                 },
+                { text: 'Edit', value: 'edit', sortable: false},
                 { text: 'Title', value: 'title' },
                 { text: 'Start', value: 'created_at' },
                 { text: 'Due', value: 'due_date' },
                 { text: 'Finish', value: 'finish_date' },
                 { text: 'Status', value: 'status' },
-
+                { text: 'Delete', value: 'delete', sortable: false},
             ],
             objectives:[],
             table:[],
@@ -57,17 +75,30 @@ export default {
         },
         convertToTable(){
             this.objectives.forEach(objective => {
+
                 const row = {
                     title: objective.title,
                     created_at: objective.created_at.split("T")[0].replaceAll("-", "/"),
                     due_date: objective.due_date.replaceAll("-", "/"),
                     finish_date: objective.finish_date === null ? null : objective.finish_date.replaceAll("-", "/"),
                     status: objective.status === 0 ? 'Working': 'Complete',
-                    id: objective.id
+                    id: objective.id,
                 }
                 this.table.push(row);
             })
         },
+        editObjective(item){
+            this.$router.push('/objective/'+item.id)
+        },
+        deleteObjective(item){
+            axios.delete(`/api/objectives/${item.id}/delete`)
+                .then((res) => {
+                    this.getObjectives();
+
+                })
+                .catch((error) =>{
+                })
+        }
     }
 }
 
