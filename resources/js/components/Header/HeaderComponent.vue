@@ -188,13 +188,14 @@ export default {
             })
         },
         showAlert(message){
+            // messageの構成
             this.alert.isShow = true;
             this.alert.message = message;
             setTimeout(() => {
                     this.alert.isShow = false
                     this.alert.message = ""
                 }
-                ,3000)
+                ,5000)
         },
         loginCancel(){
             this.loginDialog = false;

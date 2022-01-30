@@ -51,7 +51,15 @@ export default {
         cancel(){
             this.$emit('parent-cancel')
         },
-        showAlert(message){
+        showAlert(messages){
+            let message = '';
+            if(typeof messages === 'string'){
+                message = messages;
+            }else{
+                Object.keys(messages).forEach(type => {
+                    message += type + ':' + messages[type] + '\n';
+                });
+            }
             this.$emit('alert', message)
         }
     }

@@ -1,6 +1,8 @@
 <template>
     <div>
-        <header-component>
+        <header-component
+        ref="header"
+        >
         </header-component>
         <v-main>
             <v-card>
@@ -93,7 +95,8 @@ export default {
                 .then((res) => {
                     this.$router.push(`/objective/${res.data.objective_id}`);
                 })
-            .catch((error) =>{
+            .catch((err) =>{
+                this.alert(err.response.data.message);
             })
         },
         getUserInfo(){
@@ -104,6 +107,9 @@ export default {
                 .catch((err) => {
                 })
         },
+        alert(message){
+            this.$refs.header.showAlert(message);
+        }
     }
 }
 </script>

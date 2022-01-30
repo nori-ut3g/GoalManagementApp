@@ -67,8 +67,7 @@ export default {
                 }
                 this.table.push(row);
             })
-        }
-
+        },
     }
 }
 

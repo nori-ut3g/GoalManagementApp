@@ -72,18 +72,18 @@ class Handler extends ExceptionHandler
             // 認証エラー
             // controllerでthrow new ValidationException($validator)をなげる
             return response()->json([
-                'message' => $e.getMessage(),
+                'message' => $e->message
             ], 401);
         }
-//        else if($e instanceof QueryException){
-//            // migrationでUserに上限Objective設定
-//            // migrationでUserに上限Task設定
-//            return response()->json([
-//                'message' => 'レコードが登録されていません。'
-//            ], 400);
-//
-//
-//        }
+        else if($e instanceof QueryException){
+            // migrationでUserに上限Objective設定
+            // migrationでUserに上限Task設定
+            return response()->json([
+                'message' => 'レコードが登録されていません。'
+            ], 400);
+
+
+        }
 
         return parent::render($request, $e);
     }
