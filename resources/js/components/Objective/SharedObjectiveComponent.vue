@@ -137,7 +137,6 @@
 <script>
 import HeaderComponent from "../Header/HeaderComponent";
 import TaskCardComponent from "./TaskCardComponent";
-import TaskSectionComponent from "./TaskSectionComponent";
 import SharedTaskCard from "./SharedTaskCard";
 
 export default {
@@ -146,7 +145,6 @@ export default {
         SharedTaskCard,
         HeaderComponent,
         TaskCardComponent,
-        TaskSectionComponent,
 
     },
     data(){

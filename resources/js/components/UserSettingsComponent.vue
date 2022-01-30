@@ -367,7 +367,6 @@ export default {
         }
     },
     created:function(){
-        // this.autoLogin();
         this.getUserEmail();
     },
 
@@ -378,7 +377,6 @@ export default {
                 .then((res) => {
                 })
                 .catch((err) => {
-                    console.log(err)
                 })        },
         deleteAccount: function(){
             axios.delete('/api/user/delete')
@@ -386,7 +384,6 @@ export default {
                     this.$router.push('/')
                 })
                 .catch((err) => {
-                    console.log(err)
                 })
         },
         changeName: function(){
@@ -433,7 +430,6 @@ export default {
         getUserEmail: function(){
             axios.get('/api/user')
                 .then((res) => {
-                    console.log(res.data.email)
                    this.current.email = res.data.email;
                 })
                 .catch((err) => {

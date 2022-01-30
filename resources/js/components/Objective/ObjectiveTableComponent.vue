@@ -50,7 +50,6 @@ export default {
                     this.table=[]
                     this.objectives = res.data;
                     this.convertToTable()
-
                 })
         },
         clickRow (row) {

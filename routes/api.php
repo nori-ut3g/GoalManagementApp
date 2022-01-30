@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'register']);
-Route::post('/email_validator', [\App\Http\Controllers\RegisterController::class, 'emailValidator']);
 Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
 Route::get('/logout', [\App\Http\Controllers\LoginController::class, 'logout']);
 
@@ -30,7 +29,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::put('/user/update_pass', [\App\Http\Controllers\RegisterController::class, 'changePassword']);
     Route::delete('/user/delete', [\App\Http\Controllers\RegisterController::class, 'delete']);
 
-
     Route::get('/objectives', [\App\Http\Controllers\ObjectiveController::class, 'getUserObjectives']);
     Route::delete('/objectives/delete', [\App\Http\Controllers\ObjectiveController::class, 'allDelete']);
     Route::delete('/objectives/{objective_id}\delete', [\App\Http\Controllers\ObjectiveController::class, 'delete']);
@@ -39,22 +37,17 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/objectives/{objective_id}/finish', [\App\Http\Controllers\ObjectiveController::class, 'finish']);
     Route::get('/objectives/{objective_id}/undo_finish', [\App\Http\Controllers\ObjectiveController::class, 'undoFinish']);
 
-
-
-    //    Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
     Route::get('/objectives/{objective_id}/tasks', [\App\Http\Controllers\TaskController::class, 'showTasks']);
     Route::post('/objectives/{objective_id}/task/create', [\App\Http\Controllers\TaskController::class, 'createTask']);
-    Route::post('/objectives/{objective_id}/task/{id}/edit_title', [\App\Http\Controllers\TaskController::class, 'editTitle']);
-    Route::post('/objectives/{objective_id}/task/{id}/edit_note', [\App\Http\Controllers\TaskController::class, 'editNote']);
+    Route::put('/objectives/{objective_id}/task/{id}/edit_title', [\App\Http\Controllers\TaskController::class, 'editTitle']);
+    Route::put('/objectives/{objective_id}/task/{id}/edit_note', [\App\Http\Controllers\TaskController::class, 'editNote']);
     Route::get('/objectives/{objective_id}/task/{id}/start', [\App\Http\Controllers\TaskController::class, 'start']);
     Route::get('/objectives/{objective_id}/task/{id}/finish', [\App\Http\Controllers\TaskController::class, 'finish']);
     Route::get('/objectives/{objective_id}/task/{id}/undo_start', [\App\Http\Controllers\TaskController::class, 'undoStart']);
     Route::get('/objectives/{objective_id}/task/{id}/undo_finish', [\App\Http\Controllers\TaskController::class, 'undoFinish']);
     Route::delete('/objectives/{objective_id}/task/{id}/delete', [\App\Http\Controllers\TaskController::class, 'deleteTask']);
-
-
-    Route::post('/objectives/{objective_id}/task/{id}/start', [\App\Http\Controllers\TaskController::class, 'setStartDate']);
-    Route::post('/objectives/{objective_id}/task/{id}/finish', [\App\Http\Controllers\TaskController::class, 'setFinishDate']);
+    Route::put('/objectives/{objective_id}/task/{id}/start', [\App\Http\Controllers\TaskController::class, 'setStartDate']);
+    Route::put('/objectives/{objective_id}/task/{id}/finish', [\App\Http\Controllers\TaskController::class, 'setFinishDate']);
 
     Route::post('/objectives/share', [\App\Http\Controllers\SharedObjectiveController::class, 'share']);
     Route::delete('/objectives/private/{objective_id}', [\App\Http\Controllers\SharedObjectiveController::class, 'private']);

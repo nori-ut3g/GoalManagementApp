@@ -90,8 +90,6 @@ export default {
                     this.getObjectives();
                 })
                 .catch((err) => {
-                    console.log(err);
-                    console.log(this.userInfo)
                 })
 
         },

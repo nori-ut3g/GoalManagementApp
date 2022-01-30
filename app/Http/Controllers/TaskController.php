@@ -32,7 +32,6 @@ class TaskController extends Controller
 
         return new JsonResponse(['task' => $task]);
 
-        //->tasks()->save()
     }
 
     //タスクの内容変更
@@ -86,7 +85,7 @@ class TaskController extends Controller
 
 
 
-    //タスク開始
+    //タスク開始日設定
     public function setStartDate(string $objective_id, string $id, Request $request){
         $task = Task::find($id);
         $task->start_date = $request->start_date;
@@ -94,7 +93,7 @@ class TaskController extends Controller
 
     }
 
-    //タスク終了
+    //タスク終了日設定
     public function setFinishDate(string $objective_id, string $id, Request $request){
         $task = Task::find($id);
         $task->finish_date = $request->finish_date;

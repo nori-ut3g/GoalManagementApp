@@ -89,14 +89,11 @@ export default {
                 due_date: this.objective.due_date,
                 user_id: this.userInfo.id
             }
-
             axios.post('/api/objectives/create', sendData)
                 .then((res) => {
                     this.$router.push(`/objective/${res.data.objective_id}`);
                 })
             .catch((error) =>{
-                console.log(error)
-
             })
         },
         getUserInfo(){
@@ -105,13 +102,8 @@ export default {
                     this.userInfo = res.data;
                 })
                 .catch((err) => {
-                    console.log(err);
                 })
-
         },
-        allowDate(){
-
-        }
     }
 }
 </script>

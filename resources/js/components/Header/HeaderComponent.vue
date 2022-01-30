@@ -175,8 +175,6 @@ export default {
                 })
                 .catch((err) => {
                     this.isLoggedIn = false;
-                    // this.$router.push('/')
-                    // console.log(err);
                 })
         },
         logout() {
@@ -188,9 +186,6 @@ export default {
                     this.userInfo = []
                     this.$router.push('/')
             })
-
-            // this.checkAuth();
-
         },
         showAlert(message){
             this.alert.isShow = true;

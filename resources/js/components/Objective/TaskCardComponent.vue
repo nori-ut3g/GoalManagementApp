@@ -278,7 +278,7 @@ export default {
             let sendDate = {
                 "date": this.startDate
             }
-            axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/start`, sendDate)
+            axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/start`, sendDate)
                 .then((res) => {
                     this.refresh();
                 })
@@ -289,7 +289,7 @@ export default {
             let sendDate = {
                 "date": this.finishDate
             }
-            axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/finish`, sendDate)
+            axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/finish`, sendDate)
                 .then((res) => {
                     this.refresh();
                 })
@@ -300,7 +300,7 @@ export default {
             let sendDate = {
                 "title": title
             }
-            axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_title`, sendDate)
+            axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_title`, sendDate)
                 .then((res) => {
                     this.refresh();
                 })
@@ -312,7 +312,7 @@ export default {
             let sendDate = {
                 "note": note
             }
-            axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_note`, sendDate)
+            axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_note`, sendDate)
                 .then((res) => {
                     this.refresh();
                 })

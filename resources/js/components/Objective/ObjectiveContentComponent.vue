@@ -329,32 +329,6 @@ export default {
             this.events = events;
 
         },
-        setStartDate(taskId, startDate){
-            let sendDate = {
-                "date": startDate
-            }
-            axios.post(`/api/objectives/${this.objective_id}/task/${taskId}/start`, sendDate)
-                .then((res) => {
-                    this.getData();
-                    this.refreshCalenderEvents()
-                })
-                .catch((error) =>{
-                    console.log(error)
-                })
-        },
-        setFinishDate(taskId, endDate){
-            let sendDate = {
-                "date": endDate
-            }
-            axios.post(`/api/objectives/${this.objective_id}/task/${taskId}/finish`, sendDate)
-                .then((res) => {
-                    this.getData();
-                    this.refreshCalenderEvents()
-                })
-                .catch((error) =>{
-                    console.log(error)
-                })
-        },
         getEventColor(event) {
             return event.color;
         },
@@ -365,7 +339,6 @@ export default {
                     this.refreshCalenderEvents()
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
         finishTask(taskId){
@@ -375,14 +348,7 @@ export default {
                     this.refreshCalenderEvents()
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
-        },
-        resetFinishDate(){
-
-        },
-        resetStartDate(){
-
         },
         refresh(){
             this.getData();
@@ -406,21 +372,16 @@ export default {
                 this.private()
             }
         },
-
-
         share(){
-
             let sendData = {
                 objective_id : this.objective_id
             }
             axios.post(`/api/objectives/share`, sendData)
                 .then((res) => {
-                    console.log(res)
                     this.sharedID = res.data.id;
                     this.isShared = true;
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
         private(){
@@ -430,7 +391,6 @@ export default {
                     this.isShared = false;
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
         openPreview(){
