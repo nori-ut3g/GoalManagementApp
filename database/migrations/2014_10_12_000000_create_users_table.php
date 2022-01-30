@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
 //            \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
             $table->uuid('id')->primary();
-            $table->string('name');
+            $table->string('name', 20);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('max_objectives_num')->default(5);

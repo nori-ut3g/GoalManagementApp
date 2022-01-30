@@ -17,7 +17,7 @@ class CreateObjectivesTable extends Migration
 //            \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
             $table->uuid('id')->primary();
             $table->uuid('user_id');
-            $table->string('title', 100);
+            $table->string('title', 50);
             $table->date('due_date');
             $table->integer('status')->default(0);
             $table->date('finish_date')->nullable();
