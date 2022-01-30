@@ -5,8 +5,7 @@
         <v-col cols="12">
             <v-text-field
                 label="Task"
-                :append-icon="title.edit ? '' : 'mdi-application-edit'"
-                @click:append="title.edit = !title.edit"
+                @click="task.edit = true"
                 v-model="task.title"
                 :readonly="!title.edit"
                 @blur="taskTitleFieldOutFocus(task.title)"

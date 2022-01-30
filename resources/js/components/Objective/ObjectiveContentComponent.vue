@@ -18,6 +18,14 @@
                                 mdi-calendar-range
                             </v-icon>
                             {{objective.due_date}}
+                            <v-btn
+                            >
+                                preview
+                                <v-icon>
+                                    mdi-check-outline
+                                </v-icon>
+                            </v-btn>
+
                         </v-card-text>
                             <v-switch
                                 v-model="isShared"
@@ -25,10 +33,13 @@
                                 @change="switchShareOrPrivate"
                             ></v-switch>
                         <v-btn
-                            :to="shareURL"
                             v-if="isShared"
+                            @click="openPreview"
                         >
-                            {{"manage-goals.com" + "/#/share/objective/" + sharedID }}
+                            preview
+                            <v-icon>
+                                mdi-dock-window
+                            </v-icon>
                         </v-btn>
 
                         <v-btn
@@ -87,7 +98,7 @@
                             :events="events"
                             :event-more="true"
                             @change="refreshCalenderEvents"
-                            color="green"
+                            color="indigo lighten-4"
                         ></v-calendar>
                     </v-sheet>
                 </v-col>
@@ -184,15 +195,23 @@ export default {
             card:{
                 waiting:{
                     tasks:[],
-                    color:"blue lighten-5"
+                    color:"blue lighten-5",
                 },
                 working:{
                     tasks:[],
-                    color:"red lighten-5"
+                    color:"purple lighten-5",
                 },
                 completed:{
                     tasks:[],
-                    color:"green lighten-5"
+                    color:"indigo lighten-5",
+                }
+            },
+            calendar:{
+                working:{
+                    color:"purple lighten-2",
+                },
+                completed:{
+                    color:"indigo lighten-2",
                 }
             },
             events:[],
@@ -211,10 +230,10 @@ export default {
     computed:{
         twitterShareURL(){
 
-            return "https://twitter.com/intent/tweet?url="+ "manage-goals.com" + "/#/share/objective/" + this.sharedID + "&text=GoalManagementApp&hashtags=portfolio";
+            return "https://twitter.com/intent/tweet?url="+ "https://manage-goals.com" + "/#/share/objective/" + this.sharedID + "&text=GoalManagementApp&hashtags=portfolio";
         },
         shareURL(){
-            return "/share/objective/" + this.sharedID;
+            return "https://manage-goals.com/share/objective/" + this.sharedID;
         }
     },
     methods:{
@@ -227,19 +246,15 @@ export default {
             }
             axios.post(`/api/objectives/${this.objective_id}/task/create`, sendData)
                 .then((res) => {
-                    console.log(res.data)
                     switch (res.data.task.status){
                         case 0:
                             this.card.waiting.tasks.push(res.data.task);
-                            this.waitingTasks.push(res.data.task);
                             break;
                         case 1:
                             this.card.working.tasks.push(res.data.task);
-                            this.workingTasks.push(res.data.task);
                             break;
                         case 2:
                             this.card.completed.tasks.push(res.data.task);
-                            this.completedTasks.push(res.data.task);
                             break;
                         default:
                             break;
@@ -247,7 +262,6 @@ export default {
                     this.tasks.push(res.data.task);
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
         divideData(){
@@ -265,24 +279,20 @@ export default {
             axios.get(`/api/objectives/${this.$route.params.id}/tasks`)
                 .then((res) => {
                     this.tasks = res.data;
-
                     this.divideData();
                     this.refreshCalenderEvents()
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
             axios.get(`/api/objectives/${this.$route.params.id}`)
                 .then((res) => {
                     this.objective = res.data;
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
             axios.get(`/api/objectives/shared_id/${this.$route.params.id}`)
                 .then((res) => {
                     let sharedObjective = res.data.shared_objective;
-
                     if(sharedObjective){
                         this.isShared = true;
                         this.sharedID = sharedObjective.id;
@@ -292,13 +302,11 @@ export default {
                     }
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
         refreshCalenderEvents(){
             let events = []
             for(const task of this.tasks){
-
                 if(task.start_date === null) continue;
                 let finish_date;
                 if(task.finish_date === null) finish_date = new Date().toISOString().split("T")[0].replaceAll("-", "/");
@@ -308,7 +316,7 @@ export default {
                     name: task.title,
                     start: new Date(task.start_date),
                     end: new Date(finish_date),
-                    color: task.status === 1 ? 'warning' : 'green' ,
+                    color: task.status === 1 ? this.calendar.working.color : this.calendar.completed.color ,
                     timed: false
                 })
             }
@@ -419,6 +427,9 @@ export default {
                 .catch((error) =>{
                     console.log(error)
                 })
+        },
+        openPreview(){
+            window.open("https://manage-goals.com/share/objective/" + this.sharedID,'_blank')
         }
 
 
