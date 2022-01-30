@@ -335,7 +335,7 @@
     </div>
 </template>
 <script>
-import HeaderComponent from "./HeaderComponent";
+import HeaderComponent from "./Header/HeaderComponent";
 
 export default {
     name: "UserSettingComponent",

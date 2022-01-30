@@ -27,7 +27,7 @@
 <script>
 export default {
     name: "LogInComponent",
-    data: () => {
+    data(){
         return {
             user:{}
         }
@@ -36,19 +36,15 @@ export default {
         login(){
             axios.post('/api/login', this.user)
                 .then((res) => {
-                    console.log(res.data)
                     this.$router.push('/home')
                 })
                 .catch((err) => {
-                    // console.log(err);
+
                 })
         },
         cancel(){
             this.$emit('parent-cancel')
         }
-
-
-
     }
 }
 </script>

@@ -2,16 +2,15 @@ import Vue from "vue";
 import Vuetify from "./vuetify";
 import VueRouter from "vue-router";
 
-import WelcomeComponent from "./components/WelcomeComponent";
 import AppComponent from "./components/AppContent";
-import LogInComponent from "./components/LogInComponent";
-import SignUpComponent from "./components/SignUpComponent";
-import ObjectiveContentComponent from "./components/ObjectiveContentComponent";
-import ObjectiveTableComponent from "./components/ObjectiveTableComponent";
-import CreateObjectiveComponent from "./components/CreateObjectiveComponent";
+import LogInComponent from "./components/Header/LogInComponent";
+import SignUpComponent from "./components/Header/SignUpComponent";
+import ObjectiveContentComponent from "./components/Objective/ObjectiveContentComponent";
+import ObjectiveTableComponent from "./components/Objective/ObjectiveTableComponent";
+import CreateObjectiveComponent from "./components/Objective/CreateObjectiveComponent";
 import HomeComponent from "./components/HomeComponent";
 import welcomeComponent from "./components/WelcomeComponent";
-import SharedObjectiveComponent from "./components/SharedObjectiveComponent";
+import SharedObjectiveComponent from "./components/Objective/SharedObjectiveComponent";
 import UserSettingsComponent from "./components/UserSettingsComponent";
 
 
@@ -52,10 +51,10 @@ const router = new VueRouter({
             path: '/login',
             component: LogInComponent
         },
-        {
-            path: '/main',
-            component: ObjectiveContentComponent
-        },
+        // {
+        //     path: '/main',
+        //     component: ObjectiveContentComponent
+        // },
         {
             path: '/list',
             component: ObjectiveTableComponent
@@ -93,7 +92,6 @@ const router = new VueRouter({
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -168,20 +168,15 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable'
-
-import ProgressBarComponent from "./ProgressBarComponent";
 import TaskSectionComponent from "./TaskSectionComponent";
 import TaskCardComponent from "./TaskCardComponent";
-import HeaderComponent from "./HeaderComponent";
+import HeaderComponent from "../Header/HeaderComponent";
 export default {
     name: "ObjectiveContentComponent",
     components: {
         HeaderComponent,
         TaskCardComponent,
         TaskSectionComponent,
-        ProgressBarComponent,
-        draggable,
 
     },
     data(){

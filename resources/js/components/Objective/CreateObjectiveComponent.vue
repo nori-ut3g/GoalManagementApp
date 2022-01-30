@@ -1,7 +1,6 @@
 <template>
     <div>
         <header-component>
-
         </header-component>
         <v-main>
             <v-card>
@@ -64,7 +63,7 @@
 </template>
 
 <script>
-import HeaderComponent from "./HeaderComponent";
+import HeaderComponent from "../Header/HeaderComponent";
 export default {
     name: "CreateObjective",
     components: {HeaderComponent},

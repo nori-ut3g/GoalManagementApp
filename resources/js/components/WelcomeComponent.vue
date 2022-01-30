@@ -63,9 +63,9 @@
 </template>
 
 <script>
-import HeaderComponent from "./HeaderComponent";
-import LogInComponent from "./LogInComponent";
-import SignUpComponent from "./SignUpComponent";
+import HeaderComponent from "./Header/HeaderComponent";
+import LogInComponent from "./Header/LogInComponent";
+import SignUpComponent from "./Header/SignUpComponent";
 export default {
     name: "WelcomeComponent",
     components: {SignUpComponent, LogInComponent, HeaderComponent},

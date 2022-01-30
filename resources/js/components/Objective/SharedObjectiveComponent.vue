@@ -135,11 +135,9 @@
 </template>
 
 <script>
-import HeaderComponent from "./HeaderComponent";
+import HeaderComponent from "../Header/HeaderComponent";
 import TaskCardComponent from "./TaskCardComponent";
 import TaskSectionComponent from "./TaskSectionComponent";
-import ProgressBarComponent from "./ProgressBarComponent";
-import draggable from "vuedraggable";
 import SharedTaskCard from "./SharedTaskCard";
 
 export default {
@@ -149,8 +147,6 @@ export default {
         HeaderComponent,
         TaskCardComponent,
         TaskSectionComponent,
-        ProgressBarComponent,
-        draggable,
 
     },
     data(){
