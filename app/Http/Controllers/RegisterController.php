@@ -23,9 +23,7 @@ class RegisterController extends Controller
 
         if ($validator->fails()) {
             throw new ValidationException($validator);
-//            return response()->json($validator->messages(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-        return response()->json('OK', Response::HTTP_OK);
     }
 
     public function register(Request $request)
@@ -38,7 +36,6 @@ class RegisterController extends Controller
 
         if ($validator->fails()) {
             throw new ValidationException($validator);
-//            return response()->json($validator->messages(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         User::create([
@@ -46,8 +43,7 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
-        return response()->json('ユーザ登録しました', Response::HTTP_OK);
+        return new JsonResponse(['message' => 'ユーザ登録しました']);
     }
 
     public function changeEmail(Request $request){

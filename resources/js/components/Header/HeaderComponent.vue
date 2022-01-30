@@ -50,6 +50,7 @@
 
                     <sign-up-component
                         @parent-cancel="signUpCancel"
+                        @alert="showAlert"
                     ></sign-up-component>
 
                     <v-divider></v-divider>
