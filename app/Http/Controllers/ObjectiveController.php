@@ -19,14 +19,12 @@ class ObjectiveController extends Controller
     }
 
     public function getObjective($id){
-
         return Objective::find($id);
     }
 
     //作成後のidを返す
     public function create(Request $request){
         $user = Auth::user();
-        //
         $maxNum = $user->getMaxObjectiveNum();
 
         if(count($user->objectives()->get()) >= $maxNum){
@@ -47,8 +45,9 @@ class ObjectiveController extends Controller
     public function finish($objective_id){
         $objective = Auth::user()
             ->objectives()
-            ->where('id', $objective_id)
-            ->get();
+            ->find($objective_id);
+
+
 
         $objective->status = 1;
         $objective->finish_date = Carbon::now();

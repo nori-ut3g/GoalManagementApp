@@ -18,20 +18,21 @@
                                 mdi-calendar-range
                             </v-icon>
                             {{objective.due_date}}
-                            <v-btn
-                            >
-                                preview
-                                <v-icon>
-                                    mdi-check-outline
-                                </v-icon>
-                            </v-btn>
-
                         </v-card-text>
-                            <v-switch
-                                v-model="isShared"
-                                :label="isShared ? 'Share' : 'Private'"
-                                @change="switchShareOrPrivate"
-                            ></v-switch>
+                        <v-btn
+                            v-if="!isCompletedObjective"
+                            @click="achieveObjective"
+                        >
+                            Achieve goal
+                            <v-icon>
+                                mdi-check-outline
+                            </v-icon>
+                        </v-btn>
+                        <v-switch
+                            v-model="isShared"
+                            :label="isShared ? 'Share' : 'Private'"
+                            @change="switchShareOrPrivate"
+                        ></v-switch>
                         <v-btn
                             v-if="isShared"
                             @click="openPreview"
@@ -41,6 +42,7 @@
                                 mdi-dock-window
                             </v-icon>
                         </v-btn>
+
 
                         <v-btn
                             color="#1DA1F2"
@@ -214,11 +216,14 @@ export default {
                     color:"indigo lighten-2",
                 }
             },
+
             events:[],
 
             focus: '',
             isShared: false,
             sharedID:"",
+
+            isCompletedObjective:false,
 
 
         }
@@ -287,6 +292,7 @@ export default {
             axios.get(`/api/objectives/${this.$route.params.id}`)
                 .then((res) => {
                     this.objective = res.data;
+                    this.isCompletedObjective = this.objective.status !== 0
                 })
                 .catch((error) =>{
                 })
@@ -418,7 +424,6 @@ export default {
                 })
         },
         private(){
-
             axios.delete(`/api/objectives/private/${this.objective_id}`)
                 .then((res) => {
                     this.sharedID = "";
@@ -430,6 +435,17 @@ export default {
         },
         openPreview(){
             window.open("https://manage-goals.com/share/objective/" + this.sharedID,'_blank')
+        },
+        achieveObjective(){
+            if (confirm('チェック後タスクの編集はできますが、目標の達成日は編集できません。よろしいですか？')){
+                axios.get(`/api/objectives/${this.objective_id}/finish`)
+                    .then((res) => {
+                        this.isCompletedObjective = true;
+                        this.refresh();
+                    })
+                    .catch((error) =>{
+                    })
+            }
         }
 
 

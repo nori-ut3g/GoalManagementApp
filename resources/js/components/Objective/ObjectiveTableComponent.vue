@@ -32,6 +32,7 @@ export default {
                 { text: 'Title', value: 'title' },
                 { text: 'Start', value: 'created_at' },
                 { text: 'Due', value: 'due_date' },
+                { text: 'Finish', value: 'finish_date' },
                 { text: 'Status', value: 'status' },
 
             ],
@@ -60,8 +61,10 @@ export default {
                 const row = {
                     title: objective.title,
                     created_at: objective.created_at.split("T")[0].replaceAll("-", "/"),
-                    due_date:objective.due_date.replaceAll("-", "/"),
-                    status:objective.status === 0 ? 'Working': 'Complete',
+                    due_date: objective.due_date.replaceAll("-", "/"),
+                    finish_date: objective.finish_date.replaceAll("-", "/"),
+                    status: objective.status === 0 ? 'Working': 'Complete',
+                    id: objective.id
                 }
                 this.table.push(row);
             })

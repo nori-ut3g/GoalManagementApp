@@ -233,7 +233,6 @@ export default {
                         this.refresh();
                     })
                     .catch((error) =>{
-                        console.log(error)
                     })
             }
         },
@@ -243,7 +242,6 @@ export default {
                     this.refresh();
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
         finishTask(){
@@ -270,7 +268,6 @@ export default {
                     this.refresh();
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
 
@@ -286,7 +283,6 @@ export default {
                     this.refresh();
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
         setFinishDate(){
@@ -298,7 +294,6 @@ export default {
                     this.refresh();
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
         changeTitle(title){
@@ -310,7 +305,6 @@ export default {
                     this.refresh();
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
         changeNote(note){
@@ -320,11 +314,9 @@ export default {
             }
             axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_note`, sendDate)
                 .then((res) => {
-                    console.log(note)
                     this.refresh();
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         },
         taskTitleFieldDbClick(){
@@ -359,7 +351,6 @@ export default {
                     this.refresh();
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
 
         },
@@ -374,7 +365,6 @@ export default {
                     this.refresh();
                 })
                 .catch((error) =>{
-                    console.log(error)
                 })
         }
 

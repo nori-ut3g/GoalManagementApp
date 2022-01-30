@@ -14,14 +14,8 @@ use Illuminate\Http\JsonResponse;
 
 class LoginController extends Controller
 {
-
-
-
     public function login(Request $request)
     {
-
-        //validator
-
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => 'required',
@@ -34,16 +28,13 @@ class LoginController extends Controller
         }else{
             throw new AuthenticationException;
         }
-
     }
 
     //
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
         return new JsonResponse(['message' => 'ログアウトしました']);
     }
