@@ -12,6 +12,7 @@ import HomeComponent from "./components/HomeComponent";
 import welcomeComponent from "./components/WelcomeComponent";
 import SharedObjectiveComponent from "./components/Objective/SharedObjectiveComponent";
 import UserSettingsComponent from "./components/UserSettingsComponent";
+import SharedObjectiveTableComponent from "./components/Objective/SharedObjectiveTableComponent";
 
 
 /**
@@ -74,7 +75,12 @@ const router = new VueRouter({
         {
             path: '/UserSettings',
             component: UserSettingsComponent
-        }
+        },
+        {
+            path: '/share/list',
+            component: SharedObjectiveTableComponent
+        },
+
 
     ]
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\RecordUpperLimitException;
 use App\Models\Objective;
 use Carbon\Carbon;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,13 @@ class ObjectiveController extends Controller
     }
 
     public function getObjective($id){
+        $objective = Objective::find($id);
+        $user_id = Auth::id();
+
+        if($objective->user_id !== $user_id){
+            throw new AuthenticationException;
+        }
+
         return Objective::find($id);
     }
 

@@ -52,7 +52,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/objectives/share', [\App\Http\Controllers\SharedObjectiveController::class, 'share']);
     Route::delete('/objectives/private/{objective_id}', [\App\Http\Controllers\SharedObjectiveController::class, 'private']);
     Route::get('/objectives/shared_id/{objective_id}', [\App\Http\Controllers\SharedObjectiveController::class, 'getSharedObjectiveId']);
-
+    Route::get('/shared_objectives', [\App\Http\Controllers\SharedObjectiveController::class, 'getAllSharedObjectives']);
 });
 
 

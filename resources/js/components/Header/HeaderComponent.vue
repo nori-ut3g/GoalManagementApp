@@ -150,8 +150,8 @@ export default {
             items: [
                 { text: 'My Goals', icon: 'mdi-folder' , link:'/list'},
                 { text: 'Create Goal', icon: 'mdi-flag-checkered' , link:'/create'},
+                { text: "Friend's Goal", icon: 'mdi-account-multiple ' , link:'/share/list'},
                 { text: 'User Settings', icon: 'mdi-account-cog', link:'/userSettings'}
-
             ],
             loginDialog : false,
             signUpDialog : false

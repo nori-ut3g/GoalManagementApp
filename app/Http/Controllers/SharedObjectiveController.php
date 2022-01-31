@@ -7,6 +7,7 @@ use App\Models\SharedObjective;
 use App\Models\Task;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SharedObjectiveController extends Controller
 {
@@ -38,6 +39,13 @@ class SharedObjectiveController extends Controller
         }
     }
 
+
+    public function getAllSharedObjectives(){
+        return SharedObjective::join('objectives', 'shared_objectives.objective_id', '=', 'objectives.id')
+                -> join('users', 'objectives.user_id', '=', 'users.id')
+                -> select('title', 'name as user_name', 'objectives.created_at as created_at', 'due_date', 'finish_date', 'status', 'shared_objectives.id as id')
+                -> get();
+    }
     //シェア用
     public function getSharedObjective($shared_objective_id){
         $sharedObjective = SharedObjective::find($shared_objective_id);
