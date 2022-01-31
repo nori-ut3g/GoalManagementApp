@@ -3,14 +3,29 @@
         <header-component
             ref="header"
         >
-
         </header-component>
         <v-main>
+            <v-row
+                justify="end"
+            >
+                <v-col  cols="4">
+                    <v-text-field
+                        v-model="search"
+                        append-icon="mdi-magnify"
+                        label="Search"
+                        single-line
+                        hide-details
+                        outlined
+                        max-
+                    ></v-text-field>
+                </v-col>
+            </v-row>
+
             <v-data-table
                 :headers="headers"
                 :items="table"
                 :items-per-page="5"
-
+                :search="search"
                 class="elevation-1"
             >
                 <template v-slot:item.show="{ item }">
@@ -40,16 +55,17 @@ export default {
                     sortable: false,
                     value: 'name',
                 },
-                { text: 'Show', value: 'show', sortable: false},
-                { text: 'User', value: 'user'},
-                { text: 'Title', value: 'title' },
-                { text: 'Start', value: 'created_at' },
-                { text: 'Due', value: 'due_date' },
-                { text: 'Finish', value: 'finish_date' },
-                { text: 'Status', value: 'status' },
+                { text: 'Show', value: 'show', sortable: false, width: '10%'},
+                { text: 'User', value: 'user', width: '20%'},
+                { text: 'Title', value: 'title', width: '30%'},
+                { text: 'Start', value: 'created_at', width: '10%'},
+                { text: 'Due', value: 'due_date', width: '10%'},
+                { text: 'Finish', value: 'finish_date', width: '10%'},
+                { text: 'Status', value: 'status', width: '10%'},
             ],
             sharedObjectives:[],
             table:[],
+            search:''
         }
     },
     created:function (){
