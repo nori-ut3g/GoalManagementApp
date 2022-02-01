@@ -18,7 +18,8 @@ class CreateObjectivesTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->string('title', 50);
-            $table->date('due_date');
+            $table->timestamp('start_date')->nullable();
+            $table->date('due_date')->nullable();
             $table->integer('status')->default(0);
             $table->date('finish_date')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
