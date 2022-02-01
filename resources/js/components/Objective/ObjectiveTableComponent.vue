@@ -48,7 +48,7 @@ export default {
                 },
                 { text: 'Edit', value: 'edit', sortable: false},
                 { text: 'Title', value: 'title' },
-                { text: 'Start', value: 'created_at' },
+                { text: 'Start', value: 'start_date' },
                 { text: 'Due', value: 'due_date' },
                 { text: 'Finish', value: 'finish_date' },
                 { text: 'Status', value: 'status' },
@@ -78,7 +78,7 @@ export default {
 
                 const row = {
                     title: objective.title,
-                    created_at: objective.created_at.split("T")[0].replaceAll("-", "/"),
+                    start_date: objective.start_date.split("T")[0].replaceAll("-", "/"),
                     due_date: objective.due_date.replaceAll("-", "/"),
                     finish_date: objective.finish_date === null ? null : objective.finish_date.replaceAll("-", "/"),
                     status: objective.status === 0 ? 'Working': 'Complete',

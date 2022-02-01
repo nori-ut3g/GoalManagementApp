@@ -50,6 +50,21 @@ class ObjectiveController extends Controller
         return new JsonResponse(['objective_id' => $objective->id]);
     }
 
+    public function setStartDate(Request $request){
+        $objective = Auth::user()
+            ->objectives()
+            ->find($request->objective_id);
+        $objective->start_date = $request->start_date;
+        $objective->save();
+    }
+    public function setDueDate(Request $request){
+        $objective = Auth::user()
+            ->objectives()
+            ->find($request->objective_id);
+        $objective->due_date = $request->due_date;
+        $objective->save();
+    }
+
     public function finish($objective_id){
         $objective = Auth::user()
             ->objectives()

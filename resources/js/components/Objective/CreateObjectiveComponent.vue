@@ -89,7 +89,8 @@ export default {
             let sendData = {
                 title : this.objective.title,
                 due_date: this.objective.due_date,
-                user_id: this.userInfo.id
+                user_id: this.userInfo.id,
+                start_date: new Date().toISOString().split("T")[0].replaceAll("-", "/")
             }
             axios.post('/api/objectives/create', sendData)
                 .then((res) => {

@@ -36,6 +36,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/objectives/create', [\App\Http\Controllers\ObjectiveController::class, 'create']);
     Route::get('/objectives/{objective_id}/finish', [\App\Http\Controllers\ObjectiveController::class, 'finish']);
     Route::get('/objectives/{objective_id}/undo_finish', [\App\Http\Controllers\ObjectiveController::class, 'undoFinish']);
+    Route::put('/objectives/update_start_date', [\App\Http\Controllers\ObjectiveController::class, 'setStartDate']);
+    Route::put('/objectives/update_due_date', [\App\Http\Controllers\ObjectiveController::class, 'setDueDate']);
 
     Route::get('/objectives/{objective_id}/tasks', [\App\Http\Controllers\TaskController::class, 'showTasks']);
     Route::post('/objectives/{objective_id}/task/create', [\App\Http\Controllers\TaskController::class, 'createTask']);
