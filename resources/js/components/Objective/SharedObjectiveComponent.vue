@@ -19,6 +19,73 @@
                             </v-icon>
                             {{objective.due_date}}
                         </v-card-text>
+                        <v-btn
+                            v-if="loggingIn"
+                            @click="dialog.show = true"
+                        >
+                            Import
+                            <v-icon>
+                                mdi-cloud-upload
+                            </v-icon>
+                        </v-btn>
+                        <v-dialog
+                            v-model="dialog.show"
+                            width="500"
+                        >
+                            <v-card>
+                                <v-card-title class="text-h5 grey lighten-2">
+                                    Import Setting
+                                </v-card-title>
+
+                                <v-text-field
+                                    v-model="dialog.newTitle"
+                                    :value="dialog.newTitle"
+                                    required
+                                    class="mx-5"
+                                    clearable
+                                ></v-text-field>
+                                <v-date-picker
+                                    v-model="dialog.newDueDate"
+                                    no-title
+                                    scrollable
+                                    :min="today"
+                                >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                        text
+                                        color="primary"
+                                        @click="dueDatePicker = false"
+                                    >
+                                        Cancel
+                                    </v-btn>
+                                    <v-btn
+                                        text
+                                        color="primary"
+                                        @click="$refs.menu.save(dialog.newDueDate)"
+                                    >
+                                        OK
+                                    </v-btn>
+                                </v-date-picker>
+
+                                <v-divider></v-divider>
+                                <v-card-actions>
+                                    <v-btn
+                                        text
+                                    >
+                                        Cancel
+                                    </v-btn>
+                                    <v-spacer></v-spacer>
+
+                                    <v-btn
+                                        color="primary"
+                                        text
+                                        @click="importObjective"
+                                    >
+                                        Import
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </v-dialog>
 
                     </v-card>
                 </v-col>
@@ -149,6 +216,14 @@ export default {
     },
     data(){
         return{
+            loggingIn:false,
+            dialog:{
+                show:false,
+                dueDatePicker:false,
+                newTitle:'',
+                newDueDate:'',
+            },
+
             objective:[],
             sharedObjective_id : this.$route.params.id,
             tasks:[],
@@ -184,10 +259,13 @@ export default {
         }
     },
     created:function () {
+        this.checkLoggingIn();
         this.getData();
-
     },
     methods:{
+        preSetNewObjectiveTitle(){
+            this.dialog.newTitle = this.objective.title;
+        },
         divideData(){
             this.card.waiting.tasks = this.tasks.filter(function(task){
                 return task.status === 0;
@@ -203,6 +281,7 @@ export default {
             axios.get(`/api/sharedObjective/${this.$route.params.id}`)
                 .then((res) => {
                     this.objective = res.data.objective
+                    this.preSetNewObjectiveTitle();
                     this.getTasks()
                 })
                 .catch((error) =>{
@@ -250,6 +329,29 @@ export default {
         prev(){
             this.$refs.calendar.prev()
         },
+        checkLoggingIn(){
+            axios.get(`/api/check`)
+            .then((res)=>{
+                if(res.data.message === "true") this.loggingIn = true;
+            })
+        },
+        importObjective(){
+            let sendData = {
+                title : this.dialog.newTitle,
+                due_date: this.dialog.newDueDate,
+                start_date: new Date().toISOString().split("T")[0].replaceAll("-", "/")
+            }
+            axios.post('/api/objectives/create', sendData)
+                .then((res) => {
+                    this.$router.push(`/objective/${res.data.objective_id}`);
+                })
+                .catch((err) =>{
+                    this.alert(err.response.data.message);
+                })
+        },
+        importTasks(){
+
+        }
 
 
 
