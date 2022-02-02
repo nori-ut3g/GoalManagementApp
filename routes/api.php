@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'register']);
 Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
 Route::get('/logout', [\App\Http\Controllers\LoginController::class, 'logout']);
+Route::get('/check', [\App\Http\Controllers\LoginController::class, 'isLoggingIn']);
 
 Route::get('/sharedObjective/{shared_objective_id}', [\App\Http\Controllers\SharedObjectiveController::class, 'getSharedObjective']);
 Route::get('/sharedObjective/{shared_objective_id}/tasks', [\App\Http\Controllers\SharedObjectiveController::class, 'getTasks']);

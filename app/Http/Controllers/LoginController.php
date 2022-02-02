@@ -14,7 +14,12 @@ use Illuminate\Http\JsonResponse;
 
 class LoginController extends Controller
 {
-
+    public function isLoggingIn(){
+        if(Auth::check()){
+            return new JsonResponse(['message' => 'true']);
+        }else{
+        } return new JsonResponse(['message' => 'false']);
+    }
 
     public function login(Request $request)
     {
