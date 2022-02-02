@@ -17,6 +17,33 @@ class TaskController extends Controller
         return Task::where('objective_id', $objective_id)->get();
     }
 
+    public function createMultipleTasks(Request $request){
+        $user = Auth::user();
+        $maxNum = $user->getMaxTasksNum();
+        $objective = Auth::user()
+            ->objectives()
+            ->find($request->objective_id);
+
+        $referenceTasks = $request->tasks;
+
+        if(count($referenceTasks) >= $maxNum){
+            $message = $maxNum . "個以上のタスクは作成できません。Importするにはアップグレードが必要です。";
+            throw new RecordUpperLimitException($message);
+        }
+        foreach ($referenceTasks as $referenceTask){
+            $newTask = new Task();
+            $newTask->order = 0;
+            $newTask->user_id = Auth::id();
+            $newTask->objective_id = $request->objective_id;
+            $newTask->status = 0;
+            $newTask->title = $referenceTask->title;
+            $newTask->note = $referenceTask->note;
+            $newTask->start_date = null;
+            $newTask->finish_date = null;
+            $newTask->save();
+        }
+    }
+
     //タスクの新規作成
     public function createTask(Request $request){
         $user = Auth::user();

@@ -41,6 +41,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::get('/objectives/{objective_id}/tasks', [\App\Http\Controllers\TaskController::class, 'showTasks']);
     Route::post('/objectives/{objective_id}/task/create', [\App\Http\Controllers\TaskController::class, 'createTask']);
+    Route::post('/objectives/task/multipleCreate', [\App\Http\Controllers\TaskController::class, 'createMultipleTasks']);
     Route::put('/objectives/{objective_id}/task/{id}/edit_title', [\App\Http\Controllers\TaskController::class, 'editTitle']);
     Route::put('/objectives/{objective_id}/task/{id}/edit_note', [\App\Http\Controllers\TaskController::class, 'editNote']);
     Route::get('/objectives/{objective_id}/task/{id}/start', [\App\Http\Controllers\TaskController::class, 'start']);
