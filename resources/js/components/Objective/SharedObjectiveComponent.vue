@@ -44,29 +44,49 @@
                                     class="mx-5"
                                     clearable
                                 ></v-text-field>
-                                <v-date-picker
-                                    v-model="dialog.newDueDate"
-                                    no-title
-                                    scrollable
-                                    :min="today"
-                                >
-                                    <v-spacer></v-spacer>
-                                    <v-btn
-                                        text
-                                        color="primary"
-                                        @click="dueDatePicker = false"
-                                    >
-                                        Cancel
-                                    </v-btn>
-                                    <v-btn
-                                        text
-                                        color="primary"
-                                        @click="$refs.menu.save(dialog.newDueDate)"
-                                    >
-                                        OK
-                                    </v-btn>
-                                </v-date-picker>
 
+                                <v-menu
+                                    ref="menu"
+                                    v-model="dialog.dueDatePicker"
+                                    :close-on-content-click="false"
+                                    :return-value.sync="dialog.newDueDate"
+                                    transition="scale-transition"
+                                    offset-y
+                                    min-width="auto"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-text-field
+                                            v-model="dialog.newDueDate"
+                                            label="Due Date"
+                                            prepend-icon="mdi-calendar"
+                                            readonly
+                                            v-bind="attrs"
+                                            v-on="on"
+                                        ></v-text-field>
+                                    </template>
+                                    <v-date-picker
+                                        v-model="dialog.newDueDate"
+                                        no-title
+                                        scrollable
+                                        :min="dialog.today"
+                                    >
+                                        <v-spacer></v-spacer>
+                                        <v-btn
+                                            text
+                                            color="primary"
+                                            @click="dialog.dueDatePicker = false"
+                                        >
+                                            Cancel
+                                        </v-btn>
+                                        <v-btn
+                                            text
+                                            color="primary"
+                                            @click="$refs.menu.save(dialog.newDueDate)"
+                                        >
+                                            OK
+                                        </v-btn>
+                                    </v-date-picker>
+                                </v-menu>
                                 <v-divider></v-divider>
                                 <v-card-actions>
                                     <v-btn
@@ -222,6 +242,7 @@ export default {
                 dueDatePicker:false,
                 newTitle:'',
                 newDueDate:'',
+                today:new Date().toISOString().split("T")[0]
             },
 
             objective:[],
@@ -330,6 +351,7 @@ export default {
             this.$refs.calendar.prev()
         },
         checkLoggingIn(){
+            console.log('aaaaa')
             axios.get(`/api/check`)
             .then((res)=>{
                 if(res.data.message === "true") this.loggingIn = true;
@@ -341,15 +363,31 @@ export default {
                 due_date: this.dialog.newDueDate,
                 start_date: new Date().toISOString().split("T")[0].replaceAll("-", "/")
             }
+
             axios.post('/api/objectives/create', sendData)
                 .then((res) => {
-                    this.$router.push(`/objective/${res.data.objective_id}`);
+                    this.importTasks(res.data.objective_id)
                 })
                 .catch((err) =>{
                     this.alert(err.response.data.message);
                 })
         },
-        importTasks(){
+        importTasks(objective_id){
+
+
+            let sendData = {
+
+                objective_id: objective_id,
+                tasks : this.tasks,
+            }
+            axios.post('/api/objectives/task/multipleCreate', sendData)
+                .then((res) => {
+                    console.log(res.data)
+                    this.$router.push(`/objective/${objective_id}`);
+                })
+                .catch((err) =>{
+                    this.alert(err.response.data.message);
+                })
 
         }
 

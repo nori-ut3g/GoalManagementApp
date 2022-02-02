@@ -74,11 +74,12 @@ export default {
             this.$router.push('/objective/'+row.id)
         },
         convertToTable(){
+            console.log(this.objectives)
             this.objectives.forEach(objective => {
 
                 const row = {
                     title: objective.title,
-                    start_date: objective.start_date.split("T")[0].replaceAll("-", "/"),
+                    start_date: objective.start_date === null ? null :objective.start_date.split("T")[0].replaceAll("-", "/"),
                     due_date: objective.due_date.replaceAll("-", "/"),
                     finish_date: objective.finish_date === null ? null : objective.finish_date.replaceAll("-", "/"),
                     status: objective.status === 0 ? 'Working': 'Complete',

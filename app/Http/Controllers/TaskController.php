@@ -36,10 +36,11 @@ class TaskController extends Controller
             $newTask->user_id = Auth::id();
             $newTask->objective_id = $request->objective_id;
             $newTask->status = 0;
-            $newTask->title = $referenceTask->title;
-            $newTask->note = $referenceTask->note;
+            $newTask->title = $referenceTask['title'];
+            $newTask->note = $referenceTask['note'];
             $newTask->start_date = null;
             $newTask->finish_date = null;
+
             $newTask->save();
         }
     }
