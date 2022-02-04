@@ -46,6 +46,10 @@ class User extends Authenticatable
         return $this->hasMany(Objective::class);
     }
 
+    public function objective(){
+        return this->hasOne(Objective::class);
+    }
+
     public function getMaxObjectivesNum(){
         return $this->max_objectives_num;
     }
@@ -53,5 +57,6 @@ class User extends Authenticatable
     public function getMaxTasksNum(){
         return $this->max_tasks_num;
     }
+
 
 }

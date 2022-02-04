@@ -75,6 +75,8 @@ class TaskController extends Controller
 
     //タスクの内容変更
     public function editTitle(string $objective_id, string $id, Request $request){
+        //TODO:check
+        $user = Auth::user();
         $task = Task::find($id);
         $task->title = $request->title;
         $task->save();

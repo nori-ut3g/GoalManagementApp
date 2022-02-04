@@ -15,6 +15,10 @@ class Objective extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function task(){
+        return $this->hasOne(Task::class);
+    }
+
     public function sharedObjectives(){
         return $this->hasMany(SharedObjective::class);
     }

@@ -20,6 +20,9 @@ class ObjectiveController extends Controller
     }
 
     public function getObjective($id){
+        //TODO:check
+        $objective = User::find($id)->objective;
+
         $objective = Objective::find($id);
         $user_id = Auth::id();
 
