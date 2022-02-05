@@ -93,7 +93,7 @@
                         </v-btn>
                         <v-calendar
                             ref="calendar"
-                            v-model="focus"
+                            v-model="calendarFocus"
                             :events="events"
                             :event-more="true"
                             @change="refreshCalenderEvents"
@@ -216,7 +216,7 @@ export default {
 
             events:[],
 
-            focus: '',
+            calendarFocus: '',
             isShared: false,
             sharedID:"",
 
@@ -281,7 +281,6 @@ export default {
         getData(){
             axios.get(`/api/objectives/${this.$route.params.id}`)
                 .then((res) => {
-                    console.log(res.data)
                     this.objective = res.data;
                     this.isCompletedObjective = this.objective.status !== 0
                 })
@@ -356,7 +355,7 @@ export default {
             this.refreshCalenderEvents()
         },
         setToday(){
-            this.focus = date
+            this.calendarFocus = date
         },
         next(){
             this.$refs.calendar.next()

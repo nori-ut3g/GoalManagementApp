@@ -15,8 +15,8 @@ class CreateObjectivesTable extends Migration
     {
         Schema::create('objectives', function (Blueprint $table) {
 //            \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
-            $table->uuid('id')->primary();
-            $table->uuid('user_id');
+            $table->id();
+            $table->foreignId('user_id');
             $table->string('title', 50);
             $table->timestamp('start_date')->nullable();
             $table->date('due_date')->nullable();

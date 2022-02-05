@@ -15,10 +15,10 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
 //            \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
-            $table->uuid('id')->primary();
+            $table->id();
             $table->bigInteger('order')->default(0);
-            $table->uuid('user_id');
-            $table->uuid('objective_id');
+            $table->foreignId('user_id');
+            $table->foreignId('objective_id');
             $table->integer('status')->default(0);
             $table->string('title', 30)->nullable();
             $table->string('note')->nullable();
