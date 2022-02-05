@@ -44,6 +44,7 @@ class ObjectiveController extends Controller
         $objective = new Objective();
         $objective->title = $request->title;
         $objective->due_date = $request->due_date;
+        $objective->start_date = $request->start_date;
 
         $user->objectives()->save($objective);
 
