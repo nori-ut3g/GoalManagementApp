@@ -397,6 +397,7 @@ export default {
         getData(){
             axios.get(`/api/objectives/${this.$route.params.id}`)
                 .then((res) => {
+                    console.log(res.data)
                     this.objective = res.data;
                     this.isCompletedObjective = this.objective.status !== 0
                 })
