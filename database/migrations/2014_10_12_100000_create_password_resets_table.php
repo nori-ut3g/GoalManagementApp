@@ -15,6 +15,7 @@ class CreatePasswordResetsTable extends Migration
     {
         Schema::create('password_resets', function (Blueprint $table) {
 //            \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
+            $table->id();
             $table->string('email')->index();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
