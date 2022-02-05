@@ -18,11 +18,13 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         DB::table('users')->insert([
             'name' => 'Nori',
-            'email' => 'nori.ut3g@gmail.com',
+            'email' => 'sample.sample@sample.com',
             'password' => Hash::make('password'),
             'max_objectives_num' => 100,
             'max_tasks_num' => 100,
 
         ]);
+
+        $this->call(ObjectivesTableSeeder::class);
     }
 }
