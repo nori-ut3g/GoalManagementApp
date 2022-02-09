@@ -1,24 +1,33 @@
 <template>
     <div>
+<!--        Header-->
         <header-component>
-
         </header-component>
+
+<!--        Main-->
         <v-main>
             <v-row>
+<!--                Objective Card Section-->
                 <v-col cols="12">
                     <v-card>
+
+<!--                        Objective Title-->
                         <v-card-title>
                             <v-icon>
                                 mdi-flag-checkered
                             </v-icon>
                             {{objective.title}}
                         </v-card-title>
+
+<!--                        Due Date-->
                         <v-card-text>
                             <v-icon>
                                 mdi-calendar-range
                             </v-icon>
                             {{objective.due_date}}
                         </v-card-text>
+
+<!--                        Import Btn-->
                         <v-btn
                             v-if="loggingIn"
                             @click="dialog.show = true"
@@ -28,6 +37,8 @@
                                 mdi-cloud-upload
                             </v-icon>
                         </v-btn>
+
+<!--                        Setting Import Objective-->
                         <v-dialog
                             v-model="dialog.show"
                             width="500"
