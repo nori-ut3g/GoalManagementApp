@@ -24,6 +24,7 @@
                     <log-in-component
                         @parent-cancel="loginCancel"
                         @alert="showAlert"
+                        :to-after-logged-in="toAfterLoggedIn"
                     ></log-in-component>
 
                     <v-divider></v-divider>
@@ -51,6 +52,7 @@
                     <sign-up-component
                         @parent-cancel="signUpCancel"
                         @alert="showAlert"
+                        :to-after-logged-in="toAfterLoggedIn"
                     ></sign-up-component>
 
                     <v-divider></v-divider>
@@ -138,6 +140,11 @@ import SignUpComponent from "./SignUpComponent";
 export default {
     name: "HeaderComponent",
     components: {SignUpComponent, LogInComponent},
+    props: {
+        toAfterLoggedIn:{
+            type: String,
+        }
+    },
     data() {
         return {
             sideBar: false,

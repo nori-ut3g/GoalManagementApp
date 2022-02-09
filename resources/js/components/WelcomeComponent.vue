@@ -66,18 +66,13 @@ export default {
     },
     methods:{
         checkAuth(){
-
-            axios.get('/api/user')
+            axios.get('/api/check')
                 .then((res) => {
-                    this.$router.push('/home')
-                })
-                .catch((err) => {
-                    if(err.response.status === 401){
-
+                    if (res.data.message === "true") {
+                        this.$router.push('/home')
                     }
                 })
         },
-
         loginCancel(){
             this.loginDialog = false;
         },

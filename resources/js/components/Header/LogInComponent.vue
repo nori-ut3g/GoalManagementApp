@@ -27,6 +27,12 @@
 <script>
 export default {
     name: "LogInComponent",
+    props: {
+        toAfterLoggedIn:{
+            type: String,
+            default: '/home'
+        }
+    },
     data(){
         return {
             user:{},
@@ -42,7 +48,8 @@ export default {
         login(){
             axios.post('/api/login', this.user)
                 .then((res) => {
-                    this.$router.push('/home')
+                    this.$router.go({path: this.toAfterLoggedIn, force: true})
+                    // this.$router.push(this.toAfterLoggedIn)
                 })
                 .catch((err) => {
                     this.showAlert(err.response.data.message);

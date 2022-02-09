@@ -1,7 +1,9 @@
 <template>
     <div>
 <!--        Header-->
-        <header-component>
+        <header-component
+            :to-after-logged-in="afterLoggingInLink"
+        >
         </header-component>
 
 <!--        Main-->
@@ -288,11 +290,13 @@ export default {
             focus: '',
             isShared: false,
             sharedID:"",
+            afterLoggingInLink:""
         }
     },
     created:function () {
         this.checkLoggingIn();
         this.getData();
+        this.setAfterLoggingInLink();
     },
     methods:{
         preSetNewObjectiveTitle(){
@@ -400,11 +404,10 @@ export default {
                     this.alert(err.response.data.message);
                 })
 
+        },
+        setAfterLoggingInLink(){
+            this.afterLoggingInLink = '/share/objective/' + this.$route.params.id
         }
-
-
-
-
     }
 }
 </script>
