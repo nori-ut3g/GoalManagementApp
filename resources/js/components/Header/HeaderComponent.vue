@@ -157,32 +157,36 @@ export default {
             signUpDialog : false
         }
     },
-    computed:{
-
-
-
-    },
     created:function(){
-        // this.autoLogin();
         this.checkAuth();
     },
     methods:{
         checkAuth(){
-            axios.get('/api/user')
+            axios.get('/api/check')
                 .then((res) => {
-                    this.isLoggedIn = true;
-                    this.userInfo = res.data;
+                    if(res.data.message === "true"){
+                        this.isLoggedIn = true;
+                        this.getUserData();
+                    }
+                    else{
+                        this.isLoggedIn = false;
+                    }
+
                 })
                 .catch((err) => {
                     this.isLoggedIn = false;
                 })
         },
+        getUserData(){
+            axios.get('/api/user')
+                .then((res) => {
+                    this.userInfo = res.data
+                })
+        },
         logout() {
             this.isLoggedIn = false;
-
             axios.get('/api/logout')
                 .then((res) => {
-                    console.log(res.data)
                     this.userInfo = []
                     this.$router.push('/')
             })
