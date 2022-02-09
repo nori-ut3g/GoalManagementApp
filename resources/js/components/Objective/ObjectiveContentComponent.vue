@@ -244,7 +244,7 @@ export default {
                 objective_id : this.objective_id,
                 status : status,
                 title: "",
-                note: "newContent",
+                note: "",
             }
             axios.post(`/api/objectives/${this.objective_id}/task/create`, sendData)
                 .then((res) => {
