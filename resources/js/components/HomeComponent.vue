@@ -82,7 +82,6 @@ export default {
         this.getData();
     },
     methods:{
-
         getData(){
             axios.get('/api/user')
                 .then((res) => {
@@ -91,7 +90,6 @@ export default {
                 })
                 .catch((err) => {
                 })
-
         },
         getObjectives(){
             axios.get('/api/objectives')

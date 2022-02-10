@@ -372,7 +372,6 @@ export default {
 
     methods: {
         deleteAllGoals: function(){
-            console.log('ddd')
             axios.delete('/api/objectives/delete')
                 .then((res) => {
                 })

@@ -73,7 +73,6 @@ export default {
     },
     methods:{
         getSharedObjectives(){
-
             axios.get('/api/shared_objectives')
                 .then((res) => {
                     this.table=[]

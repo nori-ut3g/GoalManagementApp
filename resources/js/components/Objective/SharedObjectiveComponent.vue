@@ -366,7 +366,6 @@ export default {
             this.$refs.calendar.prev()
         },
         checkLoggingIn(){
-            console.log('aaaaa')
             axios.get(`/api/check`)
             .then((res)=>{
                 if(res.data.message === "true") this.loggingIn = true;
@@ -388,16 +387,12 @@ export default {
                 })
         },
         importTasks(objective_id){
-
-
             let sendData = {
-
                 objective_id: objective_id,
                 tasks : this.tasks,
             }
             axios.post('/api/objectives/task/multipleCreate', sendData)
                 .then((res) => {
-                    console.log(res.data)
                     this.$router.push(`/objective/${objective_id}`);
                 })
                 .catch((err) =>{
