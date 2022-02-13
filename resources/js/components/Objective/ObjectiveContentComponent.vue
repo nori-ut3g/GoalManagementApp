@@ -60,37 +60,55 @@
 
                 <v-col cols="12">
                     <v-sheet>
-                        <v-btn
-                            fab
-                            text
-                            small
-                            color="grey darken-2"
-                            @click="prev"
+                        <v-col
+                            cols="12"
                         >
-                            <v-icon small>
-                                mdi-chevron-left
-                            </v-icon>
-                        </v-btn>
-                        <v-btn
-                            outlined
-                            class="mr-4"
-                            color="grey darken-2"
-                            @click="setToday"
-                        >
-                            Today
-                        </v-btn>
+                            <v-btn
+                                fab
+                                text
+                                small
+                                color="grey darken-2"
+                                @click="prev"
+                            >
+                                <v-icon small>
+                                    mdi-chevron-left
+                                </v-icon>
+                            </v-btn>
+                            <v-btn
+                                outlined
+                                class="mr-4"
+                                color="grey darken-2"
+                                @click="setToday"
+                            >
+                                Today
+                            </v-btn>
 
-                        <v-btn
-                            fab
-                            text
-                            small
-                            color="grey darken-2"
-                            @click="next"
+                            <v-btn
+                                fab
+                                text
+                                small
+                                color="grey darken-2"
+                                @click="next"
+                            >
+                                <v-icon small>
+                                    mdi-chevron-right
+                                </v-icon>
+                            </v-btn>
+                        </v-col>
+                        <v-col
+                            cols="12"
                         >
-                            <v-icon small>
-                                mdi-chevron-right
-                            </v-icon>
-                        </v-btn>
+                            <v-row
+                                justify="center"
+                            >
+                                <div
+                                    v-if="$refs.calendar"
+                                >
+                                    {{ $refs.calendar.title }}
+                                </div>
+                            </v-row>
+                        </v-col>
+
                         <v-calendar
                             ref="calendar"
                             v-model="calendarFocus"

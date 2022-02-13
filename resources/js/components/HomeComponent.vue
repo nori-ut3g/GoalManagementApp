@@ -45,6 +45,15 @@
                     </v-icon>
                 </v-btn>
             </v-col>
+            <v-row
+                justify="center"
+            >
+                <div
+                    v-if="$refs.calendar"
+                >
+                    {{ $refs.calendar.title }}
+                </div>
+            </v-row>
 
             <v-col
                 cols=12
