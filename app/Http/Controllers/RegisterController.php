@@ -64,7 +64,7 @@ class RegisterController extends Controller
 
     public function changeName(Request $request){
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:20', 'min:4'],
+            'name' => ['required', 'string', 'max:20'],
         ]);
 
         if ($validator->fails()) {

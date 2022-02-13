@@ -47,7 +47,7 @@
                         >
                             <v-card>
                                 <v-card-title class="text-h5 grey lighten-2">
-                                    Import Setting
+                                    Import Tasks
                                 </v-card-title>
 
                                 <v-text-field
@@ -56,6 +56,8 @@
                                     required
                                     class="mx-5"
                                     clearable
+                                    :rules="rules.titleInput"
+                                    counter="50"
                                 ></v-text-field>
 
                                 <v-menu
@@ -303,11 +305,14 @@ export default {
             },
 
             events:[],
-            tempDate:"", //test用,
             focus: '',
             isShared: false,
             sharedID:"",
-            afterLoggingInLink:""
+            afterLoggingInLink:"",
+
+            rules:{
+                titleInput:[v => v.length <= 50 || 'Title は50字以内で入力してください。'],
+            }
         }
     },
     created:function () {

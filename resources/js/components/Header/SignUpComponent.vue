@@ -1,17 +1,22 @@
 <template>
-    <div>
+    <v-form
+        ref="form"
+        lazy-validation
+    >
         <v-col cols="12">
             <v-text-field
                 label="UserName"
                 hint="20文字以内で入力してください。"
                 v-model="user.name"
                 counter="20"
+                :rules="[rules.name.counter, rules.name.require]"
             ></v-text-field>
         </v-col>
         <v-col cols="12">
             <v-text-field
                 label="Email Address"
                 v-model="user.email"
+                :rules="[rules.email.email, rules.email.require]"
             ></v-text-field>
 
         </v-col>
@@ -23,6 +28,7 @@
                 :type="show.password ? 'text' : 'password'"
                 :append-icon="show.password ? 'mdi-eye' : 'mdi-eye-off'"
                 @click:append="show.password = !show.password"
+                :rules="[rules.password.counter, rules.password.require]"
             ></v-text-field>
         </v-col>
         <v-divider></v-divider>
@@ -32,7 +38,7 @@
             <v-btn @click="submit">Sign Up</v-btn>
         </v-card-actions>
 
-    </div>
+    </v-form>
 </template>
 
 <script>
@@ -53,19 +59,38 @@ export default {
             },
             show:{
                 password:false
+            },
+            rules:{
+                name:{
+                    counter:value => (value !== undefined && value.length) <= 20 || 'Max 20',
+                    require:value => !!value || 'Required.'
+                },
+                email:{
+                    email:value => {
+                        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                        return pattern.test(value) || 'Invalid e-mail.'
+                    },
+                    require:value => !!value || 'Required.'
+                },
+                password:{
+                    counter:value => (value !== undefined && value.length) >= 8 || 'Mix 8',
+                    require:value => !!value || 'Required.'
+                }
             }
         }
     },
 
     methods: {
         submit(){
-            axios.post('/api/register', this.user)
-            .then((res) => {
-                this.login()
-            })
-            .catch((err) =>{
-                this.showAlert(err.response.data.message);
-            })
+            if(this.$refs.form.validate()) {
+                axios.post('/api/register', this.user)
+                    .then((res) => {
+                        this.login()
+                    })
+                    .catch((err) => {
+                        this.showAlert(err.response.data.message);
+                    })
+            }
         },
         login(){
             axios.post('/api/login', this.user)

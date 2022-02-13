@@ -3,13 +3,20 @@
         :color="cardColor"
     >
         <v-col cols="12">
-            <v-text-field
-                label="Task"
-                v-model="task.title"
-                :readonly="!title.edit"
-                @click="title.edit = true"
-                @blur="taskTitleFieldOutFocus(task.title)"
-            ></v-text-field>
+            <v-form
+                ref="titleForm"
+                lazy-validation
+            >
+                <v-text-field
+                    label="Task"
+                    v-model="task.title"
+                    :readonly="!title.edit"
+                    @click="title.edit = true"
+                    @blur="taskTitleFieldOutFocus(task.title)"
+                    :rules="rules.titleInput"
+                    counter="30"
+                ></v-text-field>
+            </v-form>
 
             <v-icon
                 v-if="task.status !== 0"
@@ -37,7 +44,10 @@
 
             <v-expand-transition>
                 <div v-show="show">
-                    <div>
+                    <v-form
+                        ref="noteForm"
+                        lazy-validation
+                    >
                         <v-textarea
                             label="Note"
                             v-model="task.note"
@@ -46,8 +56,10 @@
                             @click="note.edit = true"
                             @blur="taskNoteFieldOutFocus(task.note)"
                             outlined
+                            :rules="rules.noteInput"
+                            counter="255"
                         ></v-textarea>
-                    </div>
+                    </v-form>
                     <v-icon
                         v-if="task.status === 2"
                         @click="datePickerDialog = true"
@@ -195,6 +207,11 @@ export default {
             },
             note:{
                 edit:false,
+            },
+
+            rules:{
+                titleInput:[v => (v !== null &&  v.length <= 30) || 'Title は30字以内で入力してください。'],
+                noteInput:[v => (v !== null &&  v.length <= 255)  || 'note は255字以内で入力してください。'],
             }
         }
     },
@@ -288,23 +305,27 @@ export default {
             let sendDate = {
                 "title": title
             }
-            axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_title`, sendDate)
-                .then(() => {
-                    this.refresh();
-                })
-                .catch(() =>{
-                })
+            if(this.$refs.titleForm.validate()) {
+                axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_title`, sendDate)
+                    .then(() => {
+                        this.refresh();
+                    })
+                    .catch(() => {
+                    })
+            }
         },
         changeNote(note){
             let sendDate = {
                 "note": note
             }
-            axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_note`, sendDate)
-                .then(() => {
-                    this.refresh();
-                })
-                .catch(() =>{
-                })
+            if(this.$refs.noteForm.validate()) {
+                axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/edit_note`, sendDate)
+                    .then(() => {
+                        this.refresh();
+                    })
+                    .catch(() => {
+                    })
+            }
         },
         taskTitleFieldOutFocus(title){
             this.changeTitle(title);

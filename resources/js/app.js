@@ -52,10 +52,6 @@ const router = new VueRouter({
             path: '/login',
             component: LogInComponent
         },
-        // {
-        //     path: '/main',
-        //     component: ObjectiveContentComponent
-        // },
         {
             path: '/list',
             component: ObjectiveTableComponent
