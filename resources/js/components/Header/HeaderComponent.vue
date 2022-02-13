@@ -18,6 +18,11 @@
                         @click.stop="sideBar=!sideBar"
                     ></v-app-bar-nav-icon>
                     <v-btn v-if="isLoggedIn" to="/home">Home</v-btn>
+
+                    <v-spacer></v-spacer>
+                    <h1 class="font-weight-bold text-center">
+                        Task Management App
+                    </h1>
                     <v-spacer></v-spacer>
 
                     <v-btn

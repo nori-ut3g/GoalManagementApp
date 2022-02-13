@@ -2,18 +2,21 @@
 <div>
     <header-component>
     </header-component>
-    <v-container class="grey">
+    <v-container>
         <v-row
             justify="center"
         >
             <!--                 メインのカルーセル -->
-            <v-col cols="12">
-                <h1 class="font-weight-bold">
+            <v-col
+                cols="12"
+                class="my-5"
+            >
+                <h1 class="font-weight-bold text-center">
                     目標達成者と同じことをすることが一番の近道
                 </h1>
-                <p>
-                    このアプリで、目標達成者のToDoListを自分のものにしてしまおう
-                </p>
+                <h3 class="font-weight-bold text-center">
+                    目標達成者のToDoListを自分のものにしてしまおう
+                </h3>
             </v-col>
             <v-col cols="12">
                 <v-carousel
@@ -24,8 +27,9 @@
                         :key="i"
                     >
                         <v-card
+                            color="lime lighten-4"
                         >
-                            <v-card-title class="text-h6">
+                            <v-card-title class="font-weight-bold text-center">
                                 {{page.text}}
                             </v-card-title>
 
@@ -37,26 +41,26 @@
                     </v-carousel-item>
                 </v-carousel>
             </v-col>
-
-            <v-col cols="12">
-                <h1 class="font-weight-bold">
+            <v-col
+                cols="12"
+                class="my-5"
+            >
+                <h1 class="font-weight-bold text-center">
                     シンプルな進捗管理
                 </h1>
-                <p>
-
-                </p>
             </v-col>
             <v-col cols="12">
                 <v-carousel
                     height="vh50"
                 >
                     <v-carousel-item
-                        v-for="(page, i) in carousel.section1"
+                        v-for="(page, i) in carousel.section2"
                         :key="i"
                     >
                         <v-card
+                            color="lime lighten-4"
                         >
-                            <v-card-title class="text-h6">
+                            <v-card-title class="font-weight-bold text-center">
                                 {{page.text}}
                             </v-card-title>
 
@@ -67,49 +71,6 @@
                         </v-card>
                     </v-carousel-item>
                 </v-carousel>
-            </v-col>
-
-            <!--                 補足事項のカルーセル -->
-            <v-col cols="12">
-                <v-row>
-                    <v-col cols="6">
-                        <div >
-                            <h1 class="font-weight-bold">
-                                カレンダーで進捗管理
-                            </h1>
-                            <p>
-                                目標を設定した
-                            </p>
-                        </div>
-
-                    </v-col>
-                    <v-col cols="6">
-                        <v-carousel
-                            height="100%"
-                        >
-                            <v-carousel-item
-                                v-for="(page, i) in carousel.section2"
-                                :key="i"
-                            >
-                                <v-card
-                                    align="center"
-                                    justify="center"
-                                >
-                                    <v-card-title class="text-h6">
-                                        {{page.text}}
-                                    </v-card-title>
-
-                                    <v-img
-
-                                        :src='page.img'
-                                        class="grey darken-4"
-                                        contain
-                                    ></v-img>
-                                </v-card>
-                            </v-carousel-item>
-                        </v-carousel>
-                    </v-col>
-                </v-row>
             </v-col>
         </v-row>
     </v-container>
@@ -141,24 +102,28 @@ export default {
                     },
                     {
                         img:require('../../img/welcome/1-2.png').default,
-                        text:'Importして、',
+                        text:'良さそうだったら',
                     },
                     {
                         img:require('../../img/welcome/1-3.png').default,
+                        text:'Importして',
+                    },
+                    {
+                        img:require('../../img/welcome/1-4.png').default,
                         text:'自分のToDoListとして使おう',
                     },
                 ],
                 section2:[
                     {
-                        img:'https://picsum.photos/350/165?random',
+                        img:require('../../img/welcome/2-1.png').default,
                         text:'Taskの進捗はシンプルにWaiting, Working, Completeの3つに分けて管理',
                     },
                     {
-                        img:'https://picsum.photos/350/165?random',
+                        img:require('../../img/welcome/2-2.png').default,
                         text:'カレンダーで進捗が一目瞭然',
                     },
                     {
-                        img:'https://picsum.photos/350/165?random',
+                        img:require('../../img/welcome/2-3.png').default,
                         text:'目標達成したら後学のためシェアしよう',
                     },
                 ],
