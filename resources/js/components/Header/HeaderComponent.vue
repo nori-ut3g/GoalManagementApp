@@ -1,82 +1,101 @@
 <template>
     <div>
-        <v-app-bar app clippedLeft flat dark color="indigo darken-3">
-            <v-app-bar-nav-icon
-                v-if="isLoggedIn"
-                @click.stop="sideBar=!sideBar"
-            ></v-app-bar-nav-icon>
-            <v-btn v-if="isLoggedIn" to="/home">Home</v-btn>
-            <v-spacer></v-spacer>
+        <v-app-bar
+            app
+            clippedLeft
+            flat
+            dark
+            :prominent="alert.isShow"
+            color="indigo darken-3"
+        >
 
-            <v-btn
-                @click="loginDialog = true"
-                v-if="!isLoggedIn"
-            >login</v-btn>
-            <v-dialog
-                v-model="loginDialog"
-                width="500"
-            >
-                <v-card>
-                    <v-card-title class="text-h5 grey lighten-2">
-                        LogIn
-                    </v-card-title>
+            <v-container>
+                <v-row>
+                    <v-app-bar-nav-icon
+                        v-if="isLoggedIn"
+                        @click.stop="sideBar=!sideBar"
+                    ></v-app-bar-nav-icon>
+                    <v-btn v-if="isLoggedIn" to="/home">Home</v-btn>
+                    <v-spacer></v-spacer>
 
-                    <log-in-component
-                        @parent-cancel="loginCancel"
-                        @alert="showAlert"
-                        :to-after-logged-in="toAfterLoggedIn"
-                    ></log-in-component>
+                    <v-btn
+                        @click="loginDialog = true"
+                        v-if="!isLoggedIn"
+                    >login</v-btn>
+                    <v-dialog
+                        v-model="loginDialog"
+                        width="500"
+                    >
+                        <v-card>
+                            <v-card-title class="text-h5 grey lighten-2">
+                                LogIn
+                            </v-card-title>
 
-                    <v-divider></v-divider>
+                            <log-in-component
+                                @parent-cancel="loginCancel"
+                                @alert="showAlert"
+                                :to-after-logged-in="toAfterLoggedIn"
+                            ></log-in-component>
 
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                    </v-card-actions>
-                </v-card>
-            </v-dialog>
+                            <v-divider></v-divider>
 
-            <v-btn
-                @click="signUpDialog = true"
-                v-if="!isLoggedIn"
-            >SignUp</v-btn>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
 
-            <v-dialog
-                v-model="signUpDialog"
-                width="500"
-            >
-                <v-card>
-                    <v-card-title class="text-h5 grey lighten-2">
-                        SignUp
-                    </v-card-title>
+                    <v-btn
+                        @click="signUpDialog = true"
+                        v-if="!isLoggedIn"
+                    >SignUp</v-btn>
 
-                    <sign-up-component
-                        @parent-cancel="signUpCancel"
-                        @alert="showAlert"
-                        :to-after-logged-in="toAfterLoggedIn"
-                    ></sign-up-component>
+                    <v-dialog
+                        v-model="signUpDialog"
+                        width="500"
+                    >
+                        <v-card>
+                            <v-card-title class="text-h5 grey lighten-2">
+                                SignUp
+                            </v-card-title>
 
-                    <v-divider></v-divider>
+                            <sign-up-component
+                                @parent-cancel="signUpCancel"
+                                @alert="showAlert"
+                                :to-after-logged-in="toAfterLoggedIn"
+                            ></sign-up-component>
 
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                    </v-card-actions>
-                </v-card>
-            </v-dialog>
+                            <v-divider></v-divider>
 
-            <v-btn
-                @click="logout"
-                v-if="isLoggedIn"
-            >Logout</v-btn>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+
+                    <v-btn
+                        @click="logout"
+                        v-if="isLoggedIn"
+                    >Logout</v-btn>
+                </v-row>
+                <v-row
+                    class="justify-center"
+                >
+                    <v-alert
+                        border="top"
+                        color="red lighten-2"
+                        dark
+                        v-if="alert.isShow"
+                    >
+                        {{alert.message}}
+                    </v-alert>
+
+                </v-row>
+            </v-container>
 
         </v-app-bar>
-        <v-alert
-            border="top"
-            color="red lighten-2"
-            dark
-            v-if="alert.isShow"
-        >
-            {{alert.message}}
-        </v-alert>
+
+
         <v-navigation-drawer
             app
             clipped

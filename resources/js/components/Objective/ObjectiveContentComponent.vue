@@ -150,6 +150,7 @@
                                 </v-container>
                             </v-expansion-panels>
                         <v-spacer></v-spacer>
+<!--                        TODO:maxTask-->
                         <v-btn @click="createTask(0)">Create</v-btn>
                     </v-card>
                 </v-col>
@@ -306,6 +307,7 @@ export default {
             })
         },
         getData(){
+
             axios.get(`/api/objectives/${this.$route.params.id}`)
                 .then((res) => {
                     this.objective = res.data;
