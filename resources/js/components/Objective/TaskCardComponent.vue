@@ -341,7 +341,7 @@ export default {
             let sendDate = {
                 "start_date": this.task.start_date
             }
-            axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/start`, sendDate)
+            axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/start`, sendDate)
                 .then(() => {
                     this.startDateMenu = false;
                     this.refresh();
@@ -353,7 +353,7 @@ export default {
             let sendDate = {
                 "finish_date": this.task.finish_date
             }
-            axios.post(`/api/objectives/${this.objectiveId}/task/${this.task.id}/finish`, sendDate)
+            axios.put(`/api/objectives/${this.objectiveId}/task/${this.task.id}/finish`, sendDate)
                 .then((res) => {
                     this.finishDateMenu = false;
                     this.refresh();
