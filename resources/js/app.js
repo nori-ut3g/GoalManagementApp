@@ -39,49 +39,53 @@ const router = new VueRouter({
         {
             path: '/',
             component: welcomeComponent,
+            meta: { title: 'Task Management App' }
         },
         {
             path: '/home',
             component: HomeComponent,
-        },
-        {
-            path: '/signup',
-            component: SignUpComponent
-        },
-        {
-            path: '/login',
-            component: LogInComponent
+            meta: { title: 'Task Management App' }
         },
         {
             path: '/list',
-            component: ObjectiveTableComponent
+            component: ObjectiveTableComponent,
+            meta: { title: 'Task Management App' }
         },
         {
             path: '/create',
-            component: CreateObjectiveComponent
+            component: CreateObjectiveComponent,
+            meta: { title: 'Task Management App' }
         },
         {
             path: '/objective/:id',
-            component: ObjectiveContentComponent
+            component: ObjectiveContentComponent,
+            meta: { title: 'Task Management App' }
         },
         {
             path: '/share/objective/:id',
-            component: SharedObjectiveComponent
+            component: SharedObjectiveComponent,
+            meta: { title: 'Task Management App' }
         },
         {
             path: '/UserSettings',
-            component: UserSettingsComponent
+            component: UserSettingsComponent,
+            meta: { title: 'Task Management App' }
         },
         {
             path: '/share/list',
-            component: SharedObjectiveTableComponent
+            component: SharedObjectiveTableComponent,
+            meta: { title: 'Task Management App' }
         },
 
 
     ]
     }
 )
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title
 
+    next()
+});
 
 /**
  * The following block of code may be used to automatically register your
