@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="app">
         <v-container>
             <v-main>
                 <router-view
@@ -22,5 +22,9 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
+#app {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
 
 </style>
