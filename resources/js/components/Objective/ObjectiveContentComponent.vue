@@ -10,13 +10,26 @@
                 <v-col cols="12">
                     <v-card>
                         <v-card-title>
-                            <v-icon
+                            <v-btn
+                                class="mx-2"
+                                fab
+                                small
                                 v-if="!isCompletedObjective"
                                 @click="achieveObjective"
                             >
-                                mdi-flag-checkered
-                            </v-icon>
-                            {{objective.title}}
+                                <v-icon>
+                                    mdi-flag-checkered
+                                </v-icon>
+                            </v-btn>
+                            <div>
+                                {{objective.title}}
+                            </div>
+                            <v-spacer></v-spacer>
+                            <v-switch
+                                v-model="isShared"
+                                :label="isShared ? 'Share' : 'Private'"
+                                @change="switchShareOrPrivate"
+                            ></v-switch>
                         </v-card-title>
                         <v-card-text>
                             <v-icon>
@@ -24,13 +37,8 @@
                             </v-icon>
                             {{objective.due_date}}
                         </v-card-text>
-
-                        <v-switch
-                            v-model="isShared"
-                            :label="isShared ? 'Share' : 'Private'"
-                            @change="switchShareOrPrivate"
-                        ></v-switch>
                         <v-btn
+                            class="mx-2"
                             v-if="isShared"
                             @click="openPreview"
                         >
@@ -42,6 +50,7 @@
 
 
                         <v-btn
+                            class="mx-2"
                             color="#1DA1F2"
                             :href="twitterShareURL"
                             v-if="isShared"
@@ -249,7 +258,7 @@ export default {
     },
     computed:{
         twitterShareURL(){
-            return "https://twitter.com/intent/tweet?url="+ "https://manage-goals.com" + "/#/share/objective/" + this.sharedID + "&text=GoalManagementApp&hashtags=portfolio";
+            return "https://twitter.com/intent/tweet?url="+ "https://manage-goals.com/share/objective/" + this.sharedID + "&text=GoalManagementApp&hashtags=portfolio";
         },
         shareURL(){
             return "localhost/share/objective/" + this.sharedID;
@@ -412,10 +421,10 @@ export default {
         },
         openPreview(){
             // window.open("https://manage-goals.com/share/objective/" + this.sharedID,'_blank')
-            window.open("#/share/objective/" + this.sharedID,'_blank')
+            window.open("/share/objective/" + this.sharedID,'_blank')
         },
         achieveObjective(){
-            if (confirm('チェック後タスクの編集はできますが、目標の達成日は編集できません。よろしいですか？')){
+            if (confirm('目標を達成しますか？')){
                 axios.get(`/api/objectives/${this.objective_id}/finish`)
                     .then((res) => {
                         this.isCompletedObjective = true;

@@ -28,7 +28,7 @@ window.Vue = require('vue').default;
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-    mode: 'hash',
+    mode: 'history',
     data(){
         return {
             isLoggedIn: false
