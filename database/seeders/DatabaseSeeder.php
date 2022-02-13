@@ -16,14 +16,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        DB::table('users')->insert([
-            'name' => 'Nori',
-            'email' => 'sample.sample@sample.com',
-            'password' => Hash::make('password'),
-            'max_objectives_num' => 100,
-            'max_tasks_num' => 100,
-
-        ]);
+//        DB::table('users')->insert([
+//            'name' => 'Nori',
+//            'email' => 'sample.sample@sample.com',
+//            'password' => Hash::make('password'),
+//            'max_objectives_num' => 100,
+//            'max_tasks_num' => 100,
+//
+//        ]);
 
         $this->call(ObjectivesTableSeeder::class);
     }
