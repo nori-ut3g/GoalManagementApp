@@ -9,7 +9,9 @@
             color="indigo darken-3"
         >
 
-            <v-container>
+            <v-container
+            fluid
+            >
                 <v-row>
                     <v-app-bar-nav-icon
                         v-if="isLoggedIn"

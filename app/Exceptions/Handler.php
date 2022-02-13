@@ -73,7 +73,7 @@ class Handler extends ExceptionHandler
             // controllerでthrow new ValidationException($validator)をなげる
             return response()->json([
                 'message' => $e->message
-            ], 401);
+            ], 406);
         }
 //        else if($e instanceof QueryException){
 //            // migrationでUserに上限Objective設定
