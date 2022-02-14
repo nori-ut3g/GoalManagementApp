@@ -16,15 +16,17 @@ GET https://goal-management.com/api/sharedObjective/{shared_objective_id}
 ### 応答
 ```js
 {
-    [
-        {
-            id:a ,
-            'user_id':
-            'title':
-            'due_date':
-            'create_at':         
-        }
-    ]
+    {
+        created_at: "2022-02-14T15:53:54.000000Z"
+        due_date: "2022-02-18"
+        finish_date: null
+        id: 12
+        start_date: "2022-02-14 00:00:00"
+        status: 0
+        title: "dddd"
+        updated_at: "2022-02-14T15:53:54.000000Z"
+        user_id: 5        
+    }
 }
 ```
 

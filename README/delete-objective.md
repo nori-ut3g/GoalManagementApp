@@ -17,15 +17,17 @@ DELETE https://goal-management.com/api/objectives/{objective_id}/delete
 ### 応答
 ```js
 {
-    [
-        {
-            id:a ,
-            'user_id':
-            'title':
-            'due_date':
-            'create_at':         
-        }
-    ]
+    created_at: "2022-02-14T15:57:43.000000Z"
+    finish_date: null
+    id: 36
+    note: "fdsd"
+    objective_id: 12
+    order: 0
+    start_date: null
+    status: 0
+    title: "ds"
+    updated_at: "2022-02-14T15:57:49.000000Z"
+    user_id: 5
 }
 ```
 
