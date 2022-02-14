@@ -3,7 +3,7 @@
 
 ### エンドポイント
 ```
-POST https://goal-management.com/api/logout
+GET https://goal-management.com/api/check
 ```
 
 
@@ -12,17 +12,15 @@ POST https://goal-management.com/api/logout
 |-----|--------|--|
 | ヘッダー  | `name` | UserName　Max:20 |
 
-
-
 ### 応答
 | 名称     | 内容 |
 |--------|--|
-| `message` | ログアウトしました |
+| `message` | ログインしているかどうか "true" "false|
 
-
+### 応答
 ```js
 {
-    message:'ログアウトしました'
+    message:'true'
 }
 ```
 

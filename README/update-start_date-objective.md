@@ -3,7 +3,7 @@ User
 
 ### エンドポイント
 ```
-POST https://goal-management.com/api/objectives/create  
+PUT https://goal-management.com/api/api/objectives/update_start_date 
 ```
 
 

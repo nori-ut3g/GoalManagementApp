@@ -1,9 +1,9 @@
 ### 権限
-
+必要
 
 ### エンドポイント
 ```
-GET https://goal-management.com/api/sharedObjective/{shared_objective_id}
+GET https://goal-management.com/api/user
 ```
 
 
@@ -13,18 +13,16 @@ GET https://goal-management.com/api/sharedObjective/{shared_objective_id}
 | 本文  | `name` | UserName　Max:20 |
 | 本文  | `email` | UserName　unique |
 | 本文  | `password` | UserName　Min:8 |
+
 ### 応答
+| 名称     | 内容 |
+|--------|--|
+| `message` | ログアウトしました |
+
 ```js
 {
-    [
-        {
-            id:a ,
-            'user_id':
-            'title':
-            'due_date':
-            'create_at':         
-        }
-    ]
+    message:'ユーザ登録しました'
 }
 ```
+### Error
 

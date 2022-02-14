@@ -3,7 +3,7 @@ User
 
 ### エンドポイント
 ```
-POST https://goal-management.com/api/objectives/create  
+GET https://goal-management.com/api/objectives/{objective_id}/undo_finish
 ```
 
 

@@ -3,7 +3,7 @@ User
 
 ### エンドポイント
 ```
-GET https://goal-management.com/api/objectives
+GET https://goal-management.com/api/objective/{objective_id}/task/{id}/finish
 ```
 
 

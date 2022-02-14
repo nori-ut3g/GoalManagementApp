@@ -3,7 +3,7 @@ User
 
 ### エンドポイント
 ```
-GET https://goal-management.com/api/objectives
+DELETE https://goal-management.com/api/objective/{objective_id}/task/{id}/delete
 ```
 
 
