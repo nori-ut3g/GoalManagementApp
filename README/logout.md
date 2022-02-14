@@ -10,7 +10,7 @@ POST https://goal-management.com/api/logout
 ### パラメータ
 | 場所  | 名称     | 内容 |
 |-----|--------|--|
-| ヘッダー  | `name` | UserName　Max:20 |
+
 
 
 
@@ -19,7 +19,7 @@ POST https://goal-management.com/api/logout
 |--------|--|
 | `message` | ログアウトしました |
 
-
+### 例
 ```js
 {
     message:'ログアウトしました'

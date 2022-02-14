@@ -3,9 +3,21 @@ User
 
 ### エンドポイント
 ```
-GET https://goal-management.com/api/objectives
+PUT https://goal-management.com/api/user/update_email
 ```
 
+
+### パラメータ
+| 場所  | 名称     | 内容 |
+|-----|--------|--|
+
+
+
+
+### 応答
+| 名称     | 内容 |
+|--------|--|
+| `message` | ログアウトしました |
 
 ### パラメータ
 | 場所     | 随意性                               | 名称                                    | 内容                                                                                                 |

@@ -10,13 +10,16 @@ GET https://goal-management.com/api/user
 ### パラメータ
 | 場所  | 名称     | 内容 |
 |-----|--------|--|
-| 本文  | `name` | UserName　Max:20 |
-| 本文  | `email` | UserName　unique |
-| 本文  | `password` | UserName　Min:8 |
+|ヘッダー|`X-XSRF-TOKEN`||
+
 
 ### 応答
 | 名称     | 内容 |
 |--------|--|
+| `id` | ログアウトしました |
+| `name` | ログアウトしました |
+| `email` | ログアウトしました |
+| `message` | ログアウトしました |
 | `message` | ログアウトしました |
 
 ```js

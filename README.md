@@ -36,7 +36,7 @@ APIのエンドポイントは以下のように設定しました。（後々AP
 | [ユーザーの名前を変更する](README/update-user_name.md)       | PUT    | /api/user/update_name  | 必要  |
 | [ユーザーのメールアドレスを変更する](README/update-user_email.md) | PUT    | /api/user/update_email | 必要  |
 | [ユーザーのパスワードを変更する](README/update-user_pass.md)    | PUT    | /api/user/update_pass  | 必要  |
-| [ユーザーデータをすべて削除する](README/delete-user.md)         | DELETE | /api/delete            | 必要  |
+| [ユーザーデータをすべて削除する](README/delete-user.md)         | DELETE | /api/user/delete       | 必要  |
 
 ### シェア用
 |                                                  | メソッド | URI                                              | 認証  |

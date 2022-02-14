@@ -10,7 +10,6 @@ GET https://goal-management.com/api/check
 ### パラメータ
 | 場所  | 名称     | 内容 |
 |-----|--------|--|
-| ヘッダー  | `name` | UserName　Max:20 |
 
 ### 応答
 | 名称     | 内容 |
