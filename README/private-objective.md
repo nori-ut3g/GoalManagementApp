@@ -1,31 +1,17 @@
 ### 権限
-User
+必要
 
 ### エンドポイント
 ```
-DELETE https://goal-management.com/api/objectives/private/{objective_id}
+DELETE https://goal-management.com/api/objectives/private/:objective_id
 ```
 
 
 ### パラメータ
-| 場所     | 随意性                               | 名称                                    | 内容                                                                                                 |
-| -------- | ------------------------------------ | --------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| ヘッダー | 必須                                 | `Authorization` または `X-MFOAuthToken` | `` Bearer `アクセストークン`  ``; ここで `` `アクセストークン` `` は [`access_token`](token.md) の値 |
-| パス | 必須               | `search_keyword`                        | このキーを元に金融機関名 (漢字もしくは読みがな) で検索する                                           |
-| 本文 | 必須               | `search_keyword`                        | このキーを元に金融機関名 (漢字もしくは読みがな) で検索する                                           |
+| 場所   | 名称             | 内容                 |
+|------|----------------|--------------------|
+| ヘッダー | `X-XSRF-TOKEN` | ログイン時に取得したCSRFトークン |
+| 本文   | `objective_id` | 対象の目標ID            |
 
 ### 応答
-```js
-{
-    [
-        {
-            id:a ,
-            'user_id':
-            'title':
-            'due_date':
-            'create_at':         
-        }
-    ]
-}
-```
-
+なし

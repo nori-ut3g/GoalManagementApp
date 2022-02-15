@@ -1,31 +1,17 @@
 ### 権限
-User
+必要
 
 ### エンドポイント
 ```
-GET https://goal-management.com/api/objective/{objective_id}/task/{id}/start
+GET https://goal-management.com/api/objective/:objective_id/task/:id/start
 ```
-
 
 ### パラメータ
-| 場所     | 随意性                               | 名称                                    | 内容                                                                                                 |
-| -------- | ------------------------------------ | --------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| ヘッダー | 必須                                 | `Authorization` または `X-MFOAuthToken` | `` Bearer `アクセストークン`  ``; ここで `` `アクセストークン` `` は [`access_token`](token.md) の値 |
-| パス | 必須               | `search_keyword`                        | このキーを元に金融機関名 (漢字もしくは読みがな) で検索する                                           |
-| 本文 | 必須               | `search_keyword`                        | このキーを元に金融機関名 (漢字もしくは読みがな) で検索する                                           |
+| 場所  | 名称     | 内容        |
+|-----|--------|-----------|
+| パス  | `objective_id` | 目標のID |
+| パス  | `id` | タスクのID |
 
 ### 応答
-```js
-{
-    [
-        {
-            id:a ,
-            'user_id':
-            'title':
-            'due_date':
-            'create_at':         
-        }
-    ]
-}
-```
+なし
 
