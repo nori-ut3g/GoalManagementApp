@@ -29,31 +29,29 @@ GET https://goal-management.com/api/objectives
 
 ### 応答
 ```js
-{
-    [
-        {
-            created_at: "2022-02-14T15:53:54.000000Z",
-            due_date: "2022-02-18",
-            finish_date: null,
-            id: 12,
-            start_date: "2022-02-14 00:00:00",
-            status: 0,
-            title: "title",
-            updated_at: "2022-02-14T15:53:54.000000Z",
-            user_id: 5
-        },
-        {
-            created_at: "2022-02-14T15:53:54.000000Z",
-            due_date: "2022-02-22",
-            finish_date: null,
-            id: 14,
-            start_date: "2022-02-16 00:00:00",
-            status: 0,
-            title: "title",
-            updated_at: "2022-02-16T14:35:54.000000Z",
-            user_id: 5
-        }
-    ]
-}
+[
+    {
+        created_at: "2022-02-14T15:53:54.000000Z",
+        due_date: "2022-02-18",
+        finish_date: null,
+        id: 12,
+        start_date: "2022-02-14 00:00:00",
+        status: 0,
+        title: "title",
+        updated_at: "2022-02-14T15:53:54.000000Z",
+        user_id: 5
+    },
+    {
+        created_at: "2022-02-14T15:53:54.000000Z",
+        due_date: "2022-02-22",
+        finish_date: null,
+        id: 14,
+        start_date: "2022-02-16 00:00:00",
+        status: 0,
+        title: "title",
+        updated_at: "2022-02-16T14:35:54.000000Z",
+        user_id: 5
+    }
+]
 ```
 

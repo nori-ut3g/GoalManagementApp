@@ -10,7 +10,7 @@ GET https://goal-management.com/api/sharedObjective/:shared_objective_id
 |-----|--------|-----------------|
 | パス  | `shared_objective_id` | 対象のShare用のID（※） |
 
-※shared_objective_idは、[目標をPublicにしたとき](README/share-objective.md) 発行される
+※shared_objective_idは、[目標をPublicにしたとき](share-objective.md) 発行される
 
 ### 応答
 | 名称     | 内容      |
@@ -28,15 +28,15 @@ GET https://goal-management.com/api/sharedObjective/:shared_objective_id
 ### 応答
 ```js
 {
-        created_at: "2022-02-14T15:53:54.000000Z"
-        due_date: "2022-02-18"
-        finish_date: null
-        id: 12
-        start_date: "2022-02-14 00:00:00"
-        status: 0
-        title: "title"
-        updated_at: "2022-02-14T15:53:54.000000Z"
-        user_id: 5
+    created_at: "2022-02-14T15:53:54.000000Z"
+    due_date: "2022-02-18"
+    finish_date: null
+    id: 12
+    start_date: "2022-02-14 00:00:00"
+    status: 0
+    title: "title"
+    updated_at: "2022-02-14T15:53:54.000000Z"
+    user_id: 5
 }
 ```
 
