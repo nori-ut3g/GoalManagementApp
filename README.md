@@ -1,9 +1,9 @@
 ## 概要
 LaravelとVue.jsで作成した、Todoリストです。
 https://manage-goals.com/
-同じような目標を持つ人に、目標とタスクをシェアできます。
+同じような目標を持つ人と目標とタスクをシェアできます。
 詳細は、
-
+https://qiita.com/nori-ut3g/items/f54db483354bd02eeae2
 をご確認ください。
 
 ## APIエンドポイント
